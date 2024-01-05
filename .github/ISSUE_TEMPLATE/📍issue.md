@@ -1,7 +1,7 @@
 ---
 name: "\U0001F4CDIssue"
 about: create an issue
-title: ''
+title: "[FEATURE] 어떤 기능인지"
 labels: ''
 assignees: ''
 
