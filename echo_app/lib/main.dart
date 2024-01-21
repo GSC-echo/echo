@@ -1,5 +1,7 @@
+import 'package:echo_app/pages/homePage.dart';
 import 'package:echo_app/pages/login.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,14 +13,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Echo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Welcome to Echo'),
-    );
+    return ScreenUtilInit(
+        designSize: Size(393, 852),
+        child: MaterialApp(
+          title: 'Echo',
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+            useMaterial3: true,
+          ),
+          home: const MyHomePage(title: 'Welcome to Echo'),
+        ));
   }
 }
 
@@ -41,7 +45,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -51,21 +54,20 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      body: Center(
-        child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset('images/echo.png',width:250,height:250),
-          ElevatedButton(
-          child: const Text("Start Echo"),
-              onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const Login()));
-              },
-          ),
-      
-        ]
-      )
-    )
-    );
+        body: Center(
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+      Image.asset('images/echo.png', width: 250, height: 250),
+      ElevatedButton(
+        child: const Text("Start Echo"),
+        // onPressed: (){
+        //   Navigator.push(context, MaterialPageRoute(builder: (context) => const Login()));
+        // },
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const HomePage()));
+        },
+      ),
+    ])));
   }
 }
