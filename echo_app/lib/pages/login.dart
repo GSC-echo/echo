@@ -1,3 +1,5 @@
+
+import 'package:echo_app/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -50,7 +52,7 @@ class _LoginState extends State<Login> {
     ));
   }
 
-  Future<UserCredential> signInWithGoogle() async {
+  Future<Null> signInWithGoogle() async {
     // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
@@ -65,6 +67,14 @@ class _LoginState extends State<Login> {
     );
 
     // Once signed in, return the UserCredential
-    return await FirebaseAuth.instance.signInWithCredential(credential);
+    return await FirebaseAuth.instance.signInWithCredential(credential).then((value){
+      print(value.user?.email);
+      Navigator.of(context as BuildContext).pushReplacement(MaterialPageRoute(
+        builder: (context) => MyApp(),
+      ));
+
+  }).onError((error, stackTrace){
+    print("error $error");
+  });
   }
 }
