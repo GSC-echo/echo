@@ -3,15 +3,16 @@ import 'package:echo_app/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:echo_app/pages/splash.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class Settings extends StatefulWidget {
+  const Settings({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Settings> createState() => _SettingsState();
 }
 
-class _LoginState extends State<Login> {
+class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,8 +24,12 @@ class _LoginState extends State<Login> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             InkWell(
-                onTap: () {
-                  signInWithGoogle();
+                onTap: () async {
+                  GoogleSignIn().signOut();
+                  FirebaseAuth.instance.signOut();
+                  Navigator.of(context as BuildContext).pushReplacement(MaterialPageRoute(
+                    builder: (context) => Splash(),
+      ));
                 },
                 child: Card(
                   margin: const EdgeInsets.fromLTRB(30, 30, 30, 0),
@@ -38,7 +43,7 @@ class _LoginState extends State<Login> {
                         const SizedBox(
                           width: 10,
                         ),
-                        const Text("Sign In With Google", 
+                        const Text("Log out", 
                             style: TextStyle(
                                 color: Color.fromARGB(255, 13, 8, 8),
                                 fontFamily: 'Roboto',
@@ -52,29 +57,5 @@ class _LoginState extends State<Login> {
     ));
   }
 
-  Future<Null> signInWithGoogle() async {
-    // Trigger the authentication flow
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-    // Obtain the auth details from the request
-    final GoogleSignInAuthentication? googleAuth =
-        await googleUser?.authentication;
-
-    // Create a new credential
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
-
-    // Once signed in, return the UserCredential
-    return await FirebaseAuth.instance.signInWithCredential(credential).then((value){
-      print(value.user?.email);
-      Navigator.of(context as BuildContext).pushReplacement(MaterialPageRoute(
-        builder: (context) => MyApp(),
-      ));
-
-  }).onError((error, stackTrace){
-    print("error $error");
-  });
-  }
 }
