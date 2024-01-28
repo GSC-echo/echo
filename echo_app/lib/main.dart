@@ -1,16 +1,17 @@
 import 'package:echo_app/firebase_options.dart';
-import 'package:echo_app/pages/homePage.dart';
+import 'package:echo_app/pages/mainpage.dart';
 import 'package:echo_app/pages/splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-Future<void> main() async{
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp(
-    options:DefaultFirebaseOptions.currentPlatform,
+    options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const Splash());
+  // runApp(const Splash());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-        designSize: Size(393, 852),
+        designSize: const Size(390, 844),
         child: MaterialApp(
           title: 'Echo',
           theme: ThemeData(
@@ -71,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // },
         onPressed: () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const HomePage()));
+              MaterialPageRoute(builder: (context) => const MainPage()));
         },
       ),
     ])));
