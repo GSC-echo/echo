@@ -1,3 +1,4 @@
+import 'package:echo_app/widgets/home_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,6 +13,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  String selectedContent = "Entire";
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -44,7 +46,7 @@ class _HomeState extends State<Home> {
                             //icon
                             Container(
                                 child: Image.asset(
-                                  'lib/config/images/sprout.png',
+                                  'lib/config/images/sprout.png', //user.stageImage
                                   width: 86,
                                   height: 86,
                                 ),
@@ -53,7 +55,7 @@ class _HomeState extends State<Home> {
                             Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text("Sprout",
+                                  Text("Sprout", //user.stage
                                       textAlign: TextAlign.center,
                                       style: TextStyles.h3),
                                   Text(
@@ -70,7 +72,7 @@ class _HomeState extends State<Home> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Row(children: [
-                                      Text("24",
+                                      Text("24", //user.point
                                           textAlign: TextAlign.left,
                                           style: TextStyles.h3),
                                       Text(
@@ -80,7 +82,7 @@ class _HomeState extends State<Home> {
                                       ),
                                     ]),
                                     Row(children: [
-                                      Text("11",
+                                      Text("11", //max-user.point
                                           textAlign: TextAlign.right,
                                           style: TextStyles.h3
                                               .copyWith(fontSize: 12.sp)),
@@ -90,7 +92,7 @@ class _HomeState extends State<Home> {
                                         style: TextStyles.h2
                                             .copyWith(fontSize: 12.sp),
                                       ),
-                                      Text(" Seedling",
+                                      Text(" Seedling", //user.nextStage
                                           textAlign: TextAlign.right,
                                           style: TextStyles.h3
                                               .copyWith(fontSize: 12.sp)),
@@ -108,7 +110,7 @@ class _HomeState extends State<Home> {
                                   left: 34, right: 34, top: 5),
                               child: ClipRRect(
                                   child: LinearPercentIndicator(
-                                percent: 0.30, //percent
+                                percent: 0.30, //percent(100*user.point/max)
                                 lineHeight: 13,
                                 backgroundColor: Colors.white,
                                 progressColor: Color(0xFF2DB400),
@@ -140,8 +142,10 @@ class _HomeState extends State<Home> {
                             ),
                             height: 92.h,
                             width: 160.w,
-                            child: InkWell(
-                              onTap: () {},
+                            child: GestureDetector(
+                              onTap: () {
+                                print("Get a Point");
+                              },
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -172,8 +176,10 @@ class _HomeState extends State<Home> {
                             ),
                             height: 92.h,
                             width: 160.w,
-                            child: InkWell(
-                              onTap: () {},
+                            child: GestureDetector(
+                              onTap: () {
+                                print("About Stage");
+                              },
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -209,100 +215,36 @@ class _HomeState extends State<Home> {
               Row(
                 children: [
                   SizedBox(width: 17.w),
-                  GestureDetector(
+                  RealTimePlacesContent(
+                    content: "Entire",
+                    isSelected: selectedContent == "Entire",
                     onTap: () {
-                      print('Container Tapped!');
+                      _handleTap("Entire");
                     },
-                    child: Container(
-                      alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.symmetric(
-                          vertical: 5.sp, horizontal: 10.sp),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Color(0xff5DCA86).withOpacity(0.83),
-                        border: Border.all(
-                          color: Color(0xff5DCA75).withOpacity(0.65),
-                          width: 2.0,
-                        ),
-                      ),
-                      child: Text(
-                        "Entire",
-                        textAlign: TextAlign.center,
-                        style: TextStyles.h1.copyWith(fontSize: 11.sp),
-                      ),
-                    ),
                   ),
                   SizedBox(width: 8.w),
-                  GestureDetector(
+                  RealTimePlacesContent(
+                    content: "Accomodation",
+                    isSelected: selectedContent == "Accomodation",
                     onTap: () {
-                      print('Container Tapped!');
+                      _handleTap("Accomodation");
                     },
-                    child: Container(
-                      alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.symmetric(
-                          vertical: 5.sp, horizontal: 10.sp),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.white,
-                        border: Border.all(
-                          color: Color(0xff5DCA75).withOpacity(0.65),
-                          width: 2.0,
-                        ),
-                      ),
-                      child: Text(
-                        "Accomodation",
-                        textAlign: TextAlign.center,
-                        style: TextStyles.h1.copyWith(fontSize: 11.sp),
-                      ),
-                    ),
                   ),
                   SizedBox(width: 8.w),
-                  GestureDetector(
+                  RealTimePlacesContent(
+                    content: "Restaurant",
+                    isSelected: selectedContent == "Restaurant",
                     onTap: () {
-                      print('Container Tapped!');
+                      _handleTap("Restaurant");
                     },
-                    child: Container(
-                      alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.symmetric(
-                          vertical: 5.sp, horizontal: 10.sp),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.white,
-                        border: Border.all(
-                          color: Color(0xff5DCA75).withOpacity(0.65),
-                          width: 2.0,
-                        ),
-                      ),
-                      child: Text(
-                        "Restaurant",
-                        textAlign: TextAlign.center,
-                        style: TextStyles.h1.copyWith(fontSize: 11.sp),
-                      ),
-                    ),
                   ),
                   SizedBox(width: 8.w),
-                  GestureDetector(
+                  RealTimePlacesContent(
+                    content: "Tourist Attraction",
+                    isSelected: selectedContent == "Tourist Attraction",
                     onTap: () {
-                      print('Container Tapped!');
+                      _handleTap("Tourist Attraction");
                     },
-                    child: Container(
-                      alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.symmetric(
-                          vertical: 5.sp, horizontal: 10.sp),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.white,
-                        border: Border.all(
-                          color: Color(0xff5DCA75).withOpacity(0.65),
-                          width: 2.0,
-                        ),
-                      ),
-                      child: Text(
-                        "Tourist Attraction",
-                        textAlign: TextAlign.center,
-                        style: TextStyles.h1.copyWith(fontSize: 11.sp),
-                      ),
-                    ),
                   ),
                 ],
               ),
@@ -310,81 +252,7 @@ class _HomeState extends State<Home> {
               SingleChildScrollView(
                 padding: EdgeInsets.only(left: 11.w),
                 scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: <Widget>[
-                    Container(
-                      child: GestureDetector(
-                        onTap: () {
-                          print("touched");
-                        },
-                      ),
-                      margin: EdgeInsets.only(right: 8.w),
-                      width: 207,
-                      height: 145,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(35),
-                        color: Colors.red,
-                      ),
-                    ),
-                    Container(
-                      child: GestureDetector(
-                        onTap: () {
-                          print("touched");
-                        },
-                      ),
-                      margin: EdgeInsets.only(right: 8.w),
-                      width: 207,
-                      height: 145,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(35),
-                        color: Colors.blue,
-                      ),
-                    ),
-                    Container(
-                      child: GestureDetector(
-                        onTap: () {
-                          print("touched");
-                        },
-                      ),
-                      margin: EdgeInsets.only(right: 8.w),
-                      width: 207,
-                      height: 145,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(35),
-                        color: Colors.green,
-                      ),
-                    ),
-                    Container(
-                      child: GestureDetector(
-                        onTap: () {
-                          print("touched");
-                        },
-                      ),
-                      margin: EdgeInsets.only(right: 8.w),
-                      width: 207,
-                      height: 145,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(35),
-                        color: Colors.purple,
-                      ),
-                    ),
-                    Container(
-                      child: GestureDetector(
-                        onTap: () {
-                          print("touched");
-                        },
-                      ),
-                      margin: EdgeInsets.only(right: 8.w),
-                      width: 207,
-                      height: 145,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(35),
-                        color: Colors.grey,
-                      ),
-                    ),
-                    // Add more containers as needed
-                  ],
-                ),
+                child: RealTimePlace(content: "Entire"), //해당되는 content의 상위 5가지
               ),
               SizedBox(height: 34.h),
               Container(
@@ -430,95 +298,12 @@ class _HomeState extends State<Home> {
                                             color: Colors.white)),
                                   )),
                               SizedBox(width: 20.w),
-                              Column(children: [
-                                SizedBox(height: 35.h),
-                                Container(
-                                  height: 54.h,
-                                  width: 289.w,
-                                  child: ListView(
-                                    scrollDirection: Axis.horizontal,
-                                    children: <Widget>[
-                                      Container(
-                                          width: 100.w,
-                                          padding: EdgeInsets.only(right: 32.w),
-                                          child: Column(children: [
-                                            Text("Naejangsan\nNational Park",
-                                                textAlign: TextAlign.center,
-                                                style: TextStyles.h1
-                                                    .copyWith(fontSize: 11.sp)),
-                                            SizedBox(height: 15.h),
-                                            Row(children: [
-                                              Container(
-                                                margin:
-                                                    EdgeInsets.only(left: 35.w),
-                                                width: 6.w,
-                                                height: 6.h,
-                                                decoration: BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                  color: Color(0xff5DCA75)
-                                                      .withOpacity(0.65),
-                                                ),
-                                              ),
-                                              Container(
-                                                width: 26.6.w,
-                                                height: 2.h,
-                                                decoration: BoxDecoration(
-                                                  color: Color(0xff5DCA75)
-                                                      .withOpacity(0.65),
-                                                ),
-                                              )
-                                            ]),
-                                          ])),
-                                      Container(
-                                          width: 100.w,
-                                          padding: EdgeInsets.only(right: 32.w),
-                                          child: Column(children: [
-                                            Text("Naejangsan\nNational Park",
-                                                textAlign: TextAlign.center,
-                                                style: TextStyles.h1
-                                                    .copyWith(fontSize: 11.sp)),
-                                            SizedBox(height: 15.h),
-                                            Row(children: [
-                                              Container(
-                                                margin:
-                                                    EdgeInsets.only(left: 35.w),
-                                                width: 6.w,
-                                                height: 6.h,
-                                                decoration: BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                  color: Color(0xff5DCA75)
-                                                      .withOpacity(0.65),
-                                                ),
-                                              ),
-                                              Container(
-                                                width: 26.6.w,
-                                                height: 2.h,
-                                                decoration: BoxDecoration(
-                                                  color: Color(0xff5DCA75)
-                                                      .withOpacity(0.65),
-                                                ),
-                                              )
-                                            ]),
-                                          ])),
-                                      Container(
-                                        width: 100.w,
-                                        padding: EdgeInsets.only(right: 32.w),
-                                        child: Text("Naejangsan\nNational Park",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyles.h1
-                                                .copyWith(fontSize: 11.sp)),
-                                      ),
-                                      Container(
-                                        width: 100.w,
-                                        padding: EdgeInsets.only(right: 32.w),
-                                        child: Text("Naejangsan\nNational Park",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyles.h1
-                                                .copyWith(fontSize: 11.sp)),
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                              RealTimeCourse(array: [
+                                "Naejangsan National Park",
+                                "Naejangsan National Park",
+                                "Naejangsan National Park",
+                                "Naejangsan National Park",
+                                "Naejangsan National Park"
                               ])
                             ],
                           ),
@@ -532,8 +317,32 @@ class _HomeState extends State<Home> {
                         ),
                         Container(
                           height: 106.h,
-                          child: ListTile(
-                            title: Text('Item 2'),
+                          child: Row(
+                            children: [
+                              Container(
+                                  height: 20.h,
+                                  width: 20.w,
+                                  margin: EdgeInsets.only(
+                                      left: 29, top: 41.h, bottom: 41.h),
+                                  decoration: BoxDecoration(
+                                      color: Color(0xff5DCA86),
+                                      borderRadius: BorderRadius.circular(5)),
+                                  child: Center(
+                                    child: Text("2",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyles.h1.copyWith(
+                                            fontSize: 15.sp,
+                                            color: Colors.white)),
+                                  )),
+                              SizedBox(width: 20.w),
+                              RealTimeCourse(array: [
+                                "Naejangsan National Park",
+                                "Naejangsan National Park",
+                                "Naejangsan National Park",
+                                "Naejangsan National Park",
+                                "Naejangsan National Park"
+                              ])
+                            ],
                           ),
                         ),
                         Padding(
@@ -545,8 +354,32 @@ class _HomeState extends State<Home> {
                         ),
                         Container(
                           height: 106.h,
-                          child: ListTile(
-                            title: Text('Item 3'),
+                          child: Row(
+                            children: [
+                              Container(
+                                  height: 20.h,
+                                  width: 20.w,
+                                  margin: EdgeInsets.only(
+                                      left: 29, top: 41.h, bottom: 41.h),
+                                  decoration: BoxDecoration(
+                                      color: Color(0xff5DCA86),
+                                      borderRadius: BorderRadius.circular(5)),
+                                  child: Center(
+                                    child: Text("3",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyles.h1.copyWith(
+                                            fontSize: 15.sp,
+                                            color: Colors.white)),
+                                  )),
+                              SizedBox(width: 20.w),
+                              RealTimeCourse(array: [
+                                "item3",
+                                "item3",
+                                "item3",
+                                "item3",
+                                "item3"
+                              ])
+                            ],
                           ),
                         ),
                       ],
@@ -557,5 +390,11 @@ class _HomeState extends State<Home> {
         ),
       ),
     );
+  }
+
+  void _handleTap(String content) {
+    setState(() {
+      selectedContent = content;
+    });
   }
 }
