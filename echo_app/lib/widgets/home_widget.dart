@@ -204,3 +204,57 @@ Widget RealTimeCourse({required array}) {
     ),
   ]);
 }
+
+Widget AboutStageWidget(
+    {required List<String> imageUrlList,
+    required List<String> stageList,
+    required List<String> detailList}) {
+  return ListView(
+      children: List.generate(stageList.length, (index) {
+    return Column(children: [
+      Container(
+        padding: EdgeInsets.only(left: 25.w, top: 25.h, bottom: 25.h),
+        child: Row(
+          children: [
+            Center(
+              child: Image.asset(
+                imageUrlList[index],
+                width: 86,
+                height: 86,
+              ),
+            ),
+            SizedBox(width: 30.w),
+            Column(
+              children: [
+                Center(
+                  child: Text(
+                    stageList[index],
+                    style: TextStyles.h1,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                SizedBox(height: 10.h),
+                Center(
+                  child: Text(
+                    detailList[index],
+                    style: TextStyles.h1.copyWith(fontSize: 15.sp),
+                    textAlign: TextAlign.center,
+                  ),
+                )
+              ],
+            ),
+          ],
+        ),
+      ),
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: 23.0),
+        child: index == stageList.length - 1
+            ? Container()
+            : Divider(
+                color: Color(0xff5DCA75).withOpacity(0.65),
+                thickness: 2.0,
+              ),
+      ),
+    ]);
+  }));
+}
