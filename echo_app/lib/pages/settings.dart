@@ -39,7 +39,11 @@ class _SettingsState extends State<Settings> {
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset('lib/config/images/google.png',width:50,height:50),
+                        Icon(
+                                    Icons.logout,
+                                    size: 40,
+                                    color: Colors.black,
+                                  ),
                         const SizedBox(
                           width: 10,
                         ),
