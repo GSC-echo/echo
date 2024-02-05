@@ -39,6 +39,7 @@ dependencies:
   firebase_auth: ^4.16.0
   flutter_screenutil: ^5.8.4
   percent_indicator: ^4.2.3
+  sizer: ^2.0.15
 
 dev_dependencies:
   flutter_test:

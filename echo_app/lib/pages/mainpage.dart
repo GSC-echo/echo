@@ -1,9 +1,10 @@
+import 'package:echo_app/pages/settings.dart';
 import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
 import "package:flutter/widgets.dart";
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../widgets/home_widget.dart';
 import 'home.dart';
-import 'package:echo_app/pages/settings.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -16,15 +17,15 @@ class _MainPageState extends State<MainPage> {
   int _currentIndex = 1;
 
   final List<BottomNavigationBarItem> _bottomNavBarItems = [
-    BottomNavigationBarItem(
+    const BottomNavigationBarItem(
       icon: Icon(Icons.search),
       label: 'Search',
     ),
-    BottomNavigationBarItem(
+    const BottomNavigationBarItem(
       icon: Icon(Icons.home),
       label: 'Home',
     ),
-    BottomNavigationBarItem(
+    const BottomNavigationBarItem(
       icon: Icon(Icons.person_rounded),
       label: 'Settings',
     ),
@@ -36,8 +37,8 @@ class _MainPageState extends State<MainPage> {
         color: Colors.green,
       ),
     ),
-    Home(),
-    Settings(),
+    const Home(),
+    const Settings(),
   ];
 
   @override
@@ -49,7 +50,7 @@ class _MainPageState extends State<MainPage> {
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: _currentIndex,
             items: _bottomNavBarItems,
-            backgroundColor: Color(0xFF5DCA75).withOpacity(0.65),
+            backgroundColor: const Color(0xFF5DCA75).withOpacity(0.65),
             onTap: (index) {
               setState(() {
                 _currentIndex = index;
