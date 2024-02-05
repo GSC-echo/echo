@@ -1,3 +1,4 @@
+import 'package:echo_app/pages/settings.dart';
 import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
 import "package:flutter/widgets.dart";
@@ -37,11 +38,7 @@ class _MainPageState extends State<MainPage> {
       ),
     ),
     const Home(),
-    Center(
-      child: Container(
-        color: Colors.blue,
-      ),
-    ),
+    const Settings(),
   ];
 
   @override

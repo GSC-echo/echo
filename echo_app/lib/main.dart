@@ -10,8 +10,8 @@ Future<void> main() async {
   Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  // runApp(const Splash());
-  runApp(const MyApp());
+  runApp(const Splash());
+  //runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -64,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Center(
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-      Image.asset('images/echo.png', width: 250, height: 250),
+      Image.asset('lib/config/images/echo.png', width: 250, height: 250),
       ElevatedButton(
         child: const Text("Start Echo"),
         // onPressed: (){
