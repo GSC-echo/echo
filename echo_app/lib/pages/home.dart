@@ -1,11 +1,11 @@
 import 'package:echo_app/pages/about_stage.dart';
+import 'package:echo_app/pages/get_point.dart';
 import 'package:echo_app/widgets/home_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../config/colors.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import 'about_stage.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -32,12 +32,6 @@ class _HomeState extends State<Home> {
             child: SafeArea(
               child: Column(
                 children: [
-                  // Padding(padding: EdgeInsets.only(top: 15.h)),
-                  // Text(
-                  //   "HOME",
-                  //   textAlign: TextAlign.center,
-                  //   style: TextStyles.h1,
-                  // ),
                   Padding(
                     padding:
                         EdgeInsets.only(top: 12.h, left: 20.w, right: 20.w),
@@ -119,7 +113,8 @@ class _HomeState extends State<Home> {
                                       left: 34, right: 34, top: 5),
                                   child: ClipRRect(
                                       child: LinearPercentIndicator(
-                                    percent: 0.30, //percent(100*user.point/max)
+                                    percent:
+                                        11 / 24, //percent(100*user.point/max)
                                     lineHeight: 13,
                                     backgroundColor: Colors.white,
                                     progressColor: Color(0xFF2DB400),
@@ -153,7 +148,11 @@ class _HomeState extends State<Home> {
                                 width: 160.w,
                                 child: GestureDetector(
                                   onTap: () {
-                                    print("Get a Point");
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: ((context) =>
+                                                const GetPoint())));
                                   },
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,

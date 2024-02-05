@@ -1,3 +1,4 @@
+import 'package:echo_app/pages/get_point.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -130,7 +131,7 @@ Widget RealTimeCourse({required array}) {
         scrollDirection: Axis.horizontal,
         children: <Widget>[
           Container(
-            width: 550.w,
+            width: 500.w,
             child: Row(
               children: List.generate(array.length, (index) {
                 return Row(children: [
@@ -257,4 +258,105 @@ Widget AboutStageWidget(
       ),
     ]);
   }));
+}
+
+class GettingPoints extends StatefulWidget {
+  final List<Mission> array;
+
+  GettingPoints({required this.array});
+
+  @override
+  _GettingPointsState createState() => _GettingPointsState();
+}
+
+class _GettingPointsState extends State<GettingPoints> {
+  late List<bool> isCheckedList;
+
+  @override
+  void initState() {
+    super.initState();
+    isCheckedList = List.generate(widget.array.length, (index) => false);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      children: List.generate(widget.array.length, (index) {
+        bool isChecked = isCheckedList[index];
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 8.h),
+          child: Container(
+            decoration: BoxDecoration(
+              color: isChecked
+                  ? Color(0x000000).withOpacity(0.2)
+                  : Color(0xff5DCA75).withOpacity(0.65),
+              borderRadius: BorderRadius.circular(15.sp),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  spreadRadius: 1,
+                  blurRadius: 5,
+                  offset: Offset(0, 3),
+                ),
+              ],
+            ),
+            child: ListTile(
+              title: Row(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            widget.array[index].point.toString(),
+                            textAlign: TextAlign.center,
+                            style: TextStyles.h1.copyWith(
+                              fontSize: 10.sp,
+                              color: Color(0xFF176B87).withOpacity(0.77),
+                            ),
+                          ),
+                          Text(
+                            "points",
+                            textAlign: TextAlign.center,
+                            style: TextStyles.h1.copyWith(
+                              fontSize: 10.sp,
+                              color: Color(0xFF176B87).withOpacity(0.77),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(width: 30.w),
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        widget.array[index].name,
+                        textAlign: TextAlign.center,
+                        style: TextStyles.h1.copyWith(fontSize: 15.sp),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 30.w),
+                  Checkbox(
+                    value: isChecked,
+                    onChanged: (value) {
+                      setState(() {
+                        isCheckedList[index] = value!;
+                      });
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      }),
+    );
+  }
 }
