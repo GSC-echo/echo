@@ -53,10 +53,9 @@ class _SettingsState extends State<Settings> {
                             ),
                             elevation: 3,
                             child: Center(
-                              // 중앙 정렬을 위한 Center 위젯 추가
                               child: Text(
                                 "RECORD",
-                                textAlign: TextAlign.center, // 텍스트 가운데 정렬
+                                textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontFamily: 'Jua',
@@ -82,10 +81,9 @@ class _SettingsState extends State<Settings> {
                             ),
                             elevation: 3,
                             child: Center(
-                              // 중앙 정렬을 위한 Center 위젯 추가
                               child: Text(
                                 "SIGN OUT",
-                                textAlign: TextAlign.center, // 텍스트 가운데 정렬
+                                textAlign: TextAlign.center, 
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontFamily: 'Jua',
@@ -111,10 +109,9 @@ class _SettingsState extends State<Settings> {
                             ),
                             elevation: 3,
                             child: Center(
-                              // 중앙 정렬을 위한 Center 위젯 추가
                               child: Text(
                                 "Privacy & Security",
-                                textAlign: TextAlign.center, // 텍스트 가운데 정렬
+                                textAlign: TextAlign.center, 
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontFamily: 'Jua',
@@ -141,10 +138,9 @@ class _SettingsState extends State<Settings> {
                             ),
                             elevation: 3,
                             child: Center(
-                              // 중앙 정렬을 위한 Center 위젯 추가
                               child: Text(
                                 "Help & Support",
-                                textAlign: TextAlign.center, // 텍스트 가운데 정렬
+                                textAlign: TextAlign.center, 
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontFamily: 'Jua',
