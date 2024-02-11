@@ -1,3 +1,4 @@
+import 'package:echo_app/pages/map.dart';
 import 'package:echo_app/pages/settings.dart';
 import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
@@ -5,6 +6,7 @@ import "package:flutter/widgets.dart";
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../widgets/home_widget.dart';
 import 'home.dart';
+import '../widgets/other_widget.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -32,11 +34,7 @@ class _MainPageState extends State<MainPage> {
   ];
 
   final List<Widget> _screens = [
-    Center(
-      child: Container(
-        color: Colors.green,
-      ),
-    ),
+    const MapPage(),
     const Home(),
     const Settings(),
   ];

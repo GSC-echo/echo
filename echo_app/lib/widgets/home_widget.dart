@@ -47,6 +47,7 @@ class _RealTimePlacesContentState extends State<RealTimePlacesContent> {
 }
 
 Widget RealTimePlace({required content}) {
+  //content -> array[places]로 수정 필요
   return Row(children: <Widget>[
     Container(
       margin: EdgeInsets.only(right: 8.w),
@@ -303,6 +304,7 @@ class _GettingPointsState extends State<GettingPoints> {
               ],
             ),
             child: ListTile(
+              //gestureDetector 변환 -> onTap() => 카메라, 위치기반 인증
               title: Row(
                 children: [
                   Column(
@@ -343,14 +345,14 @@ class _GettingPointsState extends State<GettingPoints> {
                     ),
                   ),
                   SizedBox(width: 30.w),
-                  Checkbox(
-                    value: isChecked,
-                    onChanged: (value) {
-                      setState(() {
-                        isCheckedList[index] = value!;
-                      });
-                    },
-                  ),
+                  // Checkbox(
+                  //   value: isChecked,
+                  //   onChanged: (value) {
+                  //     setState(() {
+                  //       isCheckedList[index] = value!;
+                  //     });
+                  //   },
+                  // ),
                 ],
               ),
             ),
