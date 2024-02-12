@@ -1,3 +1,4 @@
+import 'package:echo_app/config/colors.dart';
 import 'package:echo_app/firebase_options.dart';
 import 'package:echo_app/pages/mainpage.dart';
 import 'package:echo_app/pages/settings.dart';
@@ -5,6 +6,7 @@ import 'package:echo_app/pages/splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter/material.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -68,7 +70,25 @@ class _MyHomePageState extends State<MyHomePage> {
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
       Image.asset('lib/config/images/echo.png', width: 250, height: 250),
       ElevatedButton(
-        child: const Text("Start Echo"),
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all<Color>(BackgroundColor.mainGreen.withOpacity(0.75)),
+          elevation:
+              MaterialStateProperty.all<double>(3), 
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20), 
+            ),
+          ),
+        ),
+        child: const Text(
+          "Go!",
+          style: TextStyle(
+            fontFamily: 'NotoSansKR',
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
         // onPressed: (){
         //   Navigator.push(context, MaterialPageRoute(builder: (context) => const Login()));
         // },

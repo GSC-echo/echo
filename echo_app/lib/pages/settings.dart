@@ -1,8 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:echo_app/config/colors.dart';
+import 'package:echo_app/firestore.dart';
 import 'package:echo_app/main.dart';
 import 'package:echo_app/pages/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:echo_app/pages/splash.dart';
 
@@ -25,7 +28,7 @@ class _SettingsState extends State<Settings> {
               alignment: Alignment.topCenter,
               child: Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(70),
+                  borderRadius: BorderRadius.circular(40),
                   color: Colors.white,
                   border: Border.all(
                       color: BackgroundColor.mainGreen.withOpacity(0.70),
@@ -39,11 +42,11 @@ class _SettingsState extends State<Settings> {
                     children: [
       //Record
                       Container(
-                        width: 300,
+                        width: 350,
                         height: 75,
                         child: InkWell(
                           onTap: () {
-                            signInWithGoogle(context);
+                            //signInWithGoogle(context);
                           },
                           child: Card(
                             color: BackgroundColor.mainGreen.withOpacity(0.75),
@@ -58,7 +61,8 @@ class _SettingsState extends State<Settings> {
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontFamily: 'Jua',
+                                  fontFamily: 'NotoSansKR',
+                                  fontWeight: FontWeight.bold,
                                   fontSize: 22,
                                 ),
                               ),
@@ -67,11 +71,12 @@ class _SettingsState extends State<Settings> {
                         ),
                       ),
                       Container(
-                        width: 300,
+                        width: 350,
                         height: 75,
                         child: InkWell(
                           onTap: () {
-                            signInWithGoogle(context);
+                            print("signout");
+                             FireStorePage.deleteCurrentUser(context);
                           },
                           child: Card(
                             color: BackgroundColor.mainGreen.withOpacity(0.75),
@@ -86,7 +91,8 @@ class _SettingsState extends State<Settings> {
                                 textAlign: TextAlign.center, 
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontFamily: 'Jua',
+                                  fontFamily: 'NotoSansKR',
+                                  fontWeight: FontWeight.bold,
                                   fontSize: 22,
                                 ),
                               ),
@@ -95,7 +101,7 @@ class _SettingsState extends State<Settings> {
                         ),
                       ),
                       Container(
-                        width: 300,
+                        width: 350,
                         height: 75,
                         child: InkWell(
                           onTap: () {
@@ -114,7 +120,8 @@ class _SettingsState extends State<Settings> {
                                 textAlign: TextAlign.center, 
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontFamily: 'Jua',
+                                  fontFamily: 'NotoSansKR',
+                                  fontWeight: FontWeight.bold,
                                   fontSize: 22,
                                 ),
                               ),
@@ -124,7 +131,7 @@ class _SettingsState extends State<Settings> {
                       ),
 
                       Container(
-                        width: 300,
+                        width: 350,
                         height: 75,
                         child: InkWell(
                           onTap: () {
@@ -143,7 +150,8 @@ class _SettingsState extends State<Settings> {
                                 textAlign: TextAlign.center, 
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontFamily: 'Jua',
+                                  fontFamily: 'NotoSansKR',
+                                  fontWeight: FontWeight.bold,
                                   fontSize: 22,
                                 ),
                               ),
@@ -165,14 +173,14 @@ class _SettingsState extends State<Settings> {
                   GoogleSignIn().signOut();
                   FirebaseAuth.instance.signOut();
                   Navigator.of(context as BuildContext).pushReplacement(MaterialPageRoute(
-                    builder: (context) => const Splash(),
+                    builder: (context) => const Login(),
                   ));
                 },
                 child: Card(
                   color: Colors.white,
                   margin: const EdgeInsets.fromLTRB(30, 30, 30, 0),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(35),
                     side: BorderSide(color: const Color.fromARGB(255, 237, 104, 94), width:3)
                   ),
                   elevation: 3,
@@ -190,7 +198,8 @@ class _SettingsState extends State<Settings> {
                         const Text("Log out", 
                             style: TextStyle(
                                 color:const Color.fromARGB(255, 237, 104, 94),
-                                fontFamily: 'Jua',
+                                fontFamily: 'Not oSansKR',
+                                fontWeight: FontWeight.bold,
                                 fontSize: 18))
                       ]),
                 ))
@@ -201,3 +210,4 @@ class _SettingsState extends State<Settings> {
     );
   }
 }
+

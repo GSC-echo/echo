@@ -1,8 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:echo_app/config/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:echo_app/main.dart';
+import 'package:echo_app/firestore.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -23,10 +27,11 @@ class _LoginState extends State<Login> {
               alignment: Alignment.topCenter,
               child: Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(70),
-                  color: BackgroundColor.mainGreen.withOpacity(0.85),
+                  borderRadius: BorderRadius.circular(10),
+                  color:
+                      const Color.fromARGB(255, 93, 214, 119).withOpacity(0.85),
                 ),
-                height: 400,
+                height: 280,
                 width: 350,
                 child: Container(
                   margin: const EdgeInsets.only(top: 25.0),
@@ -36,25 +41,26 @@ class _LoginState extends State<Login> {
                         "Welcome to echo!",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontFamily: 'Jua',
+                          fontFamily: 'NotoSansKR',
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
-                          color: Colors.black.withOpacity(0.8),
+                          color: Colors.white,
                         ),
                       ),
                       Text(
                         "\nLet's go on a meaningful journey together from now on!",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontFamily: 'Jua',
+                          fontFamily: 'NotoSansKR',
                           fontSize: 20,
+                          fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
                       ),
-      //LOGIN 
+                      //LOGIN
                       Container(
-                        width: 200,
-                        height: 70,
+                        width: 350,
+                        height: 90,
                         child: InkWell(
                           onTap: () {
                             signInWithGoogle(context);
@@ -63,14 +69,14 @@ class _LoginState extends State<Login> {
                             margin: const EdgeInsets.fromLTRB(30, 30, 30, 0),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15),
-                              side: BorderSide(color: BackgroundColor.mainGreen, width: 2),
+                              side: BorderSide(
+                                  color: BackgroundColor.mainGreen, width: 2),
                             ),
                             elevation: 3,
                             child: Center(
-                              // 중앙 정렬을 위한 Center 위젯 추가
                               child: Text(
-                                "LOG IN",
-                                textAlign: TextAlign.center, // 텍스트 가운데 정렬
+                                "CONTINUE WITH GOOGLE",
+                                textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: BackgroundColor.mainGreen,
                                   fontFamily: 'Jua',
@@ -81,49 +87,27 @@ class _LoginState extends State<Login> {
                           ),
                         ),
                       ),
-      //SIGN IN
-                       Container(
-                        width: 200,
-                        height: 70,
-                        child: InkWell(
-                          onTap: () {
-                            signInWithGoogle(context);
-                          },
-                          child: Card(
-                            color: BackgroundColor.mainGreen.withOpacity(0.70),
-                            margin: const EdgeInsets.fromLTRB(30, 30, 30, 0),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                              side: BorderSide(color: Colors.white, width: 2),
-                            ),
-                            elevation: 3,
-                            child: Center(
-                              // 중앙 정렬을 위한 Center 위젯 추가
-                              child: Text(
-                                "SIGN UP",
-                                textAlign: TextAlign.center, // 텍스트 가운데 정렬
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'Jua',
-                                  fontSize: 22,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    Text(
-                        "\nAll signup and login are made with Google accounts.\nBy continuing, you agree to \nEcho’s Terms of Use and Privacy Policy.",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontFamily: 'Roboto',
-                          fontSize: 13,
-                          color: Colors.black.withOpacity(0.6),
-                        ),
-                      ),
                     ],
                   ),
                 ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.fromLTRB(0, 35, 0, 0),
+              child: Column(
+                children: [
+                  Image.asset('lib/config/images/google.png',
+                      width: 30, height: 30),
+                  Text(
+                    "\nAll signup and login are made with Google accounts.\nBy continuing, you agree to \nEcho’s Terms of Use and Privacy Policy.",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontFamily: 'Roboto',
+                      fontSize: 12,
+                      color: Colors.black.withOpacity(0.6),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
@@ -134,26 +118,81 @@ class _LoginState extends State<Login> {
 }
 
 Future<void> signInWithGoogle(BuildContext context) async {
-  // Trigger the authentication flow
-  final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
-  // Obtain the auth details from the request
-  final GoogleSignInAuthentication? googleAuth =
-      await googleUser?.authentication;
-
-  // Create a new credential
-  final credential = GoogleAuthProvider.credential(
-    accessToken: googleAuth?.accessToken,
-    idToken: googleAuth?.idToken,
+  /** 
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (context) => Stack(
+      children: [
+        ModalBarrier(
+          color: Colors.grey.withOpacity(0.5),
+          dismissible: false,
+        ),
+        Center(
+          child: SpinKitSpinningCircle(
+            itemBuilder: (context, index) {
+              return Center(
+                  child: Image.asset(
+                'lib/config/images/echo.png',
+              ));
+            },
+          ),
+        ),
+      ],
+    ),
   );
+**/
+  try {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+/** */
+    if (googleUser == null) {
+      //Navigator.of(context).pop(); 
+      return;
+    }
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser.authentication;
 
-  // Once signed in, return the UserCredential
-  await FirebaseAuth.instance.signInWithCredential(credential).then((value) {
-    print(value.user?.email);
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+
+    await FirebaseAuth.instance.signInWithCredential(credential);
+
+    await firstSignIn(context);
+
+    //Navigator.of(context).pop();
+
     Navigator.of(context).pushReplacement(MaterialPageRoute(
-      builder: (context) => MyApp(),
+      builder: (context) => MyApp(), 
     ));
-  }).onError((error, stackTrace) {
-    print("error $error");
-  });
+  } catch (e) {
+    print("Error signing in with Google: $e");
+    Navigator.of(context).pop(); 
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Failed to sign in with Google')),
+    );
+  }
+}
+
+
+
+Future<void> firstSignIn(BuildContext context) async {
+  CollectionReference usersdb = FirebaseFirestore.instance.collection('User');
+  User? googleUser = FirebaseAuth.instance.currentUser;
+  final userDoc = await usersdb.doc(googleUser!.uid).get();
+
+  if (!userDoc.exists) {
+    String displayName = googleUser.displayName ?? '';
+    String email = googleUser.email ?? '';
+
+    await usersdb.doc(googleUser.uid).set({
+      'uid': googleUser.uid,
+      'nickname': displayName,
+      'email': email,
+    });
+
+    print('first sign in: ${googleUser.uid}');
+  }
+  else return;
 }
