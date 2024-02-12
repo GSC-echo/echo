@@ -1,5 +1,6 @@
 import 'package:echo_app/config/colors.dart';
 import 'package:echo_app/pages/course_detail.dart';
+import 'package:echo_app/pages/course_detail.dart';
 import 'package:echo_app/widgets/home_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -71,7 +72,7 @@ class _SearchWidgetState extends State<SearchWidget> {
     setState(() {
       // 포커스가 해제되면 Container의 높이를 변경
       if (!_focusNode.hasFocus) {
-        _containerHeight = 600.0; // 변경할 높이 설정
+        _containerHeight = 600.h; // 변경할 높이 설정
       }
     });
   }
@@ -86,7 +87,7 @@ class _SearchWidgetState extends State<SearchWidget> {
         child: Column(
           children: [
             AnimatedContainer(
-              duration: Duration(milliseconds: 400),
+              duration: Duration(milliseconds: 450),
               height: _containerHeight,
               margin: EdgeInsets.only(
                   left: 10.w, right: 10.w, top: 35.w, bottom: 10.w),
@@ -333,7 +334,8 @@ class _SearchWidgetState extends State<SearchWidget> {
                                                     context,
                                                     MaterialPageRoute(
                                                         builder: ((context) =>
-                                                            const CourseDetail())));
+                                                            CourseDetail(array[
+                                                                index]))));
                                               },
                                               child: Container(
                                                   padding: EdgeInsets.all(5.sp),
@@ -378,7 +380,7 @@ class _SearchWidgetState extends State<SearchWidget> {
         });
 
         setState(() {
-          _containerHeight = 600.0;
+          _containerHeight = 600.0.h;
         });
       },
       child: Text(text,
@@ -400,4 +402,14 @@ class _SearchWidgetState extends State<SearchWidget> {
   void cardClickEvent(BuildContext context, int index) {
     // Handle the click event for the card here
   }
+}
+
+Widget CourseDetailWidget({required array}) {
+  return ListView.builder(
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      itemCount: array.length,
+      itemBuilder: (context, index) {
+        return Container(child: Text(array[index]));
+      });
 }
