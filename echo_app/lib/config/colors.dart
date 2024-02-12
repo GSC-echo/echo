@@ -8,19 +8,19 @@ class BackgroundColor {
 
 class TextStyles {
   static TextStyle h1 = TextStyle(
-    fontFamily: 'Jua',
+    fontFamily: 'NotoSansKR',
     fontSize: 22.sp,
     fontWeight: FontWeight.bold,
     color: Colors.black,
   );
   static TextStyle h2 = TextStyle(
-    fontFamily: 'Jua',
+    fontFamily: 'NotoSansKR',
     fontSize: 25.sp,
     fontWeight: FontWeight.bold,
     color: Colors.black,
   );
   static TextStyle h3 = TextStyle(
-    fontFamily: 'Jua',
+    fontFamily: 'NotoSansKR',
     fontSize: 25.sp,
     fontWeight: FontWeight.bold,
     color: Color(0xFF2DB400),
