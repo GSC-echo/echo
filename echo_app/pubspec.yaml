@@ -97,6 +97,18 @@ flutter:
     - family: Jua
       fonts:
         - asset: lib/config/fonts/Jua-Regular.ttf
+    - family: NotoSansKR
+      fonts:
+        - asset: lib/config/fonts/NotoSansKR-Black.ttf
+        - asset: lib/config/fonts/NotoSansKR-Bold.ttf
+        - asset: lib/config/fonts/NotoSansKR-ExtraBold.ttf
+        - asset: lib/config/fonts/NotoSansKR-ExtraLight.ttf
+        - asset: lib/config/fonts/NotoSansKR-Light.ttf
+        - asset: lib/config/fonts/NotoSansKR-Medium.ttf
+        - asset: lib/config/fonts/NotoSansKR-Regular.ttf
+        - asset: lib/config/fonts/NotoSansKR-SemiBold.ttf
+        - asset: lib/config/fonts/NotoSansKR-Thin.ttf
+        - asset: lib/config/fonts/NotoSansKR-VariableFont_wght.ttf
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

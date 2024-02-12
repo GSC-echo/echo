@@ -22,7 +22,9 @@ class _RealTimePlacesContentState extends State<RealTimePlacesContent> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: widget.onTap,
+      onTap: () {
+        widget.onTap();
+      },
       child: Container(
         alignment: Alignment.centerLeft,
         padding: EdgeInsets.symmetric(vertical: 5.sp, horizontal: 10.sp),
@@ -124,20 +126,21 @@ Widget RealTimePlace({required content}) {
 
 Widget RealTimeCourse({required array}) {
   return Column(children: [
-    SizedBox(height: 35.h),
+    SizedBox(height: 25.h),
     Container(
-      height: 54.h,
+      height: 70.h,
       width: 289.w,
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: <Widget>[
           Container(
-            width: 500.w,
+            //width: 500.w,
+
             child: Row(
               children: List.generate(array.length, (index) {
                 return Row(children: [
                   Column(children: [
-                    SizedBox(height: 49.h),
+                    SizedBox(height: 57.h),
                     index == 0
                         ? Container()
                         : Container(
@@ -152,14 +155,16 @@ Widget RealTimeCourse({required array}) {
                     children: [
                       Container(
                         width: 70.w,
-                        height: 32.h,
+                        height: 40.h,
                         // margin: index == array.length - 1
                         //     ? EdgeInsets.only(right: 0.w)
                         //     : EdgeInsets.only(right: 3.w),
-                        child: Text(
-                          array[index],
-                          textAlign: TextAlign.center,
-                          style: TextStyles.h1.copyWith(fontSize: 11.sp),
+                        child: Center(
+                          child: Text(
+                            array[index],
+                            textAlign: TextAlign.center,
+                            style: TextStyles.h1.copyWith(fontSize: 11.sp),
+                          ),
                         ),
                       ),
                       SizedBox(height: 15.h),
@@ -204,6 +209,7 @@ Widget RealTimeCourse({required array}) {
         ],
       ),
     ),
+    SizedBox(height: 5.h),
   ]);
 }
 

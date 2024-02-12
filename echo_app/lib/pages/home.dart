@@ -292,7 +292,7 @@ class _HomeState extends State<Home> {
                           shrinkWrap: true,
                           children: [
                             Container(
-                              height: 106.h,
+                              height: 115.h,
                               child: Row(
                                 children: [
                                   Container(
@@ -330,7 +330,7 @@ class _HomeState extends State<Home> {
                               ),
                             ),
                             Container(
-                              height: 106.h,
+                              height: 115.h,
                               child: Row(
                                 children: [
                                   Container(
@@ -368,7 +368,7 @@ class _HomeState extends State<Home> {
                               ),
                             ),
                             Container(
-                              height: 106.h,
+                              height: 115.h,
                               child: Row(
                                 children: [
                                   Container(
