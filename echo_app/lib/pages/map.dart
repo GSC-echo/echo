@@ -54,11 +54,24 @@ class MapSampleState extends State<MapSample> {
       tilt: 59.440717697143555,
       zoom: 19.151926040649414);
 
+  String _mapStyle = '''[
+    {
+      "featureType": "road",
+      "stylers": [
+        {"color": "#FFFFFF"}
+      ]
+    }
+  ]''';
+
+  void _onMapCreated(GoogleMapController controller) {
+    controller.setMapStyle(_mapStyle);
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       body: GoogleMap(
-        mapType: MapType.hybrid,
+        mapType: MapType.normal,
         initialCameraPosition: _kGooglePlex,
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
