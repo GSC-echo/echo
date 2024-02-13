@@ -1,8 +1,14 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+            package="com.example.echo_app">
     <application
         android:label="echo_app"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+        <!-- google maps API -->
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyDuZykdDRRQoQY4cmsTg2arrKIkV3UTo1k"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
