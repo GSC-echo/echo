@@ -67,6 +67,8 @@ flutter:
     - lib/config/images/google.png
     - lib/config/images/echo.png
     - lib/config/images/sprout.png
+    - lib/config/images/NaejangsanNationalPark.png
+    - lib/config/images/WalkerhillHotelsResorts.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
