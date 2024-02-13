@@ -1,3 +1,4 @@
+import 'package:echo_app/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -28,6 +29,18 @@ class _GetPointState extends State<GetPoint> {
     Mission("Driving by electric Car", 2),
     Mission("Consuming Eco-friendly Products", 2),
     Mission("Consuming Recycling or Upcycling products", 2)
+  ];
+  List<Place> course1 = [
+    Place("Naejangsan National Park", 4.8,
+        Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+    Place("Walkerhill Hotels & Resorts", 4.1,
+        Image.asset('lib/config/images/WalkerhillHotelsResorts.png')),
+    Place("Naejangsan National Park", 4.8,
+        Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+    Place("Walkerhill Hotels & Resorts", 4.1,
+        Image.asset('lib/config/images/WalkerhillHotelsResorts.png')),
+    Place("Naejangsan National Park", 4.8,
+        Image.asset('lib/config/images/NaejangsanNationalPark.png')),
   ];
 
   @override
@@ -174,13 +187,7 @@ class _GetPointState extends State<GetPoint> {
                                   ])),
                           Column(
                             children: [
-                              RealTimeCourse(array: [
-                                "Suncheon Bay National Garden",
-                                "Soagdo",
-                                "Dalmago-do",
-                                "Naejangsan National Park",
-                                "Naejangsan National Park"
-                              ]),
+                              RealTimeCourse(context: context, array: course1),
                               SizedBox(height: 30.h),
                             ],
                           )
