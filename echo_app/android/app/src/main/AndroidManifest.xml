@@ -47,4 +47,9 @@
             <data android:mimeType="text/plain"/>
         </intent>
     </queries>
+    // 정확한 위치 권한 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    // 대략적인 위치 권한
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 </manifest>

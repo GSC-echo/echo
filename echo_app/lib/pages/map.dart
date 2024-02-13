@@ -35,10 +35,12 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 //   }
 // }
 
-class MapSample extends StatefulWidget {
-  @override
-  State<MapSample> createState() => MapSampleState();
-}
+//여기서부터 기존 버전 1 코드
+
+// class MapSample extends StatefulWidget {
+//   @override
+//   State<MapSample> createState() => MapSampleState();
+// }
 
 class MapSampleState extends State<MapSample> {
   Completer<GoogleMapController> _controller = Completer();
@@ -54,18 +56,6 @@ class MapSampleState extends State<MapSample> {
       tilt: 59.440717697143555,
       zoom: 19.151926040649414);
 
-  String _mapStyle = '''[
-    {
-      "featureType": "road",
-      "stylers": [
-        {"color": "#FFFFFF"}
-      ]
-    }
-  ]''';
-
-  void _onMapCreated(GoogleMapController controller) {
-    controller.setMapStyle(_mapStyle);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,8 +75,67 @@ class MapSampleState extends State<MapSample> {
     );
   }
 
+  String _mapStyle = '''[
+    {
+      "featureType": "road",
+      "stylers": [
+        {"color": "#FFFFFF"}
+      ]
+    }
+  ]''';
+
+  void _onMapCreated(GoogleMapController controller) {
+    controller.setMapStyle(_mapStyle);
+  }
+
   Future<void> _goToTheLake() async {
     final GoogleMapController controller = await _controller.future;
     controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
+  }
+}
+
+// 위도 : 35.907757
+// 경도 : 127.766922
+
+//위도,경도 입력했을때의 또 다른 코드
+
+class MapSample extends StatefulWidget {
+  const MapSample({super.key});
+
+  @override
+  State<MapSample> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<MapSample> {
+  static final LatLng schoolLatlng = LatLng(
+    //위도와 경도 값 지정
+    36.8,
+    127.9,
+  );
+
+  static final CameraPosition initialPosition = CameraPosition(
+    //지도를 바라보는 카메라 위치
+    target: schoolLatlng, //카메라 위치(위도, 경도)
+    zoom: 7.5, //확대 정도
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      // appBar: AppBar(
+      //   title: Text(
+      //     '구글지도',
+      //     style:
+      //         TextStyle(color: Colors.green[900], fontWeight: FontWeight.bold),
+      //   ),
+      //   centerTitle: true,
+      //   backgroundColor: Colors.white,
+      // ),
+      body: GoogleMap(
+        //구글 맵 사용
+        mapType: MapType.normal, //지도 유형 설정
+        initialCameraPosition: initialPosition, //지도 초기 위치 설정
+      ),
+    );
   }
 }
