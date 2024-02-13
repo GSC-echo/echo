@@ -1,4 +1,5 @@
 import 'package:echo_app/config/colors.dart';
+import 'package:echo_app/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:echo_app/widgets/other_widget.dart';
@@ -6,7 +7,7 @@ import 'package:echo_app/widgets/other_widget.dart';
 class CourseDetail extends StatelessWidget {
   const CourseDetail(this.array, {super.key});
 
-  final List<String> array;
+  final List<Place> array;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +55,19 @@ class CourseDetail extends StatelessWidget {
                               style: TextStyles.h1.copyWith(fontSize: 17.sp),
                             )
                           ])),
-                  CourseDetailWidget(array: array)
+                  Container(
+                      height: MediaQuery.of(context).size.height * 0.35,
+                      margin: EdgeInsets.all(10.sp),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20.sp),
+                        color: Colors.white,
+                        border: Border.all(
+                          color: Color(0xff5DCA75).withOpacity(0.65),
+                          width: 2.0,
+                        ),
+                      ),
+                      child: CourseDetailWidget(
+                          buildcontext: context, array: array))
                 ],
               )),
           Container(
@@ -108,7 +121,8 @@ class CourseDetail extends StatelessWidget {
                           width: 2.0,
                         ),
                       ),
-                      child: CourseDetailWidget(array: array))
+                      child: CourseDetailWidget(
+                          buildcontext: context, array: array))
                 ],
               )), //review
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
