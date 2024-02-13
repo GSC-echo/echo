@@ -135,6 +135,8 @@ class _HomeScreenState extends State<MapSample> {
         //구글 맵 사용
         mapType: MapType.normal, //지도 유형 설정
         initialCameraPosition: initialPosition, //지도 초기 위치 설정
+        zoomControlsEnabled: false,
+        zoomGesturesEnabled: true,
       ),
     );
   }
