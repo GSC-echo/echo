@@ -1,4 +1,5 @@
 import 'package:echo_app/pages/map.dart';
+import 'package:echo_app/pages/profile.dart';
 import 'package:echo_app/pages/settings.dart';
 import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
@@ -29,14 +30,14 @@ class _MainPageState extends State<MainPage> {
     ),
     const BottomNavigationBarItem(
       icon: Icon(Icons.person_rounded),
-      label: 'Settings',
+      label: 'My Page',
     ),
   ];
 
   final List<Widget> _screens = [
     const MapPage(),
     const Home(),
-    const Settings(),
+    const Profile(),
   ];
 
   @override
