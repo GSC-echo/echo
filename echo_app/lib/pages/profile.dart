@@ -35,7 +35,7 @@ class _Profile extends State<Profile> {
           .collection('users')
           .doc(user.uid)
           .get();
-
+      // check if userData is not null
       Map<String, dynamic>? userData =
           userSnapshot.data() as Map<String, dynamic>?;
 
