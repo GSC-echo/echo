@@ -1,6 +1,8 @@
 import 'package:echo_app/pages/about_stage.dart';
+import 'package:echo_app/pages/course_detail.dart';
 import 'package:echo_app/pages/get_point.dart';
 import 'package:echo_app/widgets/home_widget.dart';
+import 'package:echo_app/widgets/other_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,10 +16,80 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
+class Place {
+  String name;
+  double star;
+  var image;
+
+  Place(this.name, this.star, this.image);
+}
+
+List<Place> course1 = [
+  Place("Naejangsan National Park", 4.8,
+      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+  Place("Walkerhill Hotels & Resorts", 4.1,
+      Image.asset('lib/config/images/WalkerhillHotelsResorts.png')),
+  Place("Naejangsan National Park", 4.8,
+      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+  Place("Walkerhill Hotels & Resorts", 4.1,
+      Image.asset('lib/config/images/WalkerhillHotelsResorts.png')),
+  Place("Naejangsan National Park", 4.8,
+      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+];
+
+List<List<Place>> courses_array = [];
+
+void initializeCourses() {
+  courses_array = [course1, course1, course1];
+}
+
+List<Place> entire_list = [
+  Place("Naejangsan National Park", 4.8,
+      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+  Place("Walkerhill Hotels & Resorts", 4.1,
+      Image.asset('lib/config/images/WalkerhillHotelsResorts.png')),
+  Place("Naejangsan National Park", 4.8,
+      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+  Place("Walkerhill Hotels & Resorts", 4.1,
+      Image.asset('lib/config/images/WalkerhillHotelsResorts.png')),
+  Place("Naejangsan National Park", 4.8,
+      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+];
+
+List<Place> accomodation_list = [
+  Place("Naejangsan National Park", 4.8,
+      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+  Place("Naejangsan National Park", 4.8,
+      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+  Place("Naejangsan National Park", 4.8,
+      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+];
+
+List<Place> restaurant_list = [
+  Place("Walkerhill Hotels & Resorts", 4.1,
+      Image.asset('lib/config/images/WalkerhillHotelsResorts.png')),
+  Place("Walkerhill Hotels & Resorts", 4.1,
+      Image.asset('lib/config/images/WalkerhillHotelsResorts.png')),
+];
+
+List<Place> tourist_attraction_list = [
+  Place("Naejangsan National Park", 4.8,
+      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+  Place("Walkerhill Hotels & Resorts", 4.1,
+      Image.asset('lib/config/images/WalkerhillHotelsResorts.png')),
+  Place("Naejangsan National Park", 4.8,
+      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+  Place("Walkerhill Hotels & Resorts", 4.1,
+      Image.asset('lib/config/images/WalkerhillHotelsResorts.png')),
+  Place("Naejangsan National Park", 4.8,
+      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+];
+
 class _HomeState extends State<Home> {
   String selectedContent = "Entire";
   @override
   Widget build(BuildContext context) {
+    initializeCourses();
     return Scaffold(
         appBar: AppBar(
           backgroundColor: BackgroundColor.background1,
@@ -262,10 +334,29 @@ class _HomeState extends State<Home> {
                   ),
                   SizedBox(height: 14.h),
                   SingleChildScrollView(
-                    padding: EdgeInsets.only(left: 11.w),
+                    padding: EdgeInsets.only(left: 15.w),
                     scrollDirection: Axis.horizontal,
-                    child:
-                        RealTimePlace(content: "Entire"), //해당되는 content의 상위 5가지
+                    child: Row(
+                      children: selectedContent == "Entire"
+                          ? entire_list
+                              .map((place) =>
+                                  RealTimePlace(context: context, place: place))
+                              .toList()
+                          : selectedContent == "Accomodation"
+                              ? accomodation_list
+                                  .map((place) => RealTimePlace(
+                                      context: context, place: place))
+                                  .toList()
+                              : selectedContent == "Restaurant"
+                                  ? restaurant_list
+                                      .map((place) => RealTimePlace(
+                                          context: context, place: place))
+                                      .toList()
+                                  : tourist_attraction_list
+                                      .map((place) => RealTimePlace(
+                                          context: context, place: place))
+                                      .toList(),
+                    ),
                   ),
                   SizedBox(height: 34.h),
                   Container(
@@ -280,127 +371,70 @@ class _HomeState extends State<Home> {
                       padding: EdgeInsets.only(
                           left: 14.w, top: 7.h, right: 15.w, bottom: 22.h),
                       child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                          color: Colors.white,
-                          border: Border.all(
-                            color: Color(0xff5DCA75).withOpacity(0.65),
-                            width: 2.0,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            color: Colors.white,
+                            border: Border.all(
+                              color: Color(0xff5DCA75).withOpacity(0.65),
+                              width: 2.0,
+                            ),
                           ),
-                        ),
-                        child: ListView(
-                          shrinkWrap: true,
-                          children: [
-                            Container(
-                              height: 115.h,
-                              child: Row(
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: courses_array.length,
+                            itemBuilder: (context, index) {
+                              return Column(
                                 children: [
                                   Container(
-                                      height: 20.h,
-                                      width: 20.w,
-                                      margin: EdgeInsets.only(
-                                          left: 29, top: 41.h, bottom: 41.h),
-                                      decoration: BoxDecoration(
-                                          color: Color(0xff5DCA86),
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: Center(
-                                        child: Text("1",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyles.h1.copyWith(
+                                    height: 115.h,
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          height: 20.h,
+                                          width: 20.w,
+                                          margin: EdgeInsets.only(
+                                              left: 29,
+                                              top: 41.h,
+                                              bottom: 41.h),
+                                          decoration: BoxDecoration(
+                                            color: Color(0xff5DCA86),
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              "${index + 1}",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyles.h1.copyWith(
                                                 fontSize: 15.sp,
-                                                color: Colors.white)),
-                                      )),
-                                  SizedBox(width: 20.w),
-                                  RealTimeCourse(array: [
-                                    "Naejangsan National Park",
-                                    "Naejangsan National Park",
-                                    "Naejangsan National Park",
-                                    "Naejangsan National Park",
-                                    "Naejangsan National Park"
-                                  ])
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(width: 20.w),
+                                        RealTimeCourse(
+                                            context: context,
+                                            array: courses_array[index]),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 23.0),
+                                    child: index == 2
+                                        ? null
+                                        : Divider(
+                                            color: Color(0xff5DCA75)
+                                                .withOpacity(0.65),
+                                            thickness: 2.0,
+                                          ),
+                                  ),
                                 ],
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 23.0),
-                              child: Divider(
-                                color: Color(0xff5DCA75).withOpacity(0.65),
-                                thickness: 2.0,
-                              ),
-                            ),
-                            Container(
-                              height: 115.h,
-                              child: Row(
-                                children: [
-                                  Container(
-                                      height: 20.h,
-                                      width: 20.w,
-                                      margin: EdgeInsets.only(
-                                          left: 29, top: 41.h, bottom: 41.h),
-                                      decoration: BoxDecoration(
-                                          color: Color(0xff5DCA86),
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: Center(
-                                        child: Text("2",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyles.h1.copyWith(
-                                                fontSize: 15.sp,
-                                                color: Colors.white)),
-                                      )),
-                                  SizedBox(width: 20.w),
-                                  RealTimeCourse(array: [
-                                    "Naejangsan National Park",
-                                    "Naejangsan National Park",
-                                    "Naejangsan National Park",
-                                    "Naejangsan National Park",
-                                    "Naejangsan National Park"
-                                  ])
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 23.0),
-                              child: Divider(
-                                color: Color(0xff5DCA75).withOpacity(0.65),
-                                thickness: 2.0,
-                              ),
-                            ),
-                            Container(
-                              height: 115.h,
-                              child: Row(
-                                children: [
-                                  Container(
-                                      height: 20.h,
-                                      width: 20.w,
-                                      margin: EdgeInsets.only(
-                                          left: 29, top: 41.h, bottom: 41.h),
-                                      decoration: BoxDecoration(
-                                          color: Color(0xff5DCA86),
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: Center(
-                                        child: Text("3",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyles.h1.copyWith(
-                                                fontSize: 15.sp,
-                                                color: Colors.white)),
-                                      )),
-                                  SizedBox(width: 20.w),
-                                  RealTimeCourse(array: [
-                                    "item3",
-                                    "item3",
-                                    "item3",
-                                    "item3",
-                                    "item3"
-                                  ])
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ))
+                              );
+                            },
+                          )))
                 ],
               ),
             ),
