@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
         designSize: const Size(390, 844),
         child: MaterialApp(
           title: 'Echo',
+          debugShowCheckedModeBanner: false,
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
             useMaterial3: true,
