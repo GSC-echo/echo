@@ -1,3 +1,4 @@
+import 'package:echo_app/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:percent_indicator/percent_indicator.dart';
@@ -29,6 +30,18 @@ class _GetPointState extends State<GetPoint> {
     Mission("Consuming Eco-friendly Products", 2),
     Mission("Consuming Recycling or Upcycling products", 2)
   ];
+  List<Place> course1 = [
+    Place("Naejangsan National Park", 4.8,
+        Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+    Place("Walkerhill Hotels & Resorts", 4.1,
+        Image.asset('lib/config/images/WalkerhillHotelsResorts.png')),
+    Place("Naejangsan National Park", 4.8,
+        Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+    Place("Walkerhill Hotels & Resorts", 4.1,
+        Image.asset('lib/config/images/WalkerhillHotelsResorts.png')),
+    Place("Naejangsan National Park", 4.8,
+        Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -41,93 +54,6 @@ class _GetPointState extends State<GetPoint> {
         body: travel == true
             ? SingleChildScrollView(
                 child: Column(children: [
-                  Padding(
-                    padding:
-                        EdgeInsets.only(top: 12.h, left: 20.w, right: 20.w),
-                    child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 15.h),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: BackgroundColor.mainGreen.withOpacity(0.65),
-                      ),
-                      child: Column(
-                        children: [
-                          Center(
-                            child: Column(
-                              children: [
-                                Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text("Sprout", //user.stage
-                                          textAlign: TextAlign.center,
-                                          style: TextStyles.h3),
-                                      Text(
-                                        textAlign: TextAlign.center,
-                                        " stage",
-                                        style: TextStyles.h2,
-                                      ),
-                                    ]),
-                                Container(
-                                    padding: EdgeInsets.only(
-                                        top: 10.h, left: 34.w, right: 34.w),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Row(children: [
-                                          Text("24", //user.point
-                                              textAlign: TextAlign.left,
-                                              style: TextStyles.h3),
-                                          Text(
-                                            " points",
-                                            textAlign: TextAlign.left,
-                                            style: TextStyles.h2,
-                                          ),
-                                        ]),
-                                        Row(children: [
-                                          Text("11", //max-user.point
-                                              textAlign: TextAlign.right,
-                                              style: TextStyles.h3
-                                                  .copyWith(fontSize: 12.sp)),
-                                          Text(
-                                            " until",
-                                            textAlign: TextAlign.right,
-                                            style: TextStyles.h2
-                                                .copyWith(fontSize: 12.sp),
-                                          ),
-                                          Text(" Seedling", //user.nextStage
-                                              textAlign: TextAlign.right,
-                                              style: TextStyles.h3
-                                                  .copyWith(fontSize: 12.sp)),
-                                          Text(
-                                            " stage",
-                                            textAlign: TextAlign.right,
-                                            style: TextStyles.h2
-                                                .copyWith(fontSize: 12.sp),
-                                          ),
-                                        ])
-                                      ],
-                                    )),
-                                Container(
-                                  padding: const EdgeInsets.only(
-                                      left: 34, right: 34, top: 5),
-                                  child: ClipRRect(
-                                      child: LinearPercentIndicator(
-                                    percent:
-                                        11 / 24, //percent(100*user.point/max)
-                                    lineHeight: 13,
-                                    backgroundColor: Colors.white,
-                                    progressColor: Color(0xFF2DB400),
-                                    barRadius: Radius.circular(35),
-                                  )),
-                                )
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
                   SizedBox(height: 15.h),
                   Text(
                     "The course currently traveling",
@@ -174,13 +100,10 @@ class _GetPointState extends State<GetPoint> {
                                   ])),
                           Column(
                             children: [
-                              RealTimeCourse(array: [
-                                "Suncheon Bay National Garden",
-                                "Soagdo",
-                                "Dalmago-do",
-                                "Naejangsan National Park",
-                                "Naejangsan National Park"
-                              ]),
+                              RealTimeCourse(
+                                  context: context,
+                                  array: course1,
+                                  isinMap: false),
                               SizedBox(height: 30.h),
                             ],
                           )

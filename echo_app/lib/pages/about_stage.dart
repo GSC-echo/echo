@@ -10,12 +10,12 @@ class AboutStage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: BackgroundColor.background1,
-          title: Text("About Stage", style: TextStyles.h1),
+          backgroundColor: BackgroundColor.mainGreen,
+          title: Text("Tiers", style: TextStyles.h1),
           centerTitle: true,
         ),
         body: Container(
-            decoration: BoxDecoration(color: BackgroundColor.background1),
+            decoration: BoxDecoration(color: BackgroundColor.mainGreen),
             padding: EdgeInsets.zero,
             child: Padding(
                 padding: EdgeInsets.only(
@@ -40,10 +40,10 @@ class AboutStage extends StatelessWidget {
                       'Tree',
                       'Forest'
                     ], detailList: [
-                      'Sprout 설명 어쩌구 저쩌구\n 어쩌구 저쩌구\n 어쩌구 저쩌구 어쩌구 저쩌구\n 어쩌구 저쩌구\n 어쩌구 저쩌구\n 어쩌구 저쩌구 어쩌구 저쩌구',
-                      'Seedling 설명 어쩌구 저쩌구\n 어쩌구 저쩌구\n 어쩌구 저쩌구 어쩌구 저쩌구\n 어쩌구 저쩌구\n 어쩌구 저쩌구\n 어쩌구 저쩌구 어쩌구 저쩌구',
-                      'Tree 설명 어쩌구 저쩌구\n 어쩌구 저쩌구\n 어쩌구 저쩌구 어쩌구 저쩌구\n 어쩌구 저쩌구\n 어쩌구 저쩌구\n 어쩌구 저쩌구 어쩌구 저쩌구',
-                      'Forest 설명 어쩌구 저쩌구\n 어쩌구 저쩌구\n 어쩌구 저쩌구 어쩌구 저쩌구\n 어쩌구 저쩌구\n 어쩌구 저쩌구\n 어쩌구 저쩌구 어쩌구 저쩌구'
+                      'Sprout IV: 0 ~ 49\nSprout III: 50 ~ 99\nSprout II: 100 ~ 149\nSprout I: 150 ~ 199',
+                      'Seedling IV: 200 ~ 249\nSeedling III: 250 ~ 299\nSeedling II: 300 ~ 349\nSeedling I: 350 ~ 399',
+                      'Tree IV: 400 ~ 499\nTree III: 500 ~ 599\nTree II: 600 ~ 699\nTree I: 700 ~ 799',
+                      'Sprout IV: 800 ~ 999\nSprout III: 1000 ~ 1199\nSprout II: 1200 ~ 1399\nSprout I: 1400 ~ ',
                     ])))));
   }
 }

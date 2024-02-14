@@ -36,6 +36,7 @@ class _MainPageState extends State<MainPage> {
 
   final List<Widget> _screens = [
     const MapPage(),
+    //MapSample(), // 기존 코드 : const MapPage()
     const Home(),
     const Profile(),
   ];
