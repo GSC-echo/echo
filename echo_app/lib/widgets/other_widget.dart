@@ -111,7 +111,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                       },
                     ),
                   ),
-                  Expanded(
+                  Expanded( // 이 부분에 Stack으로 구글맵 넣기 -> 구글맵 위에 이 Expanded(장소 리스트)가 나오도록
                     child: searchText.isEmpty
                         ? SizedBox.shrink()
                         : Container(
