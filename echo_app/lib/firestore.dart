@@ -4,17 +4,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:echo_app/pages/splash.dart';
+
 class FireStorePage extends StatefulWidget {
   const FireStorePage({Key? key}) : super(key: key);
 
   @override
   State<FireStorePage> createState() => _FireStorePageState();
-
-  static void deleteUser() {}
-
+  
   static Future<void> deleteCurrentUser(BuildContext context) async {
-    CollectionReference usersdb =
-        FirebaseFirestore.instance.collection('User');
+    CollectionReference usersdb = FirebaseFirestore.instance.collection('User');
     try {
       User? currentUser = FirebaseAuth.instance.currentUser;
       if (currentUser != null) {
@@ -38,26 +36,22 @@ class FireStorePage extends StatefulWidget {
 }
 
 class _FireStorePageState extends State<FireStorePage> {
-  CollectionReference usersdb =
-      FirebaseFirestore.instance.collection('User');
+  CollectionReference usersdb = FirebaseFirestore.instance.collection('User');
   late User? currentUser;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder(
-        stream: usersdb.snapshots(),
-        builder: (BuildContext context,
-            AsyncSnapshot<QuerySnapshot> streamSnapshot) {
-          //if(streamSnapshot.hasData){
-          return ListView.builder(
-            itemCount: streamSnapshot.data!.docs.length,
-            itemBuilder: (context, index) {
-              final DocumentSnapshot documentSnapshot =
-                  streamSnapshot.data!.docs[index];
-            },
-          );
-          //}
+        stream: usersdb.doc(currentUser!.uid).snapshots(),
+        builder:
+            (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+          if (snapshot.hasData) {
+            final userData = snapshot.data!;
+            //final userPoint = userData['points'] ?? 0;
+            //String userStage = getUserStage(userPoint);
+          }
+          return Container();
         },
       ),
     );
