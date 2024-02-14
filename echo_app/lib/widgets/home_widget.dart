@@ -1,6 +1,10 @@
+import 'package:echo_app/pages/course_detail.dart';
 import 'package:echo_app/pages/get_point.dart';
+import 'package:echo_app/pages/home.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:echo_app/pages/place_detail.dart';
 
 import '../config/colors.dart';
 
@@ -50,169 +54,181 @@ class _RealTimePlacesContentState extends State<RealTimePlacesContent> {
   }
 }
 
-Widget RealTimePlace({required content}) {
-  //content -> array[places]로 수정 필요
-  return Row(children: <Widget>[
-    Container(
-      margin: EdgeInsets.only(right: 8.w),
-      width: 207,
-      height: 145,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(35),
-        color: Colors.white,
-      ),
-      child: GestureDetector(
-        onTap: () {
-          print(content + " touched");
-        },
-      ),
-    ),
-    Container(
-      child: GestureDetector(
-        onTap: () {
-          print("touched");
-        },
-      ),
-      margin: EdgeInsets.only(right: 8.w),
-      width: 207,
-      height: 145,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(35),
-        color: Colors.white,
-      ),
-    ),
-    Container(
-      child: GestureDetector(
-        onTap: () {
-          print("touched");
-        },
-      ),
-      margin: EdgeInsets.only(right: 8.w),
-      width: 207,
-      height: 145,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(35),
-        color: Colors.green,
-      ),
-    ),
-    Container(
-      child: GestureDetector(
-        onTap: () {
-          print("touched");
-        },
-      ),
-      margin: EdgeInsets.only(right: 8.w),
-      width: 207,
-      height: 145,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(35),
-        color: Colors.purple,
-      ),
-    ),
-    Container(
-      child: GestureDetector(
-        onTap: () {
-          print("touched");
-        },
-      ),
-      margin: EdgeInsets.only(right: 8.w),
-      width: 207,
-      height: 145,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(35),
-        color: Colors.grey,
-      ),
-    )
-  ]);
+Widget RealTimePlace({required BuildContext context, required Place place}) {
+  return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: ((context) => PlaceDetail(place: place))),
+        );
+      },
+      child: Row(children: [
+        Container(
+          width: 150.w,
+          height: 120.h,
+          decoration: BoxDecoration(
+            color: Colors.amber,
+            borderRadius: BorderRadius.circular(25),
+          ),
+          child: FittedBox(
+            fit: BoxFit.cover,
+            child: place.image,
+          ),
+        ),
+        Container(
+            height: 85.h,
+            width: 85.w,
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.only(
+                topRight: Radius.circular(30.0),
+                bottomRight: Radius.circular(30.0),
+              ),
+              color: Colors.white,
+              border: Border(
+                right: BorderSide(
+                  color: Color(0xff5DCA75).withOpacity(0.65),
+                  width: 2.0,
+                ),
+                top: BorderSide(
+                  color: Color(0xff5DCA75).withOpacity(0.65),
+                  width: 2.0,
+                ),
+                bottom: BorderSide(
+                  color: Color(0xff5DCA75).withOpacity(0.65),
+                  width: 2.0,
+                ),
+              ),
+            ),
+            child: Padding(
+                padding: EdgeInsets.only(top: 20.h, right: 10.w),
+                child: Column(children: [
+                  Text(place.name,
+                      textAlign: TextAlign.center,
+                      style: TextStyles.h1.copyWith(fontSize: 9.sp)),
+                  SizedBox(height: 10.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.star_border_rounded,
+                        size: 15.sp,
+                      ),
+                      SizedBox(
+                        width: 5.w,
+                      ),
+                      Text(
+                        place.star.toString(),
+                        style: TextStyles.h1.copyWith(fontSize: 12.sp),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 5.h),
+                ]))),
+        SizedBox(width: 10.w)
+      ]));
+
 }
 
-Widget RealTimeCourse({required array}) {
-  return Column(children: [
-    SizedBox(height: 25.h),
-    Container(
-      height: 70.h,
-      width: 289.w,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: <Widget>[
-          Container(
-            //width: 500.w,
-
-            child: Row(
-              children: List.generate(array.length, (index) {
-                return Row(children: [
-                  Column(children: [
-                    SizedBox(height: 57.h),
-                    index == 0
-                        ? Container()
-                        : Container(
-                            width: 26.6.w,
-                            height: 2.h,
-                            decoration: BoxDecoration(
-                              color: const Color(0xff5DCA75).withOpacity(0.65),
-                            ),
-                          ),
-                  ]),
-                  Column(
-                    children: [
-                      Container(
-                        width: 70.w,
-                        height: 40.h,
-                        // margin: index == array.length - 1
-                        //     ? EdgeInsets.only(right: 0.w)
-                        //     : EdgeInsets.only(right: 3.w),
-                        child: Center(
-                          child: Text(
-                            array[index],
-                            textAlign: TextAlign.center,
-                            style: TextStyles.h1.copyWith(fontSize: 11.sp),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 15.h),
-                      Row(
-                        children: [
-                          index == 0
-                              ? Container(width: 30.w)
-                              : Container(
-                                  width: 35.w,
-                                  height: 2.h,
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xff5DCA75)
-                                        .withOpacity(0.65),
-                                  ),
-                                ),
-                          Container(
-                            width: 6.w,
-                            height: 6.h,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: const Color(0xff5DCA75).withOpacity(0.65),
-                            ),
-                          ),
-                          index == array.length - 1
-                              ? Container(width: 40.w)
-                              : Container(
-                                  width: 35.w,
-                                  height: 2.h,
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xff5DCA75)
-                                        .withOpacity(0.65),
-                                  ),
-                                ),
-                        ],
-                      ),
-                    ],
-                  )
-                ]);
-              }),
-            ),
+Widget RealTimeCourse(
+    {required BuildContext context, required List<Place> array}) {
+  return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: ((context) => CourseDetail(array)),
           ),
-        ],
-      ),
-    ),
-    SizedBox(height: 5.h),
-  ]);
+        );
+      },
+      child: Column(children: [
+        SizedBox(height: 25.h),
+        Container(
+          height: 70.h,
+          width: 289.w,
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: <Widget>[
+              Container(
+                //width: 500.w,
+
+                child: Row(
+                  children: List.generate(array.length, (index) {
+                    Place place = array[index];
+                    return Row(children: [
+                      Column(children: [
+                        SizedBox(height: 57.h),
+                        index == 0
+                            ? Container()
+                            : Container(
+                                width: 26.6.w,
+                                height: 2.h,
+                                decoration: BoxDecoration(
+                                  color:
+                                      const Color(0xff5DCA75).withOpacity(0.65),
+                                ),
+                              ),
+                      ]),
+                      Column(
+                        children: [
+                          Container(
+                            width: 70.w,
+                            height: 40.h,
+                            // margin: index == array.length - 1
+                            //     ? EdgeInsets.only(right: 0.w)
+                            //     : EdgeInsets.only(right: 3.w),
+                            child: Center(
+                              child: Text(
+                                place.name,
+                                textAlign: TextAlign.center,
+                                style: TextStyles.h1.copyWith(fontSize: 11.sp),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 15.h),
+                          Row(
+                            children: [
+                              index == 0
+                                  ? Container(width: 30.w)
+                                  : Container(
+                                      width: 35.w,
+                                      height: 2.h,
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xff5DCA75)
+                                            .withOpacity(0.65),
+                                      ),
+                                    ),
+                              Container(
+                                width: 6.w,
+                                height: 6.h,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color:
+                                      const Color(0xff5DCA75).withOpacity(0.65),
+                                ),
+                              ),
+                              index == array.length - 1
+                                  ? Container(width: 40.w)
+                                  : Container(
+                                      width: 35.w,
+                                      height: 2.h,
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xff5DCA75)
+                                            .withOpacity(0.65),
+                                      ),
+                                    ),
+                            ],
+                          ),
+                        ],
+                      )
+                    ]);
+                  }),
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(height: 5.h),
+      ]));
 }
 
 Widget AboutStageWidget(
