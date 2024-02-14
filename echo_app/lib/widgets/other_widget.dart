@@ -1,11 +1,12 @@
 import 'package:echo_app/config/colors.dart';
 import 'package:echo_app/pages/course_detail.dart';
-import 'package:echo_app/pages/course_detail.dart';
+import 'package:echo_app/pages/home.dart';
 import 'package:echo_app/widgets/home_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:echo_app/pages/place_detail.dart';
+
+List<Place> saved = [];
 
 class SearchWidget extends StatefulWidget {
   @override
@@ -28,28 +29,6 @@ class _SearchWidgetState extends State<SearchWidget> {
     "Naejangsan National Park",
   ];
   String searchText = '';
-
-  List<List<String>> array = [
-    [
-      "Dalmago-do",
-      'Suncheon',
-      "Naejangsan National Park",
-      "Naejangsan National Park",
-      "Naejangsan National Park",
-    ],
-    [
-      'Suncheon',
-      "Soagdo",
-      "Dalmago-do",
-      'Suncheon',
-    ],
-    [
-      "Suncheon Bay National Garden",
-      "Soagdo",
-      "Dalmago-do",
-      'Suncheon',
-    ]
-  ];
 
   double _containerHeight = 600.0.h;
   final FocusNode _focusNode = FocusNode();
@@ -174,15 +153,15 @@ class _SearchWidgetState extends State<SearchWidget> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                GeneralSavedButton(text: "General", array: array),
-                GeneralSavedButton(text: "Saved", array: array)
+                GeneralSavedButton(text: "General", array: courses_array),
+                GeneralSavedButton(text: "Saved", array: courses_array)
               ],
             )
           ],
         ));
   }
 
-  Widget GeneralSavedButton({required text, required array}) {
+  Widget GeneralSavedButton({required text, required List<List<Place>> array}) {
     return ElevatedButton(
       onPressed: () async {
         setState(() {
@@ -278,6 +257,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                                       Container(
                                         width: 260.w,
                                         child: RealTimeCourse(
+                                            context: context,
                                             array: array[
                                                 index]), //RecommendedCourses일때
                                       ),
@@ -365,10 +345,39 @@ class _SearchWidgetState extends State<SearchWidget> {
                               },
                             )
                           : selectedContent == "Accomodation"
-                              ? Container()
+                              ? ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  itemCount: accomodation_list.length,
+                                  itemBuilder: (context, index) {
+                                    return Container(
+                                        child: PlacesbyContentWidget(
+                                            context: context,
+                                            place: accomodation_list[index]));
+                                  })
                               : selectedContent == "Restaurant"
-                                  ? Container()
-                                  : Container()
+                                  ? ListView.builder(
+                                      shrinkWrap: true,
+                                      physics: NeverScrollableScrollPhysics(),
+                                      itemCount: restaurant_list.length,
+                                      itemBuilder: (context, index) {
+                                        return Container(
+                                            child: PlacesbyContentWidget(
+                                                context: context,
+                                                place: restaurant_list[index]));
+                                      })
+                                  //Tourist Attraction
+                                  : ListView.builder(
+                                      shrinkWrap: true,
+                                      physics: NeverScrollableScrollPhysics(),
+                                      itemCount: tourist_attraction_list.length,
+                                      itemBuilder: (context, index) {
+                                        return Container(
+                                            child: PlacesbyContentWidget(
+                                                context: context,
+                                                place: tourist_attraction_list[
+                                                    index]));
+                                      })
                     ],
                   ),
                 ),
@@ -404,12 +413,236 @@ class _SearchWidgetState extends State<SearchWidget> {
   }
 }
 
-Widget CourseDetailWidget({required array}) {
+Widget CourseDetailWidget(
+    {required BuildContext buildcontext, required List<Place> array}) {
   return ListView.builder(
       shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
+      //physics: NeverScrollableScrollPhysics(),
       itemCount: array.length,
       itemBuilder: (context, index) {
-        return Container(child: Text(array[index]));
+        return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  buildcontext,
+                  MaterialPageRoute(
+                      builder: ((context) =>
+                          PlaceDetail(place: array[index]))));
+            },
+            child: Container(
+                margin: EdgeInsets.symmetric(horizontal: 13.w, vertical: 10.h),
+                child: Row(children: [
+                  Container(
+                      height: 110.h,
+                      width: 135.w,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16.0),
+                          color: Colors.blueGrey),
+                      child: array[index].image),
+                  Container(
+                      height: 85.h,
+                      width: 125.w,
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.only(
+                          topRight: Radius.circular(30.0),
+                          bottomRight: Radius.circular(30.0),
+                        ),
+                        color: Colors.white,
+                        border: Border(
+                          right: BorderSide(
+                            color: Color(0xff5DCA75).withOpacity(0.65),
+                            width: 2.0,
+                          ),
+                          top: BorderSide(
+                            color: Color(0xff5DCA75).withOpacity(0.65),
+                            width: 2.0,
+                          ),
+                          bottom: BorderSide(
+                            color: Color(0xff5DCA75).withOpacity(0.65),
+                            width: 2.0,
+                          ),
+                        ),
+                      ),
+                      child: Padding(
+                          padding: EdgeInsets.only(top: 20.h, right: 10.w),
+                          child: Column(children: [
+                            Text(array[index].name,
+                                textAlign: TextAlign.center,
+                                style: TextStyles.h1.copyWith(fontSize: 9.sp)),
+                            SizedBox(height: 5.h),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.star_border_rounded,
+                                  size: 15.sp,
+                                ),
+                                SizedBox(
+                                  width: 5.w,
+                                ),
+                                Text(
+                                  array[index].star.toString(),
+                                  style:
+                                      TextStyles.h1.copyWith(fontSize: 12.sp),
+                                )
+                              ],
+                            ),
+                            SizedBox(height: 5.h),
+                            SaveWidget(
+                                place: array[index],
+                                isSaved: saved.contains(array[index]))
+                          ])))
+                ])));
       });
+}
+
+class SaveWidget extends StatefulWidget {
+  final Place place;
+  final bool isSaved;
+
+  SaveWidget({
+    Key? key,
+    required this.place,
+    required this.isSaved,
+  }) : super(key: key);
+
+  @override
+  _SaveWidgetState createState() => _SaveWidgetState();
+}
+
+class _SaveWidgetState extends State<SaveWidget> {
+  bool _isSaved = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _isSaved = saved.contains(widget.place);
+  }
+
+  @override
+  void didUpdateWidget(covariant SaveWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.isSaved != widget.isSaved) {
+      setState(() {
+        _isSaved = widget.isSaved;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _isSaved = !_isSaved;
+          _isSaved ? saved.add(widget.place) : saved.remove(widget.place);
+        });
+        print(saved);
+      },
+      child: Container(
+        alignment: Alignment.centerLeft,
+        margin: EdgeInsets.only(bottom: 7.h, left: 33.w, right: 33.w),
+        padding: EdgeInsets.symmetric(vertical: 0.sp, horizontal: 0.sp),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: _isSaved ? Color(0xff5DCA86).withOpacity(0.83) : Colors.white,
+          border: Border.all(
+            color: Color(0xff5DCA75).withOpacity(0.65),
+            width: 2.0,
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              _isSaved ? Icons.bookmark : Icons.bookmark_border,
+              size: 13.sp,
+            ),
+            SizedBox(width: 5.w),
+            Text(
+              _isSaved ? "Saved" : "Save",
+              textAlign: TextAlign.center,
+              style: TextStyles.h1.copyWith(fontSize: 9.sp),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+Widget PlacesbyContentWidget(
+    {required BuildContext context, required Place place}) {
+  return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: ((context) => PlaceDetail(place: place))));
+      },
+      child: Container(
+          margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+          child: Row(children: [
+            Container(
+              height: 140.h,
+              width: 194.w,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16.0),
+                color: Colors.blueGrey,
+              ),
+              child: FittedBox(
+                fit: BoxFit.cover,
+                child: place.image,
+              ),
+            ),
+            Container(
+                height: 120.h,
+                width: 155.w,
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.only(
+                    topRight: Radius.circular(30.0),
+                    bottomRight: Radius.circular(30.0),
+                  ),
+                  color: Colors.white,
+                  border: Border(
+                    right: BorderSide(
+                      color: Color(0xff5DCA75).withOpacity(0.65),
+                      width: 2.0,
+                    ),
+                    top: BorderSide(
+                      color: Color(0xff5DCA75).withOpacity(0.65),
+                      width: 2.0,
+                    ),
+                    bottom: BorderSide(
+                      color: Color(0xff5DCA75).withOpacity(0.65),
+                      width: 2.0,
+                    ),
+                  ),
+                ),
+                child: Padding(
+                    padding: EdgeInsets.only(top: 20.h, right: 10.w),
+                    child: Column(children: [
+                      Text(place.name,
+                          textAlign: TextAlign.center,
+                          style: TextStyles.h1.copyWith(fontSize: 9.sp)),
+                      SizedBox(height: 15.h),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.star_border_rounded,
+                            size: 15.sp,
+                          ),
+                          SizedBox(
+                            width: 5.w,
+                          ),
+                          Text(
+                            place.star.toString(),
+                            style: TextStyles.h1.copyWith(fontSize: 12.sp),
+                          )
+                        ],
+                      ),
+                      SizedBox(height: 15.h),
+                      SaveWidget(place: place, isSaved: saved.contains(place))
+                    ])))
+          ])));
 }

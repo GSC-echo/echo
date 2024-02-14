@@ -30,6 +30,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  country_picker: ^2.0.24
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -43,6 +45,9 @@ dependencies:
   firebase_database: ^10.4.5
   cloud_firestore: ^4.15.4
   flutter_spinkit: ^5.2.0
+  google_maps_flutter: ^2.5.3
+  google_maps_flutter_web: ^0.5.4+3
+  geolocator: ^10.1.1
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +75,9 @@ flutter:
     - lib/config/images/google.png
     - lib/config/images/echo.png
     - lib/config/images/sprout.png
+    - lib/config/images/sleeping_cat.jpg
+    - lib/config/images/NaejangsanNationalPark.png
+    - lib/config/images/WalkerhillHotelsResorts.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -114,15 +122,15 @@ flutter:
         - asset: lib/config/fonts/NotoSansKR-VariableFont_wght.ttf
     - family: NotoSansKR
       fonts:
-        - asset: lib/config/fonts/NotoSansKR-SemiBold.ttf          
-        - asset: lib/config/fonts/NotoSansKR-Black.ttf             
-        - asset: lib/config/fonts/NotoSansKR-Thin.ttf              
-        - asset: lib/config/fonts/NotoSansKR-Bold.ttf              
-        - asset: lib/config/fonts/NotoSansKR-VariableFont_wght.ttf 
-        - asset: lib/config/fonts/NotoSansKR-ExtraBold.ttf        
-        - asset: lib/config/fonts/NotoSansKR-ExtraLight.ttf       
-        - asset: lib/config/fonts/NotoSansKR-Light.ttf             
-        - asset: lib/config/fonts/NotoSansKR-Medium.ttf            
+        - asset: lib/config/fonts/NotoSansKR-SemiBold.ttf
+        - asset: lib/config/fonts/NotoSansKR-Black.ttf
+        - asset: lib/config/fonts/NotoSansKR-Thin.ttf
+        - asset: lib/config/fonts/NotoSansKR-Bold.ttf
+        - asset: lib/config/fonts/NotoSansKR-VariableFont_wght.ttf
+        - asset: lib/config/fonts/NotoSansKR-ExtraBold.ttf
+        - asset: lib/config/fonts/NotoSansKR-ExtraLight.ttf
+        - asset: lib/config/fonts/NotoSansKR-Light.ttf
+        - asset: lib/config/fonts/NotoSansKR-Medium.ttf
         - asset: lib/config/fonts/NotoSansKR-Regular.ttf
   #   - family: Trajan Pro
   #     fonts:
