@@ -81,15 +81,25 @@ class _SearchWidgetState extends State<SearchWidget> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(35.sp),
                 color: Colors.white,
-                border: Border.all(
-                  color: Color(0xff5DCA75).withOpacity(0.65),
-                  width: 2.0,
-                ),
+                // border: Border.all(
+                //   color: Color(0xff5DCA75).withOpacity(0.65),
+                //   width: 3.0,
+                // ),
               ),
               child: Stack(
                 children: [
                   Container(
-                    color: Colors.blue,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(35.sp),
+                      border: Border.all(
+                        color: Color(0xff5DCA75).withOpacity(0.65),
+                        width: 3.0,
+                      ),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(35.sp),
+                      child: GoogleMapWidget(),
+                    ),
                   ),
                   Column(
                     children: <Widget>[
@@ -98,6 +108,8 @@ class _SearchWidgetState extends State<SearchWidget> {
                             EdgeInsets.only(left: 20.w, right: 20.w, top: 20.h),
                         child: TextField(
                           decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
                             prefixIcon: const Icon(Icons.search),
                             hintText: 'Where are you going to travel?',
                             hintStyle: TextStyles.h1.copyWith(
@@ -193,7 +205,7 @@ class _SearchWidgetState extends State<SearchWidget> {
     return ElevatedButton(
       onPressed: () async {
         setState(() {
-          _containerHeight = 420.0;
+          _containerHeight = 480.0;
         });
         FocusScope.of(context).unfocus();
 
@@ -419,7 +431,7 @@ class _SearchWidgetState extends State<SearchWidget> {
         });
 
         setState(() {
-          _containerHeight = 600.0.h;
+          _containerHeight = 680.0.h;
         });
       },
       child: Text(text,
