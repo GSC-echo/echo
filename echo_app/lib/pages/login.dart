@@ -31,7 +31,7 @@ class _LoginState extends State<Login> {
                   color:
                       const Color.fromARGB(255, 93, 214, 119).withOpacity(0.85),
                 ),
-                height: 280,
+                height: 300,
                 width: 350,
                 child: Container(
                   margin: const EdgeInsets.only(top: 25.0),
