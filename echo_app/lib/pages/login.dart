@@ -190,6 +190,7 @@ Future<void> firstSignIn(BuildContext context) async {
       'uid': googleUser.uid,
       'nickname': displayName,
       'email': email,
+      'points':0,
     });
 
     print('first sign in: ${googleUser.uid}');
