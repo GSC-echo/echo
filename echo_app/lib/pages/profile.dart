@@ -1,10 +1,15 @@
+import 'package:echo_app/pages/about_stage.dart';
 import 'package:echo_app/pages/home.dart';
+import 'package:echo_app/pages/record.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:echo_app/config/colors.dart';
 import 'package:echo_app/pages/settings.dart' as EchoAppSettings;
 import 'package:country_picker/country_picker.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:echo_app/firestore.dart' as fs;
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -24,6 +29,42 @@ class _Profile extends State<Profile> {
   void initState() {
     super.initState();
     _getUserData();
+  }
+
+  Map<String, dynamic> getUserStage(int p) {
+    if (p < 50) {
+      return {"stage": "Sprout IV", "upperBound": 50};
+    } else if (p < 100) {
+      return {"stage": "Sprout III", "upperBound": 100};
+    } else if (p < 150) {
+      return {"stage": "Sprout II", "upperBound": 150};
+    } else if (p < 200) {
+      return {"stage": "Sprout I", "upperBound": 200};
+    } else if (p < 250) {
+      return {"stage": "Seedling IV", "upperBound": 250};
+    } else if (p < 300) {
+      return {"stage": "Seedling III", "upperBound": 300};
+    } else if (p < 350) {
+      return {"stage": "Seedling II", "upperBound": 350};
+    } else if (p < 400) {
+      return {"stage": "Seedling I", "upperBound": 400};
+    } else if (p < 500) {
+      return {"stage": "Tree IV", "upperBound": 500};
+    } else if (p < 600) {
+      return {"stage": "Tree III", "upperBound": 600};
+    } else if (p < 700) {
+      return {"stage": "Tree II", "upperBound": 700};
+    } else if (p < 800) {
+      return {"stage": "Tree I", "upperBound": 800};
+    } else if (p < 1000) {
+      return {"stage": "Forest IV", "upperBound": 1000};
+    } else if (p < 1200) {
+      return {"stage": "Forest III", "upperBound": 1200};
+    } else if (p < 1400) {
+      return {"stage": "Forest II", "upperBound": 1400};
+    } else {
+      return {"stage": "Forest I", "upperBound": 0};
+    }
   }
 
   Future<void> _getUserData() async {
@@ -79,256 +120,259 @@ class _Profile extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         centerTitle: true,
         title: const Text(
-          'User Profile',
+          'Profile',
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontFamily: 'Roboto',
+            fontFamily: 'NotoSansKR',
             fontSize: 22,
             fontWeight: FontWeight.w700,
           ),
         ),
       ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Align(
-                alignment: Alignment.topCenter,
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(90),
-                    color: Color.fromARGB(225, 93, 202, 117),
-                  ),
+      body: Container(
+        decoration: BoxDecoration(
+          color: Color(0xFF0F6AE2D),
+        ),
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 60.h,
+                ),
+                Container(
                   child: Column(
                     children: [
                       const SizedBox(height: 20),
+                      // Container(
+                      //   decoration: BoxDecoration(
+                      //     shape: BoxShape.circle,
+                      //     // border: Border.all(
+                      //     //   color: Colors.white,
+                      //     //   width: 3,
+                      //     // ),
+                      //   ),
+                      //   child: CircleAvatar(
+                      //     radius: 100,
+                      //     backgroundImage: AssetImage(
+                      //         'lib/config/images/sleeping_cat.jpg'),
+                      //   ),
+                      // ),
                       Container(
                         decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: Colors.white,
-                            width: 3,
-                          ),
+                          color: Colors.white.withOpacity(0.8),
+                          borderRadius: BorderRadius.circular(80),
                         ),
-                        child: CircleAvatar(
-                          radius: 100,
-                          backgroundImage:
-                              AssetImage('lib/config/images/sleeping_cat.jpg'),
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                        height: 370.h,
+                        child: Column(
                           children: [
-                            Container(
-                              margin: EdgeInsets.all(0),
-                              width: 60,
-                              child: Text(
-                                'Name',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontFamily: 'Jua',
-                                  fontSize: 18,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 250,
-                              height: 50,
-                              child: Container(
-                                margin: EdgeInsets.all(0),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black87
-                                          .withOpacity(0.3), // Shadow color
-                                      spreadRadius: 2, // Spread of the shadow
-                                      blurRadius:
-                                          3, // Blur radius of the shadow
-                                      offset:
-                                          Offset(0, 5), // Offset of the shadow
-                                    ),
-                                  ],
-                                ),
-                                child: Card(
-                                  margin: EdgeInsets.all(0),
-                                  color: Colors.white,
-                                  child: Center(
-                                    child: Text(
-                                      _user?.displayName ?? 'Loading...',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Color.fromRGBO(42, 91, 53, 80),
-                                        fontFamily: 'Jua',
-                                        fontSize: 18,
-                                      ),
+                            Center(
+                              child: Column(
+                                children: [
+                                  SizedBox(height: 25.h,),
+                                  Container(
+                                      child: Icon(Icons.forest,
+                                          size: 100,
+                                          color: const Color.fromARGB(
+                                              255, 79, 171, 99))),
+                                  Container(
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        SizedBox(
+                                          width: 350,
+                                          height: 45,
+                                          child: Container(
+                                            margin: EdgeInsets.all(0),
+                                            child: Center(
+                                              child: Text(
+                                                _user?.displayName ??
+                                                    'Loading...',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyles.h3.copyWith(
+                                                  fontSize: 30,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.fromLTRB(10, 30, 10, 0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              margin: EdgeInsets.all(0),
-                              width: 60,
-                              child: Text(
-                                'Email',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontFamily: 'Jua',
-                                  fontSize: 18,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 250,
-                              height: 50,
-                              child: Container(
-                                margin: EdgeInsets.all(0),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black87
-                                          .withOpacity(0.3), // Shadow color
-                                      spreadRadius: 2, // Spread of the shadow
-                                      blurRadius:
-                                          3, // Blur radius of the shadow
-                                      offset:
-                                          Offset(0, 5), // Offset of the shadow
-                                    ),
-                                  ],
-                                ),
-                                child: Card(
-                                  margin: EdgeInsets.all(0),
-                                  color: Colors.white,
-                                  child: Center(
-                                    child: Text(
-                                      _user?.email ?? 'Loading...',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Color.fromRGBO(42, 91, 53, 80),
-                                        fontFamily: 'Jua',
-                                        fontSize: 18,
-                                      ),
+                                  Container(
+                                    margin: EdgeInsets.all(0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        // Container(
+                                        //   margin: EdgeInsets.all(0),
+                                        //   width: 60,
+                                        //   child: Text(
+                                        //     'Email',
+                                        //     style: TextStyles.white1.copyWith(fontSize: 16),
+                                        //   ),
+                                        // ),
+                                        SizedBox(
+                                          width: 250,
+                                          height: 40,
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                            ),
+                                            child: Center(
+                                              child: Text(
+                                                _user?.email ?? 'Loading...',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyles.h3.copyWith(
+                                                  fontSize: 13,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              margin: EdgeInsets.all(0),
-                              width: 100,
-                              child: Text(
-                                'Nationality',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontFamily: 'Jua',
-                                  fontSize: 18,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 210,
-                              height: 50,
-                              child: _isEditing
-                                  ? InkWell(
-                                      onTap: _openCountryPicker,
-                                      child: Container(
-                                        margin: EdgeInsets.all(0),
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: Colors.black87.withOpacity(
-                                                  0.3), // Shadow color
-                                              spreadRadius:
-                                                  2, // Spread of the shadow
-                                              blurRadius:
-                                                  3, // Blur radius of the shadow
-                                              offset: const Offset(
-                                                  0, 5), // Offset of the shadow
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        getUserStage(
+                                            fs.userPoint)["stage"], //user.stage
+                                        textAlign: TextAlign.center,
+                                        style: TextStyles.white1.copyWith(
+                                            fontSize: 28.sp,
+                                            color: const Color.fromARGB(
+                                                255, 79, 171, 99)),
+                                      ),
+                                      RichText(
+                                        text: TextSpan(
+                                          children: [
+                                            TextSpan(
+                                              text: " (" +
+                                                  fs.userPoint.toString(),
+                                              style: TextStyles.white1.copyWith(
+                                                  fontSize: 28.sp,
+                                                  color: const Color.fromARGB(
+                                                      255, 79, 171, 99)),
+                                            ),
+                                            TextSpan(
+                                              text: " pts)",
+                                              style: TextStyles.white1.copyWith(
+                                                  fontSize: 28.sp,
+                                                  color: const Color.fromARGB(
+                                                      255, 79, 171, 99)),
                                             ),
                                           ],
                                         ),
-                                        child: Card(
-                                          margin: EdgeInsets.all(0),
-                                          color: Colors.white,
-                                          child: Center(
-                                            child: _selectedCountry != null
-                                                ? Text(
-                                                    '${_selectedCountry!.name}',
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          42, 91, 53, 80),
-                                                      fontFamily: 'Jua',
-                                                      fontSize: 18,
-                                                    ),
-                                                  )
-                                                : Text(
-                                                    'Select Country >',
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          42, 91, 53, 80),
-                                                      fontFamily: 'Jua',
-                                                      fontSize: 18,
-                                                    ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(height: 15),
+                            Container(
+                              //Nationality
+                              margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                              width: 100,
+                              child: Text(
+                                'Nationality:',
+                                style: TextStyles.h3.copyWith(fontSize: 16),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            Container(
+                              //selectCountry
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    width: 300,
+                                    height: 40,
+                                    child: _isEditing
+                                        ? InkWell(
+                                            onTap: _openCountryPicker,
+                                            child: Container(
+                                              margin: EdgeInsets.all(0),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Color(0xFF0F1A20)
+                                                        .withOpacity(
+                                                            0.3), // Shadow color
+                                                    spreadRadius:
+                                                        2, // Spread of the shadow
+                                                    blurRadius:
+                                                        3, // Blur radius of the shadow
+                                                    offset: const Offset(0,
+                                                        5), // Offset of the shadow
                                                   ),
+                                                ],
+                                              ),
+                                              child: Card(
+                                                margin: EdgeInsets.all(0),
+                                                color: Colors.white,
+                                                child: Center(
+                                                  child: _selectedCountry !=
+                                                          null
+                                                      ? Text(
+                                                          '${_selectedCountry!.name}',
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style: TextStyles.h3
+                                                              .copyWith(
+                                                                  fontSize: 28),
+                                                        )
+                                                      : Text(
+                                                          'Select Country >',
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style: TextStyles.h3
+                                                              .copyWith(
+                                                                  fontSize: 16),
+                                                        ),
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                        : Center(
+                                            child: Text(
+                                              _nationality.isNotEmpty
+                                                  ? _nationality
+                                                  : 'Select Country  >',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyles.h3
+                                                  .copyWith(fontSize: 25),
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                    )
-                                  : Card(
-                                      margin: EdgeInsets.all(0),
-                                      color: Colors.white,
-                                      child: Center(
-                                        child: Text(
-                                          _nationality.isNotEmpty
-                                              ? _nationality
-                                              : 'Select Country  >',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            color:
-                                                Color.fromRGBO(42, 91, 53, 80),
-                                            fontFamily: 'Jua',
-                                            fontSize: 18,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                            )
+                                  )
+                                ],
+                              ),
+                            ),
+                            const SizedBox(height: 25),
                           ],
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
+                        //Edit
+                        margin: EdgeInsets.fromLTRB(0, 40, 0, 0),
                         child: SizedBox(
                           width: 150,
                           height: 45,
@@ -341,31 +385,137 @@ class _Profile extends State<Profile> {
                                 color: Colors.white,
                                 border:
                                     Border.all(color: Colors.white, width: 3),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black87
-                                        .withOpacity(0.3), // Shadow color
-                                    spreadRadius: 2, // Spread of the shadow
-                                    blurRadius: 3, // Blur radius of the shadow
-                                    offset:
-                                        Offset(0, 5), // Offset of the shadow
-                                  ),
-                                ],
+                                boxShadow: [],
                               ),
                               child: Card(
-                                elevation: 0,
+                                elevation: 2,
                                 margin: EdgeInsets.all(0),
-                                color: Color.fromARGB(225, 93, 202, 117),
-                                child: Center(
-                                  child: Text(
-                                    _isEditing ? 'Save' : 'Edit Profile',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
+                                color: Color.fromARGB(255, 29, 51, 61)
+                                    .withOpacity(0.95),
+                                child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        _isEditing ? Icons.save : Icons.edit,
+                                        size: 25,
+                                        color: Colors.white,
+                                      ),
+                                      SizedBox(
+                                        width: 5.h,
+                                      ),
+                                      Text(
+                                        _isEditing ? 'Save' : 'Edit Profile',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyles.white1
+                                            .copyWith(fontSize: 15),
+                                      ),
+                                    ]),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                        child: SizedBox(
+                          width: 150,
+                          height: 45,
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => RecordPage()));
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: Colors.white,
+                                border:
+                                    Border.all(color: Colors.white, width: 3),
+                                boxShadow: [],
+                              ),
+                              child: Card(
+                                elevation: 2,
+                                margin: EdgeInsets.all(0),
+                                color: Color.fromARGB(255, 29, 51, 61)
+                                    .withOpacity(0.95),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.list,
+                                      size: 25,
                                       color: Colors.white,
-                                      fontFamily: 'Jua',
-                                      fontSize: 20,
                                     ),
-                                  ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    const Text(
+                                      'Record',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontFamily: 'NotoSansKR',
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                        child: SizedBox(
+                          width: 150,
+                          height: 45,
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          EchoAppSettings.Settings()));
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: Colors.white,
+                                border:
+                                    Border.all(color: Colors.white, width: 3),
+                                boxShadow: [],
+                              ),
+                              child: Card(
+                                elevation: 2,
+                                margin: EdgeInsets.all(0),
+                                color: Color.fromARGB(255, 29, 51, 61)
+                                    .withOpacity(0.95),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.settings_outlined,
+                                      size: 25,
+                                      color: Colors.white,
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    const Text(
+                                      'Settings',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontFamily: 'NotoSansKR',
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
+                                    )
+                                  ],
                                 ),
                               ),
                             ),
@@ -376,55 +526,8 @@ class _Profile extends State<Profile> {
                     ],
                   ),
                 ),
-              ),
-              const SizedBox(height: 25),
-              Container(
-                width: 175,
-                height: 50,
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => EchoAppSettings.Settings()));
-                  },
-                  child: Card(
-                    margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      side: BorderSide(
-                        color: const Color.fromARGB(255, 54, 91, 122),
-                        width: 3,
-                      ),
-                    ),
-                    elevation: 3,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.settings_outlined,
-                          size: 25,
-                          color: Color.fromARGB(255, 54, 91, 120),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        const Text(
-                          'Settings',
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 54, 91, 120),
-                              fontFamily: 'Jua',
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

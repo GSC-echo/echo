@@ -11,9 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../config/colors.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import 'package:echo_app/firestore.dart';
-
-import '../config/colors.dart';
+import 'package:echo_app/firestore.dart' as fs;
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -94,7 +92,6 @@ List<Place> tourist_attraction_list = [
 class _HomeState extends State<Home> {
   CollectionReference usersdb = FirebaseFirestore.instance.collection('User');
   String selectedContent = "Entire";
-  int userPoint = 0;
 
   @override
   void initState() {
@@ -102,16 +99,13 @@ class _HomeState extends State<Home> {
     getUserPoints();
   }
 
-  // Firestore에서 유저의 포인트를 가져오는 함수
   Future<void> getUserPoints() async {
     String userId = FirebaseAuth.instance.currentUser?.uid ?? '';
     try {
-      // Firestore에서 유저의 포인트를 가져오고
       DocumentSnapshot<Map<String, dynamic>> userSnapshot =
           await FirebaseFirestore.instance.collection('User').doc(userId).get();
-      // 가져온 포인트를 userPoint에 저장하고 화면을 업데이트
       setState(() {
-        userPoint = userSnapshot.data()?['points'] ?? 0;
+        fs.userPoint = userSnapshot.data()?['points'] ?? 0;
       });
     } catch (e) {
       print('Error fetching user points: $e');
@@ -158,7 +152,7 @@ class _HomeState extends State<Home> {
     initializeCourses();
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: BackgroundColor.mainGreen,
+          backgroundColor: Colors.white,
           title: Text("HOME", style: TextStyles.h1),
           centerTitle: true,
         ),
@@ -216,7 +210,7 @@ class _HomeState extends State<Home> {
                                   children: [
                                     Text(
                                       getUserStage(
-                                          userPoint)["stage"], //user.stage
+                                          fs.userPoint)["stage"], //user.stage
                                       textAlign: TextAlign.center,
                                       style: TextStyles.h3
                                           .copyWith(fontSize: 28.sp),
@@ -233,7 +227,7 @@ class _HomeState extends State<Home> {
                                   text: TextSpan(
                                     children: [
                                       TextSpan(
-                                        text: "$userPoint",
+                                        text: fs.userPoint.toString(),
                                         style: TextStyles.h3
                                             .copyWith(fontSize: 22.sp),
                                       ),
@@ -250,8 +244,9 @@ class _HomeState extends State<Home> {
                                       left: 34, right: 34, top: 5),
                                   child: ClipRRect(
                                       child: LinearPercentIndicator(
-                                    percent: userPoint /
-                                        getUserStage(userPoint)["upperBound"],
+                                    percent: fs.userPoint /
+                                        getUserStage(
+                                            fs.userPoint)["upperBound"],
                                     lineHeight: 13,
                                     backgroundColor: Colors.white,
                                     progressColor:
@@ -268,7 +263,7 @@ class _HomeState extends State<Home> {
                                             CrossAxisAlignment.center,
                                         children: [
                                           Text(
-                                            "${getUserStage(userPoint)["upperBound"] - userPoint} points until next stage!",
+                                            "${getUserStage(fs.userPoint)["upperBound"] - fs.userPoint} points until next stage!",
                                             textAlign: TextAlign.right,
                                             style: TextStyles.white1
                                                 .copyWith(fontSize: 10.sp),
@@ -472,8 +467,7 @@ class _HomeState extends State<Home> {
                                         SizedBox(width: 20.w),
                                         RealTimeCourse(
                                             context: context,
-                                            array: courses_array[index],
-                                            isinMap: false),
+                                            array: courses_array[index]),
                                       ],
                                     ),
                                   ),

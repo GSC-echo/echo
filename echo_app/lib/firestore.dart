@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:echo_app/pages/splash.dart';
 
+int userPoint = 0;
 class FireStorePage extends StatefulWidget {
   const FireStorePage({Key? key}) : super(key: key);
 
   @override
   State<FireStorePage> createState() => _FireStorePageState();
+
   
   static Future<void> deleteCurrentUser(BuildContext context) async {
     CollectionReference usersdb = FirebaseFirestore.instance.collection('User');
