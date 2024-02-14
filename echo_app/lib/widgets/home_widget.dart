@@ -35,17 +35,19 @@ class _RealTimePlacesContentState extends State<RealTimePlacesContent> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: widget.isSelected
-              ? Color(0xff5DCA86).withOpacity(0.83)
+              ? Color.fromARGB(255, 81, 177, 102)
               : Colors.white,
           border: Border.all(
-            color: Color(0xff5DCA75).withOpacity(0.65),
-            width: 2.0,
+            color: widget.isSelected
+              ? Colors.black.withOpacity(0.3)
+              : Colors.white,
+            width: 1.5,
           ),
         ),
         child: Text(
           widget.content,
           textAlign: TextAlign.center,
-          style: TextStyles.h1.copyWith(fontSize: 11.sp),
+          style: TextStyles.h1.copyWith(fontSize: 11.sp,color:widget.isSelected ? Colors.white : Colors.black),
         ),
       ),
     );
@@ -124,6 +126,7 @@ Widget RealTimePlace({required BuildContext context, required Place place}) {
                 ]))),
         SizedBox(width: 10.w)
       ]));
+
 }
 
 Widget RealTimeCourse(

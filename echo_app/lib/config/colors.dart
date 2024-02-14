@@ -23,6 +23,24 @@ class TextStyles {
     fontFamily: 'NotoSansKR',
     fontSize: 25.sp,
     fontWeight: FontWeight.bold,
-    color: Color(0xFF2DB400),
+    color: Colors.black.withOpacity(0.8),
+  );
+  static TextStyle white1 = TextStyle(
+    fontFamily: 'NotoSansKR',
+    fontSize: 25.sp,
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
+  );
+  static TextStyle white2 = TextStyle(
+    fontFamily: 'NotoSansKR',
+    fontSize: 22.sp,
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
+  );
+  static TextStyle green = TextStyle(
+    fontFamily: 'NotoSansKR',
+    fontSize: 22.sp,
+    fontWeight: FontWeight.bold,
+    color: BackgroundColor.mainGreen,
   );
 }
