@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:echo_app/config/colors.dart';
 import 'package:echo_app/pages/settings.dart' as EchoAppSettings;
 import 'package:country_picker/country_picker.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -75,6 +76,8 @@ class _Profile extends State<Profile> {
     );
   }
 
+  double _containerHeight = 600.h;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,8 +100,9 @@ class _Profile extends State<Profile> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Align(
-                alignment: Alignment.topCenter,
+                alignment: Alignment.center,
                 child: Container(
+                  height: _containerHeight,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(90),
                     color: Color.fromARGB(225, 93, 202, 117),
