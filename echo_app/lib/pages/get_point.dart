@@ -54,7 +54,6 @@ class _GetPointState extends State<GetPoint> {
         body: travel == true
             ? SingleChildScrollView(
                 child: Column(children: [
-
                   SizedBox(height: 15.h),
                   Text(
                     "The course currently traveling",
@@ -101,7 +100,10 @@ class _GetPointState extends State<GetPoint> {
                                   ])),
                           Column(
                             children: [
-                              RealTimeCourse(context: context, array: course1),
+                              RealTimeCourse(
+                                  context: context,
+                                  array: course1,
+                                  isinMap: false),
                               SizedBox(height: 30.h),
                             ],
                           )
