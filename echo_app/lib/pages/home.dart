@@ -472,7 +472,8 @@ class _HomeState extends State<Home> {
                                         SizedBox(width: 20.w),
                                         RealTimeCourse(
                                             context: context,
-                                            array: courses_array[index]),
+                                            array: courses_array[index],
+                                            isinMap: false),
                                       ],
                                     ),
                                   ),
