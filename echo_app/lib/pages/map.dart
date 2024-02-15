@@ -1,8 +1,6 @@
 import 'package:echo_app/widgets/other_widget.dart';
 import 'package:flutter/material.dart';
 
-
-
 // 기존 코드
 class MapPage extends StatefulWidget {
   const MapPage({super.key});
@@ -14,8 +12,6 @@ class MapPage extends StatefulWidget {
 class _MapPageState extends State<MapPage> {
   @override
   Widget build(BuildContext context) {
-    return const SearchWidget();
+    return SearchWidget();
   }
 }
-
-

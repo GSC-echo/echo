@@ -2,6 +2,7 @@ import 'package:echo_app/pages/course_detail.dart';
 import 'package:echo_app/pages/get_point.dart';
 import 'package:echo_app/pages/home.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:echo_app/pages/place_detail.dart';
 
@@ -12,7 +13,7 @@ class RealTimePlacesContent extends StatefulWidget {
   final bool isSelected;
   final VoidCallback onTap;
 
-  const RealTimePlacesContent({super.key, 
+  RealTimePlacesContent({
     required this.content,
     required this.isSelected,
     required this.onTap,
@@ -34,19 +35,21 @@ class _RealTimePlacesContentState extends State<RealTimePlacesContent> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: widget.isSelected
-              ? const Color.fromARGB(255, 81, 177, 102)
+              ? Color.fromARGB(255, 81, 177, 102)
               : Colors.white,
           border: Border.all(
             color: widget.isSelected
-              ? Colors.black.withOpacity(0.3)
-              : Colors.white,
+                ? Colors.black.withOpacity(0.3)
+                : Colors.white,
             width: 1.5,
           ),
         ),
         child: Text(
           widget.content,
           textAlign: TextAlign.center,
-          style: TextStyles.h1.copyWith(fontSize: 11.sp,color:widget.isSelected ? Colors.white : Colors.black),
+          style: TextStyles.h1.copyWith(
+              fontSize: 11.sp,
+              color: widget.isSelected ? Colors.white : Colors.black),
         ),
       ),
     );
@@ -85,15 +88,15 @@ Widget RealTimePlace({required BuildContext context, required Place place}) {
               color: Colors.white,
               border: Border(
                 right: BorderSide(
-                  color: const Color(0xff5DCA75).withOpacity(0.65),
+                  color: Color(0xff5DCA75).withOpacity(0.65),
                   width: 2.0,
                 ),
                 top: BorderSide(
-                  color: const Color(0xff5DCA75).withOpacity(0.65),
+                  color: Color(0xff5DCA75).withOpacity(0.65),
                   width: 2.0,
                 ),
                 bottom: BorderSide(
-                  color: const Color(0xff5DCA75).withOpacity(0.65),
+                  color: Color(0xff5DCA75).withOpacity(0.65),
                   width: 2.0,
                 ),
               ),
@@ -125,109 +128,212 @@ Widget RealTimePlace({required BuildContext context, required Place place}) {
                 ]))),
         SizedBox(width: 10.w)
       ]));
-
 }
 
 Widget RealTimeCourse(
-    {required BuildContext context, required List<Place> array}) {
-  return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: ((context) => CourseDetail(array)),
-          ),
-        );
-      },
-      child: Column(children: [
-        SizedBox(height: 25.h),
-        SizedBox(
-          height: 70.h,
-          width: 289.w,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: <Widget>[
-              Container(
-                //width: 500.w,
+    {required BuildContext context,
+    required List<Place> array,
+    required bool isinMap}) {
+  return isinMap
+      ? Column(children: [
+          SizedBox(height: 25.h),
+          Container(
+            height: 70.h,
+            width: 289.w,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: <Widget>[
+                Container(
+                  //width: 500.w,
 
-                child: Row(
-                  children: List.generate(array.length, (index) {
-                    Place place = array[index];
-                    return Row(children: [
-                      Column(children: [
-                        SizedBox(height: 57.h),
-                        index == 0
-                            ? Container()
-                            : Container(
-                                width: 26.6.w,
-                                height: 2.h,
-                                decoration: BoxDecoration(
-                                  color:
-                                      const Color(0xff5DCA75).withOpacity(0.65),
+                  child: Row(
+                    children: List.generate(array.length, (index) {
+                      Place place = array[index];
+                      return Row(children: [
+                        Column(children: [
+                          SizedBox(height: 57.h),
+                          index == 0
+                              ? Container()
+                              : Container(
+                                  width: 26.6.w,
+                                  height: 2.h,
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xff5DCA75)
+                                        .withOpacity(0.65),
+                                  ),
                                 ),
-                              ),
-                      ]),
-                      Column(
-                        children: [
-                          SizedBox(
-                            width: 70.w,
-                            height: 40.h,
-                            // margin: index == array.length - 1
-                            //     ? EdgeInsets.only(right: 0.w)
-                            //     : EdgeInsets.only(right: 3.w),
-                            child: Center(
-                              child: Text(
-                                place.name,
-                                textAlign: TextAlign.center,
-                                style: TextStyles.h1.copyWith(fontSize: 11.sp),
-                              ),
+                        ]),
+                        Column(
+                          children: [
+                            Container(
+                              width: 70.w,
+                              height: 40.h,
+                              // margin: index == array.length - 1
+                              //     ? EdgeInsets.only(right: 0.w)
+                              //     : EdgeInsets.only(right: 3.w),
+                              child: isinMap
+                                  ? GestureDetector(
+                                      onTap: () {
+                                        print("mark " + place.name + " on Map");
+                                      },
+                                      child: Text(
+                                        place.name,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyles.h1
+                                            .copyWith(fontSize: 11.sp),
+                                      ),
+                                    )
+                                  : Text(
+                                      place.name,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyles.h1
+                                          .copyWith(fontSize: 11.sp),
+                                    ),
                             ),
-                          ),
-                          SizedBox(height: 15.h),
-                          Row(
-                            children: [
-                              index == 0
-                                  ? Container(width: 30.w)
-                                  : Container(
-                                      width: 35.w,
-                                      height: 2.h,
-                                      decoration: BoxDecoration(
-                                        color: const Color(0xff5DCA75)
-                                            .withOpacity(0.65),
+                            SizedBox(height: 15.h),
+                            Row(
+                              children: [
+                                index == 0
+                                    ? Container(width: 30.w)
+                                    : Container(
+                                        width: 35.w,
+                                        height: 2.h,
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xff5DCA75)
+                                              .withOpacity(0.65),
+                                        ),
                                       ),
+                                Container(
+                                  width: 6.w,
+                                  height: 6.h,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: const Color(0xff5DCA75)
+                                        .withOpacity(0.65),
+                                  ),
+                                ),
+                                index == array.length - 1
+                                    ? Container(width: 40.w)
+                                    : Container(
+                                        width: 35.w,
+                                        height: 2.h,
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xff5DCA75)
+                                              .withOpacity(0.65),
+                                        ),
+                                      ),
+                              ],
+                            ),
+                          ],
+                        )
+                      ]);
+                    }),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 5.h),
+        ])
+      : GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: ((context) => CourseDetail(array)),
+              ),
+            );
+          },
+          child: Column(children: [
+            SizedBox(height: 25.h),
+            Container(
+              height: 70.h,
+              width: 289.w,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  Container(
+                    //width: 500.w,
+
+                    child: Row(
+                      children: List.generate(array.length, (index) {
+                        Place place = array[index];
+                        return Row(children: [
+                          Column(children: [
+                            SizedBox(height: 57.h),
+                            index == 0
+                                ? Container()
+                                : Container(
+                                    width: 26.6.w,
+                                    height: 2.h,
+                                    decoration: BoxDecoration(
+                                      color: const Color(0xff5DCA75)
+                                          .withOpacity(0.65),
                                     ),
+                                  ),
+                          ]),
+                          Column(
+                            children: [
                               Container(
-                                width: 6.w,
-                                height: 6.h,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color:
-                                      const Color(0xff5DCA75).withOpacity(0.65),
+                                width: 70.w,
+                                height: 40.h,
+                                // margin: index == array.length - 1
+                                //     ? EdgeInsets.only(right: 0.w)
+                                //     : EdgeInsets.only(right: 3.w),
+                                child: Center(
+                                  child: Text(
+                                    place.name,
+                                    textAlign: TextAlign.center,
+                                    style:
+                                        TextStyles.h1.copyWith(fontSize: 11.sp),
+                                  ),
                                 ),
                               ),
-                              index == array.length - 1
-                                  ? Container(width: 40.w)
-                                  : Container(
-                                      width: 35.w,
-                                      height: 2.h,
-                                      decoration: BoxDecoration(
-                                        color: const Color(0xff5DCA75)
-                                            .withOpacity(0.65),
-                                      ),
+                              SizedBox(height: 15.h),
+                              Row(
+                                children: [
+                                  index == 0
+                                      ? Container(width: 30.w)
+                                      : Container(
+                                          width: 35.w,
+                                          height: 2.h,
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xff5DCA75)
+                                                .withOpacity(0.65),
+                                          ),
+                                        ),
+                                  Container(
+                                    width: 6.w,
+                                    height: 6.h,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: const Color(0xff5DCA75)
+                                          .withOpacity(0.65),
                                     ),
+                                  ),
+                                  index == array.length - 1
+                                      ? Container(width: 40.w)
+                                      : Container(
+                                          width: 35.w,
+                                          height: 2.h,
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xff5DCA75)
+                                                .withOpacity(0.65),
+                                          ),
+                                        ),
+                                ],
+                              ),
                             ],
-                          ),
-                        ],
-                      )
-                    ]);
-                  }),
-                ),
+                          )
+                        ]);
+                      }),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
-        ),
-        SizedBox(height: 5.h),
-      ]));
+            ),
+            SizedBox(height: 5.h),
+          ]));
 }
 
 Widget AboutStageWidget(
@@ -272,11 +378,11 @@ Widget AboutStageWidget(
         ),
       ),
       Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 23.0),
+        padding: EdgeInsets.symmetric(horizontal: 23.0),
         child: index == stageList.length - 1
             ? Container()
             : Divider(
-                color: const Color(0xff5DCA75).withOpacity(0.65),
+                color: Color(0xff5DCA75).withOpacity(0.65),
                 thickness: 2.0,
               ),
       ),
@@ -287,7 +393,7 @@ Widget AboutStageWidget(
 class GettingPoints extends StatefulWidget {
   final List<Mission> array;
 
-  const GettingPoints({super.key, required this.array});
+  GettingPoints({required this.array});
 
   @override
   _GettingPointsState createState() => _GettingPointsState();
@@ -306,7 +412,7 @@ class _GettingPointsState extends State<GettingPoints> {
   Widget build(BuildContext context) {
     return ListView(
       shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
+      physics: NeverScrollableScrollPhysics(),
       children: List.generate(widget.array.length, (index) {
         bool isChecked = isCheckedList[index];
         return Padding(
@@ -314,15 +420,15 @@ class _GettingPointsState extends State<GettingPoints> {
           child: Container(
             decoration: BoxDecoration(
               color: isChecked
-                  ? const Color(0x00000000).withOpacity(0.2)
-                  : const Color(0xff5DCA75).withOpacity(0.65),
+                  ? Color(0x000000).withOpacity(0.2)
+                  : Color(0xff5DCA75).withOpacity(0.65),
               borderRadius: BorderRadius.circular(15.sp),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.1),
                   spreadRadius: 1,
                   blurRadius: 5,
-                  offset: const Offset(0, 3),
+                  offset: Offset(0, 3),
                 ),
               ],
             ),
@@ -341,7 +447,7 @@ class _GettingPointsState extends State<GettingPoints> {
                             textAlign: TextAlign.center,
                             style: TextStyles.h1.copyWith(
                               fontSize: 10.sp,
-                              color: const Color(0xFF176B87).withOpacity(0.77),
+                              color: Color(0xFF176B87).withOpacity(0.77),
                             ),
                           ),
                           Text(
@@ -349,7 +455,7 @@ class _GettingPointsState extends State<GettingPoints> {
                             textAlign: TextAlign.center,
                             style: TextStyles.h1.copyWith(
                               fontSize: 10.sp,
-                              color: const Color(0xFF176B87).withOpacity(0.77),
+                              color: Color(0xFF176B87).withOpacity(0.77),
                             ),
                           ),
                         ],

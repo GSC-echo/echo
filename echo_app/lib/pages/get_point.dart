@@ -53,7 +53,6 @@ class _GetPointState extends State<GetPoint> {
         body: travel == true
             ? SingleChildScrollView(
                 child: Column(children: [
-
                   SizedBox(height: 15.h),
                   Text(
                     "The course currently traveling",
@@ -81,7 +80,8 @@ class _GetPointState extends State<GetPoint> {
                                 borderRadius: BorderRadius.circular(15),
                                 color: Colors.white,
                                 border: Border.all(
-                                  color: const Color(0xff5DCA75).withOpacity(0.65),
+                                  color:
+                                      const Color(0xff5DCA75).withOpacity(0.65),
                                   width: 2.0,
                                 ),
                               ),
@@ -100,7 +100,10 @@ class _GetPointState extends State<GetPoint> {
                                   ])),
                           Column(
                             children: [
-                              RealTimeCourse(context: context, array: course1),
+                              RealTimeCourse(
+                                  context: context,
+                                  array: course1,
+                                  isinMap: false),
                               SizedBox(height: 30.h),
                             ],
                           )
@@ -150,9 +153,10 @@ class _GetPointState extends State<GetPoint> {
                                                 style: TextStyles.h1
                                                     .copyWith(fontSize: 20.sp)),
                                             Container(
-                                                margin: const EdgeInsets.symmetric(
-                                                    horizontal: 36,
-                                                    vertical: 40),
+                                                margin:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 36,
+                                                        vertical: 40),
                                                 decoration: BoxDecoration(
                                                   borderRadius:
                                                       BorderRadius.circular(
@@ -319,7 +323,8 @@ class _GetPointState extends State<GetPoint> {
               )
             : Container(
                 //not traveling
-                decoration: const BoxDecoration(color: BackgroundColor.background1),
+                decoration:
+                    const BoxDecoration(color: BackgroundColor.background1),
                 padding: EdgeInsets.zero,
                 child: Padding(
                     padding: EdgeInsets.only(
