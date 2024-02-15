@@ -43,6 +43,4 @@ class TextStyles {
     fontWeight: FontWeight.bold,
     color: BackgroundColor.mainGreen,
   );
-  static Color echoYellow = Color(0xFF0F6AE2D);
-  static Color echoNavy = Color(0xFF0F1A20);
 }
