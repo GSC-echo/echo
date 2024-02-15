@@ -1,15 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:echo_app/config/colors.dart';
 import 'package:echo_app/pages/about_stage.dart';
-import 'package:echo_app/pages/course_detail.dart';
 import 'package:echo_app/pages/get_point.dart';
 import 'package:echo_app/widgets/home_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:echo_app/widgets/other_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../config/colors.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:echo_app/firestore.dart' as fs;
 
@@ -148,6 +144,7 @@ class _HomeState extends State<Home> {
     }
   }
 
+  @override
   Widget build(BuildContext context) {
     initializeCourses();
     return Scaffold(
@@ -158,7 +155,7 @@ class _HomeState extends State<Home> {
         ),
         body: SingleChildScrollView(
           child: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: BackgroundColor.mainGreen,
             ),
             child: SafeArea(
@@ -180,7 +177,7 @@ class _HomeState extends State<Home> {
                               children: [
                                 SizedBox(height: 8.h),
                                 Container(
-                                    child: Icon(Icons.forest,
+                                    child: const Icon(Icons.forest,
                                         size: 75, color: Colors.white)),
                                 SizedBox(height: 8.h),
                                 InkWell(
@@ -192,7 +189,8 @@ class _HomeState extends State<Home> {
                                               const AboutStage())),
                                     );
                                   },
-                                  child: Row(
+                                  child: const Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Icon(Icons.help_outline, size: 12),
                                       SizedBox(width: 2),
@@ -202,7 +200,6 @@ class _HomeState extends State<Home> {
                                         textAlign: TextAlign.center,
                                       ),
                                     ],
-                                    mainAxisAlignment: MainAxisAlignment.center,
                                   ),
                                 ),
                                 Row(
@@ -251,7 +248,7 @@ class _HomeState extends State<Home> {
                                     backgroundColor: Colors.white,
                                     progressColor:
                                         Colors.black.withOpacity(0.8),
-                                    barRadius: Radius.circular(35),
+                                    barRadius: const Radius.circular(35),
                                   )),
                                 ),
                                 Container(
@@ -310,7 +307,7 @@ class _HomeState extends State<Home> {
                                               MainAxisAlignment.center,
                                           children: [
                                             SizedBox(width: 4.w),
-                                            Icon(
+                                            const Icon(
                                               Icons.stars_outlined,
                                               size: 25,
                                               color: Colors.black,
@@ -325,7 +322,7 @@ class _HomeState extends State<Home> {
                                             Padding(
                                               padding:
                                                   EdgeInsets.only(right: 5.h),
-                                              child: Icon(
+                                              child: const Icon(
                                                 Icons.arrow_forward_ios,
                                                 size: 15,
                                                 color: Colors.black,
@@ -426,18 +423,18 @@ class _HomeState extends State<Home> {
                             borderRadius: BorderRadius.circular(25),
                             color: Colors.white,
                             border: Border.all(
-                              color: Color(0xff5DCA75).withOpacity(0.65),
+                              color: const Color(0xff5DCA75).withOpacity(0.65),
                               width: 2.0,
                             ),
                           ),
                           child: ListView.builder(
                             shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
+                            physics: const NeverScrollableScrollPhysics(),
                             itemCount: courses_array.length,
                             itemBuilder: (context, index) {
                               return Column(
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     height: 115.h,
                                     child: Row(
                                       children: [
@@ -449,7 +446,7 @@ class _HomeState extends State<Home> {
                                               top: 41.h,
                                               bottom: 41.h),
                                           decoration: BoxDecoration(
-                                            color: Color(0xff5DCA86),
+                                            color: const Color(0xff5DCA86),
                                             borderRadius:
                                                 BorderRadius.circular(5),
                                           ),
@@ -473,11 +470,11 @@ class _HomeState extends State<Home> {
                                   ),
                                   Padding(
                                     padding:
-                                        EdgeInsets.symmetric(horizontal: 23.0),
+                                        const EdgeInsets.symmetric(horizontal: 23.0),
                                     child: index == 2
                                         ? null
                                         : Divider(
-                                            color: Color(0xff5DCA75)
+                                            color: const Color(0xff5DCA75)
                                                 .withOpacity(0.65),
                                             thickness: 2.0,
                                           ),

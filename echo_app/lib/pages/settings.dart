@@ -36,7 +36,7 @@ class _SettingsState extends State<Settings> {
       ),
       body: SafeArea(
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: BackgroundColor.mainGreen,
           ),
           child: Column(
@@ -46,13 +46,13 @@ class _SettingsState extends State<Settings> {
                   width: 250, height: 250),
               Align(
                 alignment: Alignment.topCenter,
-                child: Container(
+                child: SizedBox(
                   height: 250,
                   width: 350,
                   child: Container(
                     child: Column(
                       children: [
-                        Container(
+                        SizedBox(
                           width: 300,
                           height: 75,
                           child: InkWell(
@@ -67,7 +67,7 @@ class _SettingsState extends State<Settings> {
                                 borderRadius: BorderRadius.circular(35),
                               ),
                               elevation: 3,
-                              child: Center(
+                              child: const Center(
                                 child: Text(
                                   "Sign out",
                                   textAlign: TextAlign.center,
@@ -83,7 +83,7 @@ class _SettingsState extends State<Settings> {
                           ),
                         ),
 
-                        Container(
+                        SizedBox(
                           width: 300,
                           height: 75,
                           child: InkWell(
@@ -97,7 +97,7 @@ class _SettingsState extends State<Settings> {
                                 borderRadius: BorderRadius.circular(35),
                               ),
                               elevation: 3,
-                              child: Center(
+                              child: const Center(
                                 child: Text(
                                   "Help & Support",
                                   textAlign: TextAlign.center,
@@ -120,27 +120,27 @@ class _SettingsState extends State<Settings> {
               SizedBox(
                 height: 20.h,
               ),
-              Container(
+              SizedBox(
                   width: 200,
                   height: 75,
                   child: InkWell(
                       onTap: () async {
                         GoogleSignIn().signOut();
                         FirebaseAuth.instance.signOut();
-                        Navigator.of(context as BuildContext)
+                        Navigator.of(context)
                             .pushReplacement(MaterialPageRoute(
                           builder: (context) => const Login(),
                         ));
                       },
                       child: Card(
-                        color: Color(0xFF0F6AE2D),
+                        color: const Color(0xff0f6ae2d),
                         margin: const EdgeInsets.fromLTRB(30, 30, 30, 0),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(35),
                           //side: BorderSide(color: const Color.fromARGB(255, 237, 104, 94), width:3)
                         ),
                         elevation: 3,
-                        child: Row(
+                        child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(
@@ -148,10 +148,10 @@ class _SettingsState extends State<Settings> {
                                 size: 20,
                                 color: Colors.black,
                               ),
-                              const SizedBox(
+                              SizedBox(
                                 width: 10,
                               ),
-                              const Text("Log out",
+                              Text("Log out",
                                   style: TextStyle(
                                       color: Color(0xFF0F1A20),
                                       fontFamily: 'Not oSansKR',

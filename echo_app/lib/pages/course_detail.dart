@@ -17,7 +17,7 @@ class CourseDetail extends StatelessWidget {
         margin: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100.sp),
-          color: Color(0xFF5DCA75).withOpacity(0.83),
+          color: const Color(0xFF5DCA75).withOpacity(0.83),
         ),
         child: Column(children: [
           Container(
@@ -40,7 +40,7 @@ class CourseDetail extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30),
                         color: Colors.white,
                         border: Border.all(
-                          color: Color(0xff5DCA75).withOpacity(0.65),
+                          color: const Color(0xff5DCA75).withOpacity(0.65),
                           width: 3.0.sp,
                         ),
                       ),
@@ -62,7 +62,7 @@ class CourseDetail extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20.sp),
                         color: Colors.white,
                         border: Border.all(
-                          color: Color(0xff5DCA75).withOpacity(0.65),
+                          color: const Color(0xff5DCA75).withOpacity(0.65),
                           width: 2.0,
                         ),
                       ),
@@ -90,7 +90,7 @@ class CourseDetail extends StatelessWidget {
                           SizedBox(
                             width: 20.w,
                           ),
-                          Icon(Icons.reviews),
+                          const Icon(Icons.reviews),
                           SizedBox(
                             width: 5.w,
                           ),
@@ -103,7 +103,7 @@ class CourseDetail extends StatelessWidget {
                           GestureDetector(
                               child: Text("more",
                                   style: TextStyles.h1.copyWith(
-                                      color: Color(0x000000).withOpacity(0.35),
+                                      color: const Color(0x00000000).withOpacity(0.35),
                                       fontSize: 12.sp))),
                           SizedBox(width: 20.w)
                         ],
@@ -117,7 +117,7 @@ class CourseDetail extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20.sp),
                         color: Colors.white,
                         border: Border.all(
-                          color: Color(0xff5DCA75).withOpacity(0.65),
+                          color: const Color(0xff5DCA75).withOpacity(0.65),
                           width: 2.0,
                         ),
                       ),
@@ -129,9 +129,9 @@ class CourseDetail extends StatelessWidget {
             ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateProperty.all<Color>(Color(0xff5DCA86)),
+                      MaterialStateProperty.all<Color>(const Color(0xff5DCA86)),
                   side: MaterialStateProperty.all<BorderSide>(
-                    BorderSide(
+                    const BorderSide(
                       color: Colors.white,
                       width: 2.0,
                     ),
@@ -155,9 +155,9 @@ class CourseDetail extends StatelessWidget {
             ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateProperty.all<Color>(Color(0xffD5F0C1)),
+                      MaterialStateProperty.all<Color>(const Color(0xffD5F0C1)),
                   side: MaterialStateProperty.all<BorderSide>(
-                    BorderSide(
+                    const BorderSide(
                       color: Colors.white,
                       width: 2.0,
                     ),

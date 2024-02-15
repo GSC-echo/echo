@@ -22,7 +22,7 @@ class _PlaceDetailState extends State<PlaceDetail> {
             margin: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(100.sp),
-              color: Color(0xFF5DCA75).withOpacity(0.83),
+              color: const Color(0xFF5DCA75).withOpacity(0.83),
             ),
             child: Column(children: [
               Container(

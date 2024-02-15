@@ -22,7 +22,7 @@ class _Profile extends State<Profile> {
   User? _user;
   bool _isEditing = false;
   String _nationality = '';
-  String _editedNationality = '';
+  final String _editedNationality = '';
   Country? _selectedCountry;
 
   @override
@@ -116,7 +116,7 @@ class _Profile extends State<Profile> {
     );
   }
 
-  double _containerHeight = 600.h;
+  final double _containerHeight = 600.h;
 
   @override
   Widget build(BuildContext context) {
@@ -135,8 +135,8 @@ class _Profile extends State<Profile> {
         ),
       ),
       body: Container(
-        decoration: BoxDecoration(
-          color: Color(0xFF0F6AE2D),
+        decoration: const BoxDecoration(
+          color: Color(0xff0f6ae2d),
         ),
         child: SafeArea(
           child: Padding(
@@ -177,9 +177,9 @@ class _Profile extends State<Profile> {
                                 children: [
                                   SizedBox(height: 25.h,),
                                   Container(
-                                      child: Icon(Icons.forest,
+                                      child: const Icon(Icons.forest,
                                           size: 100,
-                                          color: const Color.fromARGB(
+                                          color: Color.fromARGB(
                                               255, 79, 171, 99))),
                                   Container(
                                     child: Row(
@@ -192,7 +192,7 @@ class _Profile extends State<Profile> {
                                           width: 350,
                                           height: 45,
                                           child: Container(
-                                            margin: EdgeInsets.all(0),
+                                            margin: const EdgeInsets.all(0),
                                             child: Center(
                                               child: Text(
                                                 _user?.displayName ??
@@ -209,7 +209,7 @@ class _Profile extends State<Profile> {
                                     ),
                                   ),
                                   Container(
-                                    margin: EdgeInsets.all(0),
+                                    margin: const EdgeInsets.all(0),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
@@ -262,8 +262,7 @@ class _Profile extends State<Profile> {
                                         text: TextSpan(
                                           children: [
                                             TextSpan(
-                                              text: " (" +
-                                                  fs.userPoint.toString(),
+                                              text: " (${fs.userPoint}",
                                               style: TextStyles.white1.copyWith(
                                                   fontSize: 28.sp,
                                                   color: const Color.fromARGB(
@@ -287,7 +286,7 @@ class _Profile extends State<Profile> {
                             const SizedBox(height: 15),
                             Container(
                               //Nationality
-                              margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                              margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                               width: 100,
                               child: Text(
                                 'Nationality:',
@@ -310,13 +309,13 @@ class _Profile extends State<Profile> {
                                         ? InkWell(
                                             onTap: _openCountryPicker,
                                             child: Container(
-                                              margin: EdgeInsets.all(0),
+                                              margin: const EdgeInsets.all(0),
                                               decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(15),
                                                 boxShadow: [
                                                   BoxShadow(
-                                                    color: Color(0xFF0F1A20)
+                                                    color: const Color(0xFF0F1A20)
                                                         .withOpacity(
                                                             0.3), // Shadow color
                                                     spreadRadius:
@@ -329,13 +328,13 @@ class _Profile extends State<Profile> {
                                                 ],
                                               ),
                                               child: Card(
-                                                margin: EdgeInsets.all(0),
+                                                margin: const EdgeInsets.all(0),
                                                 color: Colors.white,
                                                 child: Center(
                                                   child: _selectedCountry !=
                                                           null
                                                       ? Text(
-                                                          '${_selectedCountry!.name}',
+                                                          _selectedCountry!.name,
                                                           textAlign:
                                                               TextAlign.center,
                                                           style: TextStyles.h3
@@ -374,7 +373,7 @@ class _Profile extends State<Profile> {
                       ),
                       Container(
                         //Edit
-                        margin: EdgeInsets.fromLTRB(0, 40, 0, 0),
+                        margin: const EdgeInsets.fromLTRB(0, 40, 0, 0),
                         child: SizedBox(
                           width: 150,
                           height: 45,
@@ -387,12 +386,12 @@ class _Profile extends State<Profile> {
                                 color: Colors.white,
                                 border:
                                     Border.all(color: Colors.white, width: 3),
-                                boxShadow: [],
+                                boxShadow: const [],
                               ),
                               child: Card(
                                 elevation: 2,
-                                margin: EdgeInsets.all(0),
-                                color: Color.fromARGB(255, 29, 51, 61)
+                                margin: const EdgeInsets.all(0),
+                                color: const Color.fromARGB(255, 29, 51, 61)
                                     .withOpacity(0.95),
                                 child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -420,7 +419,7 @@ class _Profile extends State<Profile> {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                        margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                         child: SizedBox(
                           width: 150,
                           height: 45,
@@ -429,7 +428,7 @@ class _Profile extends State<Profile> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => RecordPage()));
+                                      builder: (context) => const RecordPage()));
                             },
                             child: Container(
                               decoration: BoxDecoration(
@@ -437,14 +436,14 @@ class _Profile extends State<Profile> {
                                 color: Colors.white,
                                 border:
                                     Border.all(color: Colors.white, width: 3),
-                                boxShadow: [],
+                                boxShadow: const [],
                               ),
                               child: Card(
                                 elevation: 2,
-                                margin: EdgeInsets.all(0),
-                                color: Color.fromARGB(255, 29, 51, 61)
+                                margin: const EdgeInsets.all(0),
+                                color: const Color.fromARGB(255, 29, 51, 61)
                                     .withOpacity(0.95),
-                                child: Row(
+                                child: const Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
@@ -453,10 +452,10 @@ class _Profile extends State<Profile> {
                                       size: 25,
                                       color: Colors.white,
                                     ),
-                                    const SizedBox(
+                                    SizedBox(
                                       width: 10,
                                     ),
-                                    const Text(
+                                    Text(
                                       'Record',
                                       style: TextStyle(
                                           color: Colors.white,
@@ -472,7 +471,7 @@ class _Profile extends State<Profile> {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                        margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                         child: SizedBox(
                           width: 150,
                           height: 45,
@@ -482,7 +481,7 @@ class _Profile extends State<Profile> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          EchoAppSettings.Settings()));
+                                          const EchoAppSettings.Settings()));
                             },
                             child: Container(
                               decoration: BoxDecoration(
@@ -490,14 +489,14 @@ class _Profile extends State<Profile> {
                                 color: Colors.white,
                                 border:
                                     Border.all(color: Colors.white, width: 3),
-                                boxShadow: [],
+                                boxShadow: const [],
                               ),
                               child: Card(
                                 elevation: 2,
-                                margin: EdgeInsets.all(0),
-                                color: Color.fromARGB(255, 29, 51, 61)
+                                margin: const EdgeInsets.all(0),
+                                color: const Color.fromARGB(255, 29, 51, 61)
                                     .withOpacity(0.95),
-                                child: Row(
+                                child: const Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
@@ -506,10 +505,10 @@ class _Profile extends State<Profile> {
                                       size: 25,
                                       color: Colors.white,
                                     ),
-                                    const SizedBox(
+                                    SizedBox(
                                       width: 10,
                                     ),
-                                    const Text(
+                                    Text(
                                       'Settings',
                                       style: TextStyle(
                                           color: Colors.white,

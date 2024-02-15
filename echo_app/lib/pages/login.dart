@@ -1,16 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:echo_app/config/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:echo_app/main.dart';
-import 'package:echo_app/firestore.dart';
 
 class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+  const Login({super.key});
 
   @override
   State<Login> createState() => _LoginState();
@@ -38,7 +33,7 @@ class _LoginState extends State<Login> {
                   child: Container(
                     child: Column(
                       children: [
-                        Text(
+                        const Text(
                           "Welcome to echo!",
                           textAlign: TextAlign.center,
                           style: TextStyle(
@@ -48,7 +43,7 @@ class _LoginState extends State<Login> {
                             color: Color(0xFF0F1A20),
                           ),
                         ),
-                        Text(
+                        const Text(
                           "\nLet's go on a meaningful journey together from now on!",
                           textAlign: TextAlign.center,
                           style: TextStyle(
@@ -58,7 +53,7 @@ class _LoginState extends State<Login> {
                           ),
                         ),
                         //LOGIN
-                        Container(
+                        SizedBox(
                           width: 350,
                           height: 90,
                           child: InkWell(
@@ -70,11 +65,11 @@ class _LoginState extends State<Login> {
                               color:Colors.white,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15),
-                                side: BorderSide(
+                                side: const BorderSide(
                                     color: Color(0xFF0F1A20), width: 2),
                               ),
                               elevation: 3,
-                              child: Center(
+                              child: const Center(
                                 child: Text(
                                   "CONTINUE WITH GOOGLE",
                                   textAlign: TextAlign.center,
@@ -94,7 +89,7 @@ class _LoginState extends State<Login> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(bottom: 10.0),
+                margin: const EdgeInsets.only(bottom: 10.0),
                 child: Column(
                   children: [
                     Image.asset('lib/config/images/google.png',
@@ -166,13 +161,13 @@ Future<void> signInWithGoogle(BuildContext context) async {
     //Navigator.of(context).pop();
 
     Navigator.of(context).pushReplacement(MaterialPageRoute(
-      builder: (context) => MyApp(), 
+      builder: (context) => const MyApp(), 
     ));
   } catch (e) {
     print("Error signing in with Google: $e");
     Navigator.of(context).pop(); 
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Failed to sign in with Google')),
+      const SnackBar(content: Text('Failed to sign in with Google')),
     );
   }
 }
@@ -197,5 +192,7 @@ Future<void> firstSignIn(BuildContext context) async {
 
     print('first sign in: ${googleUser.uid}');
   }
-  else return;
+  else {
+    return;
+  }
 }

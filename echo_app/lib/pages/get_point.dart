@@ -1,7 +1,6 @@
 import 'package:echo_app/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 import '../config/colors.dart';
 import '../widgets/home_widget.dart';
 
@@ -68,7 +67,7 @@ class _GetPointState extends State<GetPoint> {
                         borderRadius: BorderRadius.circular(30),
                         color: Colors.white,
                         border: Border.all(
-                          color: Color(0xff5DCA75).withOpacity(0.65),
+                          color: const Color(0xff5DCA75).withOpacity(0.65),
                           width: 2.0,
                         ),
                       ),
@@ -82,7 +81,7 @@ class _GetPointState extends State<GetPoint> {
                                 borderRadius: BorderRadius.circular(15),
                                 color: Colors.white,
                                 border: Border.all(
-                                  color: Color(0xff5DCA75).withOpacity(0.65),
+                                  color: const Color(0xff5DCA75).withOpacity(0.65),
                                   width: 2.0,
                                 ),
                               ),
@@ -139,7 +138,7 @@ class _GetPointState extends State<GetPoint> {
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(100.sp),
-                                          color: Color(0xFF5DCA75)
+                                          color: const Color(0xFF5DCA75)
                                               .withOpacity(0.83),
                                         ),
                                         child: Center(
@@ -151,7 +150,7 @@ class _GetPointState extends State<GetPoint> {
                                                 style: TextStyles.h1
                                                     .copyWith(fontSize: 20.sp)),
                                             Container(
-                                                margin: EdgeInsets.symmetric(
+                                                margin: const EdgeInsets.symmetric(
                                                     horizontal: 36,
                                                     vertical: 40),
                                                 decoration: BoxDecoration(
@@ -183,7 +182,7 @@ class _GetPointState extends State<GetPoint> {
                                                                     .white,
                                                                 border:
                                                                     Border.all(
-                                                                  color: Color(
+                                                                  color: const Color(
                                                                           0xff5DCA75)
                                                                       .withOpacity(
                                                                           0.65),
@@ -225,7 +224,7 @@ class _GetPointState extends State<GetPoint> {
                                                                     .white,
                                                                 border:
                                                                     Border.all(
-                                                                  color: Color(
+                                                                  color: const Color(
                                                                           0xff5DCA75)
                                                                       .withOpacity(
                                                                           0.65),
@@ -268,7 +267,7 @@ class _GetPointState extends State<GetPoint> {
                                                                     .white,
                                                                 border:
                                                                     Border.all(
-                                                                  color: Color(
+                                                                  color: const Color(
                                                                           0xff5DCA75)
                                                                       .withOpacity(
                                                                           0.65),
@@ -297,7 +296,7 @@ class _GetPointState extends State<GetPoint> {
                                 },
                               );
                             },
-                            icon: Icon(Icons.add_circle_outline)),
+                            icon: const Icon(Icons.add_circle_outline)),
                       ],
                     ),
                   ),
@@ -310,7 +309,7 @@ class _GetPointState extends State<GetPoint> {
                           borderRadius: BorderRadius.circular(30),
                           color: Colors.white,
                           border: Border.all(
-                            color: Color(0xff5DCA75).withOpacity(0.65),
+                            color: const Color(0xff5DCA75).withOpacity(0.65),
                             width: 2.0,
                           ),
                         ),
@@ -320,7 +319,7 @@ class _GetPointState extends State<GetPoint> {
               )
             : Container(
                 //not traveling
-                decoration: BoxDecoration(color: BackgroundColor.background1),
+                decoration: const BoxDecoration(color: BackgroundColor.background1),
                 padding: EdgeInsets.zero,
                 child: Padding(
                     padding: EdgeInsets.only(
@@ -330,7 +329,7 @@ class _GetPointState extends State<GetPoint> {
                           borderRadius: BorderRadius.circular(50),
                           color: Colors.white,
                           border: Border.all(
-                            color: Color(0xff5DCA75).withOpacity(0.65),
+                            color: const Color(0xff5DCA75).withOpacity(0.65),
                             width: 2.0,
                           ),
                         ),
