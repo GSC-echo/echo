@@ -10,7 +10,7 @@ import 'home.dart';
 import '../widgets/other_widget.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+  const MainPage({Key? key}) : super(key: key);
 
   @override
   State<MainPage> createState() => _MainPageState();
@@ -20,22 +20,22 @@ class _MainPageState extends State<MainPage> {
   int _currentIndex = 1;
 
   final List<BottomNavigationBarItem> _bottomNavBarItems = [
-    const BottomNavigationBarItem(
+    BottomNavigationBarItem(
       icon: Icon(Icons.search),
       label: 'Search',
     ),
-    const BottomNavigationBarItem(
+    BottomNavigationBarItem(
       icon: Icon(Icons.home),
       label: 'Home',
     ),
-    const BottomNavigationBarItem(
+    BottomNavigationBarItem(
       icon: Icon(Icons.person_rounded),
       label: 'My Page',
     ),
   ];
 
   final List<Widget> _screens = [
-    const MapPage(),
+    MapPage(),
     const Home(),
     const Profile(),
   ];
@@ -49,8 +49,8 @@ class _MainPageState extends State<MainPage> {
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentIndex,
           items: _bottomNavBarItems,
-          backgroundColor: const Color(0xFF0F1A20),
-          selectedItemColor: const Color(0xff0f6ae2d), // 선택된 아이템의 색상
+          backgroundColor: Color(0xFF0F1A20),
+          selectedItemColor: Color(0xFF0F6AE2D), // 선택된 아이템의 색상
           unselectedItemColor: Colors.white, // 선택되지 않은 아이템의 색상
           onTap: (index) {
             setState(() {

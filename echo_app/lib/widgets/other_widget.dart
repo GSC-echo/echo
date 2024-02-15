@@ -6,15 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:echo_app/pages/place_detail.dart';
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 List<Place> saved = [];
 
 class SearchWidget extends StatefulWidget {
-  const SearchWidget({super.key});
-
   @override
   _SearchWidgetState createState() => _SearchWidgetState();
 }
@@ -31,10 +28,6 @@ class _SearchWidgetState extends State<SearchWidget> {
     "Dalmago-do",
     'Suncheon',
     "Naejangsan National Park",
-    "Naejangsan National Park",
-    "Naejangsan National Park",
-    "Dalmago-do",
-    'Suncheon',
     "Naejangsan National Park",
     "Naejangsan National Park",
   ];
@@ -61,7 +54,7 @@ class _SearchWidgetState extends State<SearchWidget> {
     setState(() {
       // 포커스가 해제되면 Container의 높이를 변경
       if (!_focusNode.hasFocus) {
-        _containerHeight = 600.h; // 변경할 높이 설정
+        _containerHeight = 680.h; // 변경할 높이 설정
       }
     });
   }
@@ -76,16 +69,16 @@ class _SearchWidgetState extends State<SearchWidget> {
         child: Column(
           children: [
             AnimatedContainer(
-              duration: const Duration(milliseconds: 450),
+              duration: Duration(milliseconds: 450),
               height: _containerHeight,
               margin: EdgeInsets.only(
-                  left: 10.w, right: 10.w, top: 35.w, bottom: 10.w),
+                  left: 10.w, right: 10.w, top: 35.w, bottom: 5.w),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(35.sp),
                 color: Colors.white,
                 // border: Border.all(
-                //   color: const Color(0xff5DCA75).withOpacity(0.65),
-                //   width: 2.0,
+                //   color: Color(0xff5DCA75).withOpacity(0.65),
+                //   width: 3.0,
                 // ),
               ),
               child: Stack(
@@ -94,13 +87,13 @@ class _SearchWidgetState extends State<SearchWidget> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(35.sp),
                       border: Border.all(
-                        color: const Color(0xff5DCA75).withOpacity(0.65),
+                        color: Color(0xff5DCA75).withOpacity(0.65),
                         width: 3.0,
                       ),
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(35.sp),
-                      child: const GoogleMapWidget(),
+                      child: GoogleMapWidget(),
                     ),
                   ),
                   Column(
@@ -115,12 +108,10 @@ class _SearchWidgetState extends State<SearchWidget> {
                             prefixIcon: const Icon(Icons.search),
                             hintText: 'Where are you going to travel?',
                             hintStyle: TextStyles.h1.copyWith(
-                                fontSize: 16,
-                                color: Colors.black.withOpacity(0.4)),
-                            contentPadding:
-                                const EdgeInsets.symmetric(horizontal: 50.0),
+                                fontSize: 16, color: Colors.black.withOpacity(0.4)),
+                            contentPadding: EdgeInsets.symmetric(horizontal: 50.0),
                             border: OutlineInputBorder(
-                              borderSide: const BorderSide(
+                              borderSide: BorderSide(
                                 color: Color(0xff5DCA86),
                                 width: 3.0,
                               ),
@@ -140,60 +131,59 @@ class _SearchWidgetState extends State<SearchWidget> {
                           },
                         ),
                       ),
-                      Expanded(
+                      Expanded( // 이 부분에 Stack으로 구글맵 넣기 -> 구글맵 위에 이 Expanded(장소 리스트)가 나오도록
                         child: searchText.isEmpty
-                            ? const SizedBox.shrink()
+                            ? SizedBox.shrink()
                             : Stack(
-                                children: [
-                                  Container(
-                                    margin: EdgeInsets.symmetric(
-                                        horizontal: 40.0.w),
-                                    child: ListView.builder(
-                                      itemCount: items.length,
-                                      itemBuilder:
-                                          (BuildContext context, int index) {
-                                        if (items[index].toLowerCase().contains(
-                                            searchText.toLowerCase())) {
-                                          return Card(
-                                            elevation: 3,
-                                            color: Colors.white,
-                                            shape: RoundedRectangleBorder(
-                                              side: BorderSide(
-                                                  color: const Color(0xff5DCA75)
-                                                      .withOpacity(0.65),
-                                                  width: 1),
-                                              borderRadius:
-                                                  const BorderRadius.all(
-                                                Radius.elliptical(20, 20),
-                                              ),
+                              children: [
+                                Container(
+                                margin: EdgeInsets.symmetric(horizontal: 40.0.w),
+                                child: ListView.builder(
+                                  itemCount: items.length,
+                                  itemBuilder: (BuildContext context, int index) {
+                                    if (items[index]
+                                        .toLowerCase()
+                                        .contains(searchText.toLowerCase())) {
+                                      return Card(
+                                        elevation: 3,
+                                        color: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                          side: BorderSide(
+                                              color: Color(0xff5DCA75)
+                                                  .withOpacity(0.65),
+                                              width: 1),
+                                          borderRadius: BorderRadius.all(
+                                            Radius.elliptical(20, 20),
+                                          ),
+                                        ),
+                                        child: SizedBox(
+                                          child: ListTile(
+                                            contentPadding: EdgeInsets.zero,
+                                            title: Text(
+                                              items[index],
+                                              style: TextStyles.h1
+                                                  .copyWith(fontSize: 13.sp),
+                                              textAlign: TextAlign.center,
                                             ),
-                                            child: SizedBox(
-                                              child: ListTile(
-                                                contentPadding: EdgeInsets.zero,
-                                                title: Text(
-                                                  items[index],
-                                                  style: TextStyles.h1.copyWith(
-                                                      fontSize: 13.sp),
-                                                  textAlign: TextAlign.center,
-                                                ),
-                                                onTap: () => cardClickEvent(
-                                                    context, index),
-                                              ),
-                                            ),
-                                          );
-                                        } else {
-                                          return const SizedBox.shrink();
-                                        }
-                                      },
-                                    ),
-                                  ),
-                                ],
-                              ),
+                                            onTap: () =>
+                                                cardClickEvent(context, index),
+                                          ),
+                                        ),
+                                      );
+                                    } else {
+                                      return SizedBox.shrink();
+                                    }
+                                  },
+                                ),
+                                ),
+                              ], //Stack children
+                            ),
                       ),
                     ],
                   ),
                 ],
               ),
+
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -216,217 +206,215 @@ class _SearchWidgetState extends State<SearchWidget> {
 
         await showModalBottomSheet(
           backgroundColor: Colors.white,
-          barrierColor: Colors.transparent,
           enableDrag: true,
           isScrollControlled: true,
           context: context,
           builder: (BuildContext context) {
             return StatefulBuilder(
                 builder: (BuildContext context, StateSetter bottomState) {
-              return SizedBox(
+              return Container(
                 height: 300.h, // 원하는 높이로 설정
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SizedBox(height: 10.h),
-                    SizedBox(
-                        width: 360.w,
-                        child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Row(children: [
-                              SizedBox(width: 17.w),
-                              RealTimePlacesContent(
-                                content: "Recommended Courses",
-                                isSelected:
-                                    selectedContent == "Recommended Courses",
-                                onTap: () {
-                                  bottomState(() {
-                                    _handleTap("Recommended Courses");
-                                  });
-                                },
-                              ),
-                              SizedBox(width: 8.w),
-                              RealTimePlacesContent(
-                                content: "Accomodation",
-                                isSelected: selectedContent == "Accomodation",
-                                onTap: () {
-                                  bottomState(() {
-                                    _handleTap("Accomodation");
-                                  });
-                                },
-                              ),
-                              SizedBox(width: 8.w),
-                              RealTimePlacesContent(
-                                content: "Restaurant",
-                                isSelected: selectedContent == "Restaurant",
-                                onTap: () {
-                                  bottomState(() {
-                                    _handleTap("Restaurant");
-                                  });
-                                },
-                              ),
-                              SizedBox(width: 8.w),
-                              RealTimePlacesContent(
-                                content: "Tourist Attraction",
-                                isSelected:
-                                    selectedContent == "Tourist Attraction",
-                                onTap: () {
-                                  bottomState(() {
-                                    _handleTap("Tourist Attraction");
-                                  });
-                                },
-                              ),
-                            ]))),
-                    SizedBox(height: 5.h),
-                    Expanded(
-                        child: selectedContent == "Recommended Courses"
-                            ? ListView.builder(
-                                shrinkWrap: true,
-                                itemCount: array.length,
-                                itemBuilder: (context, index) {
-                                  return Container(
-                                    margin: EdgeInsets.symmetric(
-                                        horizontal: 17.w, vertical: 17.h),
-                                    padding: EdgeInsets.only(left: 20.w),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(30),
-                                      color: Colors.white,
-                                      border: Border.all(
-                                        color: const Color(0xff5DCA75)
-                                            .withOpacity(0.65),
-                                        width: 3.0.sp,
-                                      ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SizedBox(height: 10.h),
+                      Container(
+                          width: 360.w,
+                          child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(children: [
+                                SizedBox(width: 17.w),
+                                RealTimePlacesContent(
+                                  content: "Recommended Courses",
+                                  isSelected:
+                                      selectedContent == "Recommended Courses",
+                                  onTap: () {
+                                    bottomState(() {
+                                      _handleTap("Recommended Courses");
+                                    });
+                                  },
+                                ),
+                                SizedBox(width: 8.w),
+                                RealTimePlacesContent(
+                                  content: "Accomodation",
+                                  isSelected: selectedContent == "Accomodation",
+                                  onTap: () {
+                                    bottomState(() {
+                                      _handleTap("Accomodation");
+                                    });
+                                  },
+                                ),
+                                SizedBox(width: 8.w),
+                                RealTimePlacesContent(
+                                  content: "Restaurant",
+                                  isSelected: selectedContent == "Restaurant",
+                                  onTap: () {
+                                    bottomState(() {
+                                      _handleTap("Restaurant");
+                                    });
+                                  },
+                                ),
+                                SizedBox(width: 8.w),
+                                RealTimePlacesContent(
+                                  content: "Tourist Attraction",
+                                  isSelected:
+                                      selectedContent == "Tourist Attraction",
+                                  onTap: () {
+                                    bottomState(() {
+                                      _handleTap("Tourist Attraction");
+                                    });
+                                  },
+                                ),
+                              ]))),
+                      SizedBox(height: 5.h),
+                      selectedContent == "Recommended Courses"
+                          ? ListView.builder(
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              itemCount: array.length,
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal: 17.w, vertical: 17.h),
+                                  padding: EdgeInsets.only(left: 20.w),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30),
+                                    color: Colors.white,
+                                    border: Border.all(
+                                      color:
+                                          Color(0xff5DCA75).withOpacity(0.65),
+                                      width: 3.0.sp,
                                     ),
-                                    child: Row(
-                                      children: [
-                                        SizedBox(
-                                          width: 260.w,
-                                          child: RealTimeCourse(
-                                              context: context,
-                                              array: array[index],
-                                              isinMap:
-                                                  true), //RecommendedCourses일때
-                                        ),
-                                        Container(
-                                          color: const Color(0xff5DCA75)
-                                              .withOpacity(0.65),
-                                          width: 3.sp,
-                                          height: 100.h,
-                                        ),
-                                        SizedBox(width: 8.w),
-                                        Center(
-                                          child: Column(
-                                            children: [
-                                              Container(
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        width: 260.w,
+                                        child: RealTimeCourse(
+                                            context: context,
+                                            array: array[
+                                                index]), //RecommendedCourses일때
+                                      ),
+                                      Container(
+                                        color:
+                                            Color(0xff5DCA75).withOpacity(0.65),
+                                        width: 3.sp,
+                                        height: 100.h,
+                                      ),
+                                      SizedBox(width: 8.w),
+                                      Center(
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                                padding: EdgeInsets.all(5.sp),
+                                                margin: EdgeInsets.symmetric(
+                                                    //horizontal: 10.w,
+                                                    vertical: 5.h),
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(15),
+                                                  color: Colors.white,
+                                                  border: Border.all(
+                                                    color: Color(0xff5DCA75)
+                                                        .withOpacity(0.65),
+                                                    width: 2.0,
+                                                  ),
+                                                ),
+                                                child: Column(
+                                                  children: [
+                                                    Text(
+                                                        array[index]
+                                                            .length
+                                                            .toString(),
+                                                        style: TextStyles.h3
+                                                            .copyWith(
+                                                                color: Color(
+                                                                        0xff5DCA75)
+                                                                    .withOpacity(
+                                                                        0.65),
+                                                                fontSize:
+                                                                    16.sp)),
+                                                    SizedBox(height: 3.h),
+                                                    Text("places",
+                                                        style: TextStyles.h1
+                                                            .copyWith(
+                                                                fontSize:
+                                                                    10.sp))
+                                                  ],
+                                                )),
+                                            GestureDetector(
+                                              onTap: () {
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: ((context) =>
+                                                            CourseDetail(array[
+                                                                index]))));
+                                              },
+                                              child: Container(
                                                   padding: EdgeInsets.all(5.sp),
-                                                  margin: EdgeInsets.symmetric(
-                                                      //horizontal: 10.w,
-                                                      vertical: 5.h),
                                                   decoration: BoxDecoration(
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             15),
-                                                    color: Colors.white,
-                                                    border: Border.all(
-                                                      color: const Color(
-                                                              0xff5DCA75)
-                                                          .withOpacity(0.65),
-                                                      width: 2.0,
-                                                    ),
+                                                    color: Color(0xff5DCA75)
+                                                        .withOpacity(0.65),
                                                   ),
-                                                  child: Column(
-                                                    children: [
-                                                      Text(
-                                                          array[index]
-                                                              .length
-                                                              .toString(),
-                                                          style: TextStyles.h3.copyWith(
-                                                              color: const Color(
-                                                                      0xff5DCA75)
-                                                                  .withOpacity(
-                                                                      0.65),
-                                                              fontSize: 16.sp)),
-                                                      SizedBox(height: 3.h),
-                                                      Text("places",
-                                                          style: TextStyles.h1
-                                                              .copyWith(
-                                                                  fontSize:
-                                                                      10.sp))
-                                                    ],
-                                                  )),
-                                              GestureDetector(
-                                                onTap: () {
-                                                  Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: ((context) =>
-                                                              CourseDetail(array[
-                                                                  index]))));
-                                                },
-                                                child: Container(
-                                                    padding:
-                                                        EdgeInsets.all(5.sp),
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              15),
-                                                      color: const Color(
-                                                              0xff5DCA75)
-                                                          .withOpacity(0.65),
-                                                    ),
-                                                    child: Row(children: [
-                                                      Icon(Icons.menu_book,
-                                                          size: 10.sp),
-                                                      Text("Detail",
-                                                          style: TextStyles.h1
-                                                              .copyWith(
-                                                                  fontSize:
-                                                                      12.sp))
-                                                    ])),
-                                              )
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  );
-                                },
-                              )
-                            : selectedContent == "Accomodation"
-                                ? ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: accomodation_list.length,
-                                    itemBuilder: (context, index) {
-                                      return Container(
-                                          child: PlacesbyContentWidget(
-                                              context: context,
-                                              place: accomodation_list[index]));
-                                    })
-                                : selectedContent == "Restaurant"
-                                    ? ListView.builder(
-                                        shrinkWrap: true,
-                                        itemCount: restaurant_list.length,
-                                        itemBuilder: (context, index) {
-                                          return Container(
-                                              child: PlacesbyContentWidget(
-                                                  context: context,
-                                                  place:
-                                                      restaurant_list[index]));
-                                        })
-                                    //Tourist Attraction
-                                    : ListView.builder(
-                                        shrinkWrap: true,
-                                        itemCount:
-                                            tourist_attraction_list.length,
-                                        itemBuilder: (context, index) {
-                                          return Container(
-                                              child: PlacesbyContentWidget(
-                                                  context: context,
-                                                  place:
-                                                      tourist_attraction_list[
-                                                          index]));
-                                        }))
-                  ],
+                                                  child: Row(children: [
+                                                    Icon(Icons.menu_book,
+                                                        size: 10.sp),
+                                                    Text("Detail",
+                                                        style: TextStyles.h1
+                                                            .copyWith(
+                                                                fontSize:
+                                                                    12.sp))
+                                                  ])),
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                );
+                              },
+                            )
+                          : selectedContent == "Accomodations"
+                              ? ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  itemCount: accomodations_list.length,
+                                  itemBuilder: (context, index) {
+                                    return Container(
+                                        child: PlacesbyContentWidget(
+                                            context: context,
+                                            place: accomodations_list[index]));
+                                  })
+                              : selectedContent == "Restaurant"
+                                  ? ListView.builder(
+                                      shrinkWrap: true,
+                                      physics: NeverScrollableScrollPhysics(),
+                                      itemCount: restaurants_list.length,
+                                      itemBuilder: (context, index) {
+                                        return Container(
+                                            child: PlacesbyContentWidget(
+                                                context: context,
+                                                place: restaurants_list[index]));
+                                      })
+                                  //Tourist Attraction
+                                  : ListView.builder(
+                                      shrinkWrap: true,
+                                      physics: NeverScrollableScrollPhysics(),
+                                      itemCount: tourist_attractions_list.length,
+                                      itemBuilder: (context, index) {
+                                        return Container(
+                                            child: PlacesbyContentWidget(
+                                                context: context,
+                                                place: tourist_attractions_list[
+                                                    index]));
+                                      })
+                    ],
+                  ),
                 ),
               );
             });
@@ -439,14 +427,13 @@ class _SearchWidgetState extends State<SearchWidget> {
           _containerHeight = 680.0.h;
         });
       },
+      child: Text(text,
+          style: TextStyles.h1.copyWith(color: Colors.white, fontSize: 20.sp)),
       style: ButtonStyle(
-          backgroundColor:
-              MaterialStateProperty.all<Color>(const Color(0xff5DCA75)),
+          backgroundColor: MaterialStateProperty.all<Color>(Color(0xff5DCA75)),
           alignment: Alignment.center,
           padding: MaterialStateProperty.all<EdgeInsets>(
               EdgeInsets.symmetric(horizontal: 40.w, vertical: 5.h))),
-      child: Text(text,
-          style: TextStyles.h1.copyWith(color: Colors.white, fontSize: 20.sp)),
     );
   }
 
@@ -465,6 +452,7 @@ Widget CourseDetailWidget(
     {required BuildContext buildcontext, required List<Place> array}) {
   return ListView.builder(
       shrinkWrap: true,
+      //physics: NeverScrollableScrollPhysics(),
       itemCount: array.length,
       itemBuilder: (context, index) {
         return GestureDetector(
@@ -496,15 +484,15 @@ Widget CourseDetailWidget(
                         color: Colors.white,
                         border: Border(
                           right: BorderSide(
-                            color: const Color(0xff5DCA75).withOpacity(0.65),
+                            color: Color(0xff5DCA75).withOpacity(0.65),
                             width: 2.0,
                           ),
                           top: BorderSide(
-                            color: const Color(0xff5DCA75).withOpacity(0.65),
+                            color: Color(0xff5DCA75).withOpacity(0.65),
                             width: 2.0,
                           ),
                           bottom: BorderSide(
-                            color: const Color(0xff5DCA75).withOpacity(0.65),
+                            color: Color(0xff5DCA75).withOpacity(0.65),
                             width: 2.0,
                           ),
                         ),
@@ -546,11 +534,11 @@ class SaveWidget extends StatefulWidget {
   final Place place;
   final bool isSaved;
 
-  const SaveWidget({
-    super.key,
+  SaveWidget({
+    Key? key,
     required this.place,
     required this.isSaved,
-  });
+  }) : super(key: key);
 
   @override
   _SaveWidgetState createState() => _SaveWidgetState();
@@ -591,11 +579,9 @@ class _SaveWidgetState extends State<SaveWidget> {
         padding: EdgeInsets.symmetric(vertical: 0.sp, horizontal: 0.sp),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: _isSaved
-              ? const Color(0xff5DCA86).withOpacity(0.83)
-              : Colors.white,
+          color: _isSaved ? Color(0xff5DCA86).withOpacity(0.83) : Colors.white,
           border: Border.all(
-            color: const Color(0xff5DCA75).withOpacity(0.65),
+            color: Color(0xff5DCA75).withOpacity(0.65),
             width: 2.0,
           ),
         ),
@@ -654,15 +640,15 @@ Widget PlacesbyContentWidget(
                   color: Colors.white,
                   border: Border(
                     right: BorderSide(
-                      color: const Color(0xff5DCA75).withOpacity(0.65),
+                      color: Color(0xff5DCA75).withOpacity(0.65),
                       width: 2.0,
                     ),
                     top: BorderSide(
-                      color: const Color(0xff5DCA75).withOpacity(0.65),
+                      color: Color(0xff5DCA75).withOpacity(0.65),
                       width: 2.0,
                     ),
                     bottom: BorderSide(
-                      color: const Color(0xff5DCA75).withOpacity(0.65),
+                      color: Color(0xff5DCA75).withOpacity(0.65),
                       width: 2.0,
                     ),
                   ),
@@ -707,125 +693,26 @@ class GoogleMapWidget extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<GoogleMapWidget> {
-  static const LatLng initialLatlng = LatLng(
-    //위도와 경도 값 지정
+  static final LatLng initialLatlng = LatLng( //위도와 경도 값 지정
     36.8,
     127.9,
   );
 
-  static const CameraPosition initialPosition = CameraPosition(
+  static final CameraPosition initialPosition = CameraPosition(
     //지도를 바라보는 카메라 위치
     target: initialLatlng, //카메라 위치(위도, 경도)
     zoom: 7.5, //확대 정도
   );
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: GoogleMap(
-        //구글 맵 사용
-        mapType: MapType.normal, //지도 유형 설정
-        initialCameraPosition: initialPosition, //지도 초기 위치 설정
-        zoomControlsEnabled: false,
-        zoomGesturesEnabled: true,
-      ),
-    );
-  }
-}
-
-Widget ReviewDetailWidget({required List<Review> array}) {
-  return ListView.builder(
-      shrinkWrap: true,
-      itemCount: array.length,
-      itemBuilder: (context, index) {
-        return Container(
-            margin: EdgeInsets.all(8.sp),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20.sp),
-                color: Color(0xff5DCA75).withOpacity(0.33)),
-            child: Row(children: [
-              Column(
-                children: [
-                  Container(
-                    margin: EdgeInsets.symmetric(
-                      horizontal: 12.w,
-                    ),
-                    width: 35.w,
-                    height: 35.h,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        border: Border.all(color: Colors.white, width: 1.0.sp)),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
-                      child: Image.asset(
-                        "lib/config/images/sleeping_cat.jpg",
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 5.h),
-                  Text(array[index].user,
-                      style: TextStyles.h1.copyWith(fontSize: 8.sp)),
-                  SizedBox(height: 5.h),
-                  Text(array[index].date,
-                      style: TextStyles.green.copyWith(fontSize: 5.sp))
-                ],
-              ),
-              Container(
-                  padding:
-                      EdgeInsets.only(top: 12.h, bottom: 12.h, right: 10.w),
-                  width: 200.w,
-                  child: Text(
-                    array[index].text,
-                    style: TextStyles.h1.copyWith(fontSize: 8.sp),
-                  )),
-            ]));
-      });
-}
-
-Widget ReviewShortWidget({required List<Review> array}) {
-  return ListView.builder(
-      shrinkWrap: true,
-      itemCount: array.length,
-      itemBuilder: (context, index) {
-        return Container(
-            margin: EdgeInsets.all(8.sp),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20.sp),
-                color: Color(0xff5DCA75).withOpacity(0.33)),
-            child: Row(children: [
-              Column(
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(left: 12.w, right: 12.w, top: 5.h),
-                    width: 35.w,
-                    height: 35.h,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        border: Border.all(color: Colors.white, width: 1.0.sp)),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
-                      child: Image.asset(
-                        "lib/config/images/sleeping_cat.jpg",
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 5.h),
-                  Text(array[index].user,
-                      style: TextStyles.h1.copyWith(fontSize: 8.sp)),
-                  SizedBox(height: 6.h),
-                ],
-              ),
-              Container(
-                  padding:
-                      EdgeInsets.only(top: 12.h, bottom: 12.h, right: 10.w),
-                  width: 200.w,
-                  child: Text(
-                    maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
-                    array[index].text,
-                    style: TextStyles.h1.copyWith(fontSize: 8.sp),
-                  )),
-            ]));
-      });
+    @override
+    Widget build(BuildContext context) {
+      return Scaffold(
+        body: GoogleMap(
+          //구글 맵 사용
+          mapType: MapType.normal, //지도 유형 설정
+          initialCameraPosition: initialPosition, //지도 초기 위치 설정
+          zoomControlsEnabled: false,
+          zoomGesturesEnabled: true,
+        ),
+      );
+    }
 }

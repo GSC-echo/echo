@@ -15,7 +15,7 @@ class AboutStage extends StatelessWidget {
           centerTitle: true,
         ),
         body: Container(
-            decoration: const BoxDecoration(color: BackgroundColor.mainGreen),
+            decoration: BoxDecoration(color: BackgroundColor.mainGreen),
             padding: EdgeInsets.zero,
             child: Padding(
                 padding: EdgeInsets.only(
@@ -25,7 +25,7 @@ class AboutStage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(50),
                       color: Colors.white,
                       border: Border.all(
-                        color: const Color(0xff5DCA75).withOpacity(0.65),
+                        color: Color(0xff5DCA75).withOpacity(0.65),
                         width: 2.0,
                       ),
                     ),

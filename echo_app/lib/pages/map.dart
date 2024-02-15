@@ -1,5 +1,12 @@
 import 'package:echo_app/widgets/other_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../config/colors.dart';
+
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 // 기존 코드
 class MapPage extends StatefulWidget {
@@ -12,6 +19,8 @@ class MapPage extends StatefulWidget {
 class _MapPageState extends State<MapPage> {
   @override
   Widget build(BuildContext context) {
-    return const SearchWidget();
+    return SearchWidget();
   }
 }
+
+
