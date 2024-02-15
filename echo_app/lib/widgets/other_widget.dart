@@ -40,7 +40,7 @@ class _SearchWidgetState extends State<SearchWidget> {
   ];
   String searchText = '';
 
-  double _containerHeight = 600.0.h;
+  double _containerHeight = 680.0.h;
   final FocusNode _focusNode = FocusNode();
   final TextEditingController _textController = TextEditingController();
 
@@ -110,6 +110,8 @@ class _SearchWidgetState extends State<SearchWidget> {
                             EdgeInsets.only(left: 20.w, right: 20.w, top: 20.h),
                         child: TextField(
                           decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
                             prefixIcon: const Icon(Icons.search),
                             hintText: 'Where are you going to travel?',
                             hintStyle: TextStyles.h1.copyWith(
@@ -208,7 +210,7 @@ class _SearchWidgetState extends State<SearchWidget> {
     return ElevatedButton(
       onPressed: () async {
         setState(() {
-          _containerHeight = 420.0;
+          _containerHeight = 480.0;
         });
         FocusScope.of(context).unfocus();
 
@@ -434,7 +436,7 @@ class _SearchWidgetState extends State<SearchWidget> {
         });
 
         setState(() {
-          _containerHeight = 600.0.h;
+          _containerHeight = 680.0.h;
         });
       },
       style: ButtonStyle(
