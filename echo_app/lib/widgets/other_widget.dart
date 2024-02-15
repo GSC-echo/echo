@@ -380,38 +380,38 @@ class _SearchWidgetState extends State<SearchWidget> {
                                 );
                               },
                             )
-                          : selectedContent == "Accomodation"
+                          : selectedContent == "Accomodations"
                               ? ListView.builder(
                                   shrinkWrap: true,
                                   physics: NeverScrollableScrollPhysics(),
-                                  itemCount: accomodation_list.length,
+                                  itemCount: accomodations_list.length,
                                   itemBuilder: (context, index) {
                                     return Container(
                                         child: PlacesbyContentWidget(
                                             context: context,
-                                            place: accomodation_list[index]));
+                                            place: accomodations_list[index]));
                                   })
                               : selectedContent == "Restaurant"
                                   ? ListView.builder(
                                       shrinkWrap: true,
                                       physics: NeverScrollableScrollPhysics(),
-                                      itemCount: restaurant_list.length,
+                                      itemCount: restaurants_list.length,
                                       itemBuilder: (context, index) {
                                         return Container(
                                             child: PlacesbyContentWidget(
                                                 context: context,
-                                                place: restaurant_list[index]));
+                                                place: restaurants_list[index]));
                                       })
                                   //Tourist Attraction
                                   : ListView.builder(
                                       shrinkWrap: true,
                                       physics: NeverScrollableScrollPhysics(),
-                                      itemCount: tourist_attraction_list.length,
+                                      itemCount: tourist_attractions_list.length,
                                       itemBuilder: (context, index) {
                                         return Container(
                                             child: PlacesbyContentWidget(
                                                 context: context,
-                                                place: tourist_attraction_list[
+                                                place: tourist_attractions_list[
                                                     index]));
                                       })
                     ],
