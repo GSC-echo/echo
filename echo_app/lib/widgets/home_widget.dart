@@ -474,14 +474,6 @@ class _GettingPointsState extends State<GettingPoints> {
                     ),
                   ),
                   SizedBox(width: 30.w),
-                  // Checkbox(
-                  //   value: isChecked,
-                  //   onChanged: (value) {
-                  //     setState(() {
-                  //       isCheckedList[index] = value!;
-                  //     });
-                  //   },
-                  // ),
                 ],
               ),
             ),
