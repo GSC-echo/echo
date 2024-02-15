@@ -1,14 +1,9 @@
 import 'package:echo_app/config/colors.dart';
 import 'package:echo_app/firebase_options.dart';
-import 'package:echo_app/pages/home.dart';
-import 'package:echo_app/pages/login.dart';
 import 'package:echo_app/pages/mainpage.dart';
-import 'package:echo_app/pages/settings.dart';
-import 'package:echo_app/pages/splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter/material.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -60,12 +55,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => MainPage()),
+        MaterialPageRoute(builder: (context) => const MainPage()),
       );
     });
   }
@@ -80,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
           Image.asset('lib/config/images/echo.png', width: 200, height: 200),
           SizedBox(height: 20.h,),
-          Text("By Team Echo")
+          const Text("By Team Echo")
         ])));
   }
 }

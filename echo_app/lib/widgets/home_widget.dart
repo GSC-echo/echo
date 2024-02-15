@@ -35,6 +35,7 @@ class _RealTimePlacesContentState extends State<RealTimePlacesContent> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: widget.isSelected
+
               ? TextStyles.echoNavy.withOpacity(0.8)
               : BackgroundColor.mainGreen.withOpacity(0.8),
         ),
@@ -44,6 +45,7 @@ class _RealTimePlacesContentState extends State<RealTimePlacesContent> {
           style: TextStyles.h1.copyWith(
               fontSize: 11.sp,
               color: widget.isSelected ? Colors.white : TextStyles.echoNavy),
+
         ),
       ),
     );
@@ -123,26 +125,20 @@ Widget RealTimePlace({required BuildContext context, required Place place}) {
 }
 
 Widget RealTimeCourse(
-    {required BuildContext context, required List<Place> array}) {
-  return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: ((context) => CourseDetail(array)),
-          ),
-        );
-      },
-      child: Column(children: [
-        SizedBox(height: 25.h),
-        Container(
-          height: 70.h,
-          width: 289.w,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: <Widget>[
-              Container(
-                //width: 500.w,
+    {required BuildContext context,
+    required List<Place> array,
+    required bool isinMap}) {
+  return isinMap
+      ? Column(children: [
+          SizedBox(height: 25.h),
+          Container(
+            height: 70.h,
+            width: 289.w,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: <Widget>[
+                Container(
+                  //width: 500.w,
 
                 child: Row(
                   children: List.generate(array.length, (index) {
@@ -189,7 +185,77 @@ Widget RealTimeCourse(
                                         color: TextStyles.echoNavy.withOpacity(0.8)
                                             .withOpacity(0.65),
                                       ),
+                                Container(
+                                  width: 6.w,
+                                  height: 6.h,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: const Color(0xff5DCA75)
+                                        .withOpacity(0.65),
+                                  ),
+                                ),
+                                index == array.length - 1
+                                    ? Container(width: 40.w)
+                                    : Container(
+                                        width: 35.w,
+                                        height: 2.h,
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xff5DCA75)
+                                              .withOpacity(0.65),
+                                        ),
+                                      ),
+                              ],
+                            ),
+                          ],
+                        )
+                      ]);
+                    }),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 5.h),
+        ])
+      : GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: ((context) => CourseDetail(array)),
+              ),
+            );
+          },
+          child: Column(children: [
+            SizedBox(height: 25.h),
+            Container(
+              height: 70.h,
+              width: 289.w,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  Container(
+                    //width: 500.w,
+
+                    child: Row(
+                      children: List.generate(array.length, (index) {
+                        Place place = array[index];
+                        return Row(children: [
+                          Column(children: [
+                            SizedBox(height: 57.h),
+                            index == 0
+                                ? Container()
+                                : Container(
+                                    width: 26.6.w,
+                                    height: 2.h,
+                                    decoration: BoxDecoration(
+                                      color: const Color(0xff5DCA75)
+                                          .withOpacity(0.65),
                                     ),
+                                  ),
+                          ]),
+                          Column(
+                            children: [
                               Container(
                                 width: 6.w,
                                 height: 6.h,
@@ -208,19 +274,30 @@ Widget RealTimeCourse(
                                         color: TextStyles.echoNavy.withOpacity(0.8)
                                       ),
                                     ),
+                                  ),
+                                  index == array.length - 1
+                                      ? Container(width: 40.w)
+                                      : Container(
+                                          width: 35.w,
+                                          height: 2.h,
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xff5DCA75)
+                                                .withOpacity(0.65),
+                                          ),
+                                        ),
+                                ],
+                              ),
                             ],
-                          ),
-                        ],
-                      )
-                    ]);
-                  }),
-                ),
+                          )
+                        ]);
+                      }),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
-        ),
-        SizedBox(height: 5.h),
-      ]));
+            ),
+            SizedBox(height: 5.h),
+          ]));
 }
 
 Widget AboutStageWidget(
@@ -361,14 +438,6 @@ class _GettingPointsState extends State<GettingPoints> {
                     ),
                   ),
                   SizedBox(width: 30.w),
-                  // Checkbox(
-                  //   value: isChecked,
-                  //   onChanged: (value) {
-                  //     setState(() {
-                  //       isCheckedList[index] = value!;
-                  //     });
-                  //   },
-                  // ),
                 ],
               ),
             ),
