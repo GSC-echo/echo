@@ -1,5 +1,7 @@
 import 'package:echo_app/config/colors.dart';
 import 'package:echo_app/firebase_options.dart';
+import 'package:echo_app/pages/home.dart';
+import 'package:echo_app/pages/login.dart';
 import 'package:echo_app/pages/mainpage.dart';
 import 'package:echo_app/pages/settings.dart';
 import 'package:echo_app/pages/splash.dart';
@@ -13,9 +15,10 @@ Future<void> main() async {
   Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  //runApp(const Splash());
-  runApp(const MyApp());
+  runApp(const Splash());
+  //runApp(const MyApp());
   //runApp(const Settings());
+  //runApp(const Login());
 }
 
 class MyApp extends StatelessWidget {
@@ -57,47 +60,27 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(seconds: 2), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => MainPage()),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
+      backgroundColor: BackgroundColor.background1,
         body: Center(
-            child:
-                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-      Image.asset('lib/config/images/echo.png', width: 250, height: 250),
-      ElevatedButton(
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all<Color>(BackgroundColor.mainGreen.withOpacity(0.75)),
-          elevation:
-              MaterialStateProperty.all<double>(3), 
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20), 
-            ),
-          ),
-        ),
-        child: const Text(
-          "Go!",
-          style: TextStyle(
-            fontFamily: 'NotoSansKR',
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-        // onPressed: (){
-        //   Navigator.push(context, MaterialPageRoute(builder: (context) => const Login()));
-        // },
-        onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const MainPage()));
-        },
-      ),
-    ])));
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+          Image.asset('lib/config/images/echo.png', width: 200, height: 200),
+          SizedBox(height: 20.h,),
+          Text("By Team Echo")
+        ])));
   }
 }

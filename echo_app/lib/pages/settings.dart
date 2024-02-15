@@ -5,6 +5,7 @@ import 'package:echo_app/main.dart';
 import 'package:echo_app/pages/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:echo_app/pages/splash.dart';
@@ -20,194 +21,148 @@ class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: BackgroundColor.mainGreen,
+        centerTitle: true,
+        title: const Text(
+          'Settings',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontFamily: 'NotoSansKR',
+            fontSize: 22,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+      ),
       body: SafeArea(
-        child: Column(
-          children: [
-            Image.asset('lib/config/images/echo.png', width: 150, height: 150),
-            Align(
-              alignment: Alignment.topCenter,
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(40),
-                  color: Colors.white,
-                  border: Border.all(
-                      color: BackgroundColor.mainGreen.withOpacity(0.70),
-                      width: 3),
-                ),
-                height: 350,
-                width: 350,
+        child: Container(
+          decoration: BoxDecoration(
+            color: BackgroundColor.mainGreen,
+          ),
+          child: Column(
+            children: [
+              SizedBox(height: 70.h),
+              Image.asset('lib/config/images/echo.png',
+                  width: 250, height: 250),
+              Align(
+                alignment: Alignment.topCenter,
                 child: Container(
-                  //margin: const EdgeInsets.only(top: 25.0),
-                  child: Column(
-                    children: [
-      //Record
-                      Container(
-                        width: 350,
-                        height: 75,
-                        child: InkWell(
-                          onTap: () {
-                            //signInWithGoogle(context);
-                          },
-                          child: Card(
-                            color: BackgroundColor.mainGreen.withOpacity(0.75),
-                            margin: const EdgeInsets.fromLTRB(30, 30, 30, 0),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            elevation: 3,
-                            child: Center(
-                              child: Text(
-                                "RECORD",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'NotoSansKR',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 22,
+                  height: 250,
+                  width: 350,
+                  child: Container(
+                    child: Column(
+                      children: [
+                        Container(
+                          width: 300,
+                          height: 75,
+                          child: InkWell(
+                            onTap: () {
+                              print("signout");
+                              FireStorePage.deleteCurrentUser(context);
+                            },
+                            child: Card(
+                              color: Colors.white,
+                              margin: const EdgeInsets.fromLTRB(30, 30, 30, 0),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(35),
+                              ),
+                              elevation: 3,
+                              child: Center(
+                                child: Text(
+                                  "Sign out",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Color(0xFF0F1A20),
+                                    fontFamily: 'NotoSansKR',
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 22,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      Container(
-                        width: 350,
-                        height: 75,
-                        child: InkWell(
-                          onTap: () {
-                            print("signout");
-                             FireStorePage.deleteCurrentUser(context);
-                          },
-                          child: Card(
-                            color: BackgroundColor.mainGreen.withOpacity(0.75),
-                            margin: const EdgeInsets.fromLTRB(30, 30, 30, 0),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            elevation: 3,
-                            child: Center(
-                              child: Text(
-                                "SIGN OUT",
-                                textAlign: TextAlign.center, 
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'NotoSansKR',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 22,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: 350,
-                        height: 75,
-                        child: InkWell(
-                          onTap: () {
-                            signInWithGoogle(context);
-                          },
-                          child: Card(
-                            color: BackgroundColor.mainGreen.withOpacity(0.75),
-                            margin: const EdgeInsets.fromLTRB(30, 30, 30, 0),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            elevation: 3,
-                            child: Center(
-                              child: Text(
-                                "Privacy & Security",
-                                textAlign: TextAlign.center, 
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'NotoSansKR',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 22,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
 
-                      Container(
-                        width: 350,
-                        height: 75,
-                        child: InkWell(
-                          onTap: () {
-                            signInWithGoogle(context);
-                          },
-                          child: Card(
-                            color: BackgroundColor.mainGreen.withOpacity(0.75),
-                            margin: const EdgeInsets.fromLTRB(30, 30, 30, 0),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            elevation: 3,
-                            child: Center(
-                              child: Text(
-                                "Help & Support",
-                                textAlign: TextAlign.center, 
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'NotoSansKR',
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 22,
+                        Container(
+                          width: 300,
+                          height: 75,
+                          child: InkWell(
+                            onTap: () {
+                              signInWithGoogle(context);
+                            },
+                            child: Card(
+                              color: Colors.white,
+                              margin: const EdgeInsets.fromLTRB(30, 30, 30, 0),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(35),
+                              ),
+                              elevation: 3,
+                              child: Center(
+                                child: Text(
+                                  "Help & Support",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Color(0xFF0F1A20),
+                                    fontFamily: 'NotoSansKR',
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 22,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            Container(
-              width: 250,
-              height: 75,
-              child: InkWell(
-                onTap: () async{
-                  GoogleSignIn().signOut();
-                  FirebaseAuth.instance.signOut();
-                  Navigator.of(context as BuildContext).pushReplacement(MaterialPageRoute(
-                    builder: (context) => const Login(),
-                  ));
-                },
-                child: Card(
-                  color: Colors.white,
-                  margin: const EdgeInsets.fromLTRB(30, 30, 30, 0),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(35),
-                    side: BorderSide(color: const Color.fromARGB(255, 237, 104, 94), width:3)
-                  ),
-                  elevation: 3,
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                                    Icons.logout,
-                                    size: 20,
-                                    color: Colors.red,
-                                  ),
-                        const SizedBox(
-                          width: 10,
+              SizedBox(
+                height: 20.h,
+              ),
+              Container(
+                  width: 200,
+                  height: 75,
+                  child: InkWell(
+                      onTap: () async {
+                        GoogleSignIn().signOut();
+                        FirebaseAuth.instance.signOut();
+                        Navigator.of(context as BuildContext)
+                            .pushReplacement(MaterialPageRoute(
+                          builder: (context) => const Login(),
+                        ));
+                      },
+                      child: Card(
+                        color: Color(0xFF0F6AE2D),
+                        margin: const EdgeInsets.fromLTRB(30, 30, 30, 0),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(35),
+                          //side: BorderSide(color: const Color.fromARGB(255, 237, 104, 94), width:3)
                         ),
-                        const Text("Log out", 
-                            style: TextStyle(
-                                color:const Color.fromARGB(255, 237, 104, 94),
-                                fontFamily: 'Not oSansKR',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18))
-                      ]),
-                ))
-            ),
-          ],
+                        elevation: 3,
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.logout,
+                                size: 20,
+                                color: Colors.black,
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              const Text("Log out",
+                                  style: TextStyle(
+                                      color: Color(0xFF0F1A20),
+                                      fontFamily: 'Not oSansKR',
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18))
+                            ]),
+                      ))),
+            ],
+          ),
         ),
       ),
     );
   }
 }
-
