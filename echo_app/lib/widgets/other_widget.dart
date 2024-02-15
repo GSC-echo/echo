@@ -304,100 +304,60 @@ class _SearchWidgetState extends State<SearchWidget> {
                                                       width: 2.0,
                                                     ),
                                                   ),
-                                                  child: Column(
-                                                    children: [
-                                                      Text(
-                                                          array[index]
-                                                              .length
-                                                              .toString(),
-                                                          style: TextStyles.h3
-                                                              .copyWith(
-                                                                  color: Color(
-                                                                          0xff5DCA75)
-                                                                      .withOpacity(
-                                                                          0.65),
-                                                                  fontSize:
-                                                                      16.sp)),
-                                                      SizedBox(height: 3.h),
-                                                      Text("places",
-                                                          style: TextStyles.h1
-                                                              .copyWith(
-                                                                  fontSize:
-                                                                      10.sp))
-                                                    ],
-                                                  )),
-                                              GestureDetector(
-                                                onTap: () {
-                                                  Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: ((context) =>
-                                                              CourseDetail(array[
-                                                                  index]))));
-                                                },
-                                                child: Container(
-                                                    padding:
-                                                        EdgeInsets.all(5.sp),
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              15),
-                                                      color: Color(0xff5DCA75)
-                                                          .withOpacity(0.65),
-                                                    ),
-                                                    child: Row(children: [
-                                                      Icon(Icons.menu_book,
-                                                          size: 10.sp),
-                                                      Text("Detail",
-                                                          style: TextStyles.h1
-                                                              .copyWith(
-                                                                  fontSize:
-                                                                      12.sp))
-                                                    ])),
-                                              )
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  );
-                                },
-                              )
-                            : selectedContent == "Accomodation"
-                                ? ListView.builder(
-                                    shrinkWrap: true,
-                                    itemCount: accomodation_list.length,
-                                    itemBuilder: (context, index) {
-                                      return Container(
-                                          child: PlacesbyContentWidget(
-                                              context: context,
-                                              place: accomodation_list[index]));
-                                    })
-                                : selectedContent == "Restaurant"
-                                    ? ListView.builder(
-                                        shrinkWrap: true,
-                                        itemCount: restaurant_list.length,
-                                        itemBuilder: (context, index) {
-                                          return Container(
-                                              child: PlacesbyContentWidget(
-                                                  context: context,
-                                                  place:
-                                                      restaurant_list[index]));
-                                        })
-                                    //Tourist Attraction
-                                    : ListView.builder(
-                                        shrinkWrap: true,
-                                        itemCount:
-                                            tourist_attraction_list.length,
-                                        itemBuilder: (context, index) {
-                                          return Container(
-                                              child: PlacesbyContentWidget(
-                                                  context: context,
-                                                  place:
-                                                      tourist_attraction_list[
-                                                          index]));
-                                        }))
-                  ],
+                                                  child: Row(children: [
+                                                    Icon(Icons.menu_book,
+                                                        size: 10.sp),
+                                                    Text("Detail",
+                                                        style: TextStyles.h1
+                                                            .copyWith(
+                                                                fontSize:
+                                                                    12.sp))
+                                                  ])),
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                );
+                              },
+                            )
+                          : selectedContent == "Accomodations"
+                              ? ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: NeverScrollableScrollPhysics(),
+                                  itemCount: accomodations_list.length,
+                                  itemBuilder: (context, index) {
+                                    return Container(
+                                        child: PlacesbyContentWidget(
+                                            context: context,
+                                            place: accomodations_list[index]));
+                                  })
+                              : selectedContent == "Restaurant"
+                                  ? ListView.builder(
+                                      shrinkWrap: true,
+                                      physics: NeverScrollableScrollPhysics(),
+                                      itemCount: restaurants_list.length,
+                                      itemBuilder: (context, index) {
+                                        return Container(
+                                            child: PlacesbyContentWidget(
+                                                context: context,
+                                                place: restaurants_list[index]));
+                                      })
+                                  //Tourist Attraction
+                                  : ListView.builder(
+                                      shrinkWrap: true,
+                                      physics: NeverScrollableScrollPhysics(),
+                                      itemCount: tourist_attractions_list.length,
+                                      itemBuilder: (context, index) {
+                                        return Container(
+                                            child: PlacesbyContentWidget(
+                                                context: context,
+                                                place: tourist_attractions_list[
+                                                    index]));
+                                      })
+                    ],
+                  ),
                 ),
               );
             });

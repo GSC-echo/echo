@@ -35,21 +35,17 @@ class _RealTimePlacesContentState extends State<RealTimePlacesContent> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: widget.isSelected
-              ? Color.fromARGB(255, 81, 177, 102)
-              : Colors.white,
-          border: Border.all(
-            color: widget.isSelected
-                ? Colors.black.withOpacity(0.3)
-                : Colors.white,
-            width: 1.5,
-          ),
+
+              ? TextStyles.echoNavy.withOpacity(0.8)
+              : BackgroundColor.mainGreen.withOpacity(0.8),
         ),
         child: Text(
           widget.content,
           textAlign: TextAlign.center,
           style: TextStyles.h1.copyWith(
               fontSize: 11.sp,
-              color: widget.isSelected ? Colors.white : Colors.black),
+              color: widget.isSelected ? Colors.white : TextStyles.echoNavy),
+
         ),
       ),
     );
@@ -58,76 +54,74 @@ class _RealTimePlacesContentState extends State<RealTimePlacesContent> {
 
 Widget RealTimePlace({required BuildContext context, required Place place}) {
   return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: ((context) => PlaceDetail(place: place))),
-        );
-      },
-      child: Row(children: [
-        Container(
-          width: 150.w,
-          height: 120.h,
-          decoration: BoxDecoration(
-            color: Colors.amber,
-            borderRadius: BorderRadius.circular(25),
-          ),
-          child: FittedBox(
-            fit: BoxFit.cover,
-            child: place.image,
-          ),
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: ((context) => PlaceDetail(place: place))),
+      );
+    },
+    child: Stack(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.star_border_rounded,
+              size: 15.sp,
+              color: Colors.white,
+            ),
+            SizedBox(width: 5.w),
+            Text(
+              place.star.toString(),
+              style:
+                  TextStyles.h1.copyWith(fontSize: 12.sp, color: Colors.white),
+            ),
+          ],
         ),
         Container(
-            height: 85.h,
-            width: 85.w,
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.only(
-                topRight: Radius.circular(30.0),
-                bottomRight: Radius.circular(30.0),
-              ),
-              color: Colors.white,
-              border: Border(
-                right: BorderSide(
-                  color: Color(0xff5DCA75).withOpacity(0.65),
-                  width: 2.0,
-                ),
-                top: BorderSide(
-                  color: Color(0xff5DCA75).withOpacity(0.65),
-                  width: 2.0,
-                ),
-                bottom: BorderSide(
-                  color: Color(0xff5DCA75).withOpacity(0.65),
-                  width: 2.0,
-                ),
-              ),
+          width: 160.w,
+          height: 120.h,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(25),
+            child: FittedBox(
+              fit: BoxFit.fill,
+              child: place.image,
             ),
-            child: Padding(
-                padding: EdgeInsets.only(top: 20.h, right: 10.w),
-                child: Column(children: [
-                  Text(place.name,
-                      textAlign: TextAlign.center,
-                      style: TextStyles.h1.copyWith(fontSize: 9.sp)),
-                  SizedBox(height: 10.h),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.star_border_rounded,
-                        size: 15.sp,
-                      ),
-                      SizedBox(
-                        width: 5.w,
-                      ),
-                      Text(
-                        place.star.toString(),
-                        style: TextStyles.h1.copyWith(fontSize: 12.sp),
-                      )
-                    ],
-                  ),
-                  SizedBox(height: 5.h),
-                ]))),
-        SizedBox(width: 10.w)
-      ]));
+          ),
+        ),
+        Positioned(
+          left: 0,
+          right: 0,
+          bottom: 0,
+          child: Container(
+            width: 160.w,
+            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(25),
+                  bottomRight: Radius.circular(25),
+                ),
+                color: TextStyles.echoNavy 
+                ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  place.name,
+                  textAlign: TextAlign.center,
+                  style: TextStyles.white1.copyWith(fontSize: 10.sp),
+                ),
+                SizedBox(height: 10.h),
+              ],
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
 }
 
 Widget RealTimeCourse(
@@ -146,62 +140,50 @@ Widget RealTimeCourse(
                 Container(
                   //width: 500.w,
 
-                  child: Row(
-                    children: List.generate(array.length, (index) {
-                      Place place = array[index];
-                      return Row(children: [
-                        Column(children: [
-                          SizedBox(height: 57.h),
-                          index == 0
-                              ? Container()
-                              : Container(
-                                  width: 26.6.w,
-                                  height: 2.h,
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xff5DCA75)
-                                        .withOpacity(0.65),
-                                  ),
+                child: Row(
+                  children: List.generate(array.length, (index) {
+                    Place place = array[index];
+                    return Row(children: [
+                      Column(children: [
+                        SizedBox(height: 57.h),
+                        index == 0
+                            ? Container()
+                            : Container(
+                                width: 26.6.w,
+                                height: 2.h,
+                                decoration: BoxDecoration(
+                                  color:
+                                      TextStyles.echoNavy.withOpacity(0.8),
                                 ),
-                        ]),
-                        Column(
-                          children: [
-                            Container(
-                              width: 70.w,
-                              height: 40.h,
-                              // margin: index == array.length - 1
-                              //     ? EdgeInsets.only(right: 0.w)
-                              //     : EdgeInsets.only(right: 3.w),
-                              child: isinMap
-                                  ? GestureDetector(
-                                      onTap: () {
-                                        print("mark " + place.name + " on Map");
-                                      },
-                                      child: Text(
-                                        place.name,
-                                        textAlign: TextAlign.center,
-                                        style: TextStyles.h1
-                                            .copyWith(fontSize: 11.sp),
-                                      ),
-                                    )
-                                  : Text(
-                                      place.name,
-                                      textAlign: TextAlign.center,
-                                      style: TextStyles.h1
-                                          .copyWith(fontSize: 11.sp),
-                                    ),
+                              ),
+                      ]),
+                      Column(
+                        children: [
+                          Container(
+                            width: 70.w,
+                            height: 40.h,
+                            // margin: index == array.length - 1
+                            //     ? EdgeInsets.only(right: 0.w)
+                            //     : EdgeInsets.only(right: 3.w),
+                            child: Center(
+                              child: Text(
+                                place.name,
+                                textAlign: TextAlign.center,
+                                style: TextStyles.h1.copyWith(fontSize: 10.sp),
+                              ),
                             ),
-                            SizedBox(height: 15.h),
-                            Row(
-                              children: [
-                                index == 0
-                                    ? Container(width: 30.w)
-                                    : Container(
-                                        width: 35.w,
-                                        height: 2.h,
-                                        decoration: BoxDecoration(
-                                          color: const Color(0xff5DCA75)
-                                              .withOpacity(0.65),
-                                        ),
+                          ),
+                          SizedBox(height: 15.h),
+                          Row(
+                            children: [
+                              index == 0
+                                  ? Container(width: 30.w)
+                                  : Container(
+                                      width: 35.w,
+                                      height: 2.h,
+                                      decoration: BoxDecoration(
+                                        color: TextStyles.echoNavy.withOpacity(0.8)
+                                            .withOpacity(0.65),
                                       ),
                                 Container(
                                   width: 6.w,
@@ -275,40 +257,22 @@ Widget RealTimeCourse(
                           Column(
                             children: [
                               Container(
-                                width: 70.w,
-                                height: 40.h,
-                                // margin: index == array.length - 1
-                                //     ? EdgeInsets.only(right: 0.w)
-                                //     : EdgeInsets.only(right: 3.w),
-                                child: Center(
-                                  child: Text(
-                                    place.name,
-                                    textAlign: TextAlign.center,
-                                    style:
-                                        TextStyles.h1.copyWith(fontSize: 11.sp),
-                                  ),
+                                width: 6.w,
+                                height: 6.h,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color:
+                                      TextStyles.echoNavy.withOpacity(0.8),
                                 ),
                               ),
-                              SizedBox(height: 15.h),
-                              Row(
-                                children: [
-                                  index == 0
-                                      ? Container(width: 30.w)
-                                      : Container(
-                                          width: 35.w,
-                                          height: 2.h,
-                                          decoration: BoxDecoration(
-                                            color: const Color(0xff5DCA75)
-                                                .withOpacity(0.65),
-                                          ),
-                                        ),
-                                  Container(
-                                    width: 6.w,
-                                    height: 6.h,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: const Color(0xff5DCA75)
-                                          .withOpacity(0.65),
+                              index == array.length - 1
+                                  ? Container(width: 40.w)
+                                  : Container(
+                                      width: 35.w,
+                                      height: 2.h,
+                                      decoration: BoxDecoration(
+                                        color: TextStyles.echoNavy.withOpacity(0.8)
+                                      ),
                                     ),
                                   ),
                                   index == array.length - 1
