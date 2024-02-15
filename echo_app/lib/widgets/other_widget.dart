@@ -13,6 +13,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 List<Place> saved = [];
 
 class SearchWidget extends StatefulWidget {
+  const SearchWidget({super.key});
+
   @override
   _SearchWidgetState createState() => _SearchWidgetState();
 }
@@ -74,94 +76,119 @@ class _SearchWidgetState extends State<SearchWidget> {
         child: Column(
           children: [
             AnimatedContainer(
-              duration: Duration(milliseconds: 450),
+              duration: const Duration(milliseconds: 450),
               height: _containerHeight,
               margin: EdgeInsets.only(
                   left: 10.w, right: 10.w, top: 35.w, bottom: 10.w),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(35.sp),
                 color: Colors.white,
-                border: Border.all(
-                  color: Color(0xff5DCA75).withOpacity(0.65),
-                  width: 2.0,
-                ),
+                // border: Border.all(
+                //   color: const Color(0xff5DCA75).withOpacity(0.65),
+                //   width: 2.0,
+                // ),
               ),
-              child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding:
-                        EdgeInsets.only(left: 20.w, right: 20.w, top: 20.h),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.search),
-                        hintText: 'Where are you going to travel?',
-                        hintStyle: TextStyles.h1.copyWith(
-                            fontSize: 16, color: Colors.black.withOpacity(0.4)),
-                        contentPadding: EdgeInsets.symmetric(horizontal: 50.0),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color(0xff5DCA86),
-                            width: 3.0,
-                          ),
-                          borderRadius: BorderRadius.circular(30.0),
-                        ),
+              child: Stack(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(35.sp),
+                      border: Border.all(
+                        color: const Color(0xff5DCA75).withOpacity(0.65),
+                        width: 3.0,
                       ),
-                      focusNode: _focusNode,
-                      onTap: () {
-                        setState(() {
-                          _containerHeight = 400.0;
-                        });
-                      },
-                      onChanged: (value) {
-                        setState(() {
-                          searchText = value;
-                        });
-                      },
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(35.sp),
+                      child: const GoogleMapWidget(),
                     ),
                   ),
-                  Expanded(
-                    child: searchText.isEmpty
-                        ? SizedBox.shrink()
-                        : Container(
-                            margin: EdgeInsets.symmetric(horizontal: 40.0.w),
-                            child: ListView.builder(
-                              itemCount: items.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                if (items[index]
-                                    .toLowerCase()
-                                    .contains(searchText.toLowerCase())) {
-                                  return Card(
-                                    elevation: 3,
-                                    color: Colors.white,
-                                    shape: RoundedRectangleBorder(
-                                      side: BorderSide(
-                                          color: Color(0xff5DCA75)
-                                              .withOpacity(0.65),
-                                          width: 1),
-                                      borderRadius: BorderRadius.all(
-                                        Radius.elliptical(20, 20),
-                                      ),
-                                    ),
-                                    child: SizedBox(
-                                      child: ListTile(
-                                        contentPadding: EdgeInsets.zero,
-                                        title: Text(
-                                          items[index],
-                                          style: TextStyles.h1
-                                              .copyWith(fontSize: 13.sp),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                        onTap: () =>
-                                            cardClickEvent(context, index),
-                                      ),
-                                    ),
-                                  );
-                                } else {
-                                  return SizedBox.shrink();
-                                }
-                              },
+                  Column(
+                    children: <Widget>[
+                      Padding(
+                        padding:
+                            EdgeInsets.only(left: 20.w, right: 20.w, top: 20.h),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            prefixIcon: const Icon(Icons.search),
+                            hintText: 'Where are you going to travel?',
+                            hintStyle: TextStyles.h1.copyWith(
+                                fontSize: 16,
+                                color: Colors.black.withOpacity(0.4)),
+                            contentPadding:
+                                const EdgeInsets.symmetric(horizontal: 50.0),
+                            border: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                color: Color(0xff5DCA86),
+                                width: 3.0,
+                              ),
+                              borderRadius: BorderRadius.circular(30.0),
                             ),
                           ),
+                          focusNode: _focusNode,
+                          onTap: () {
+                            setState(() {
+                              _containerHeight = 400.0;
+                            });
+                          },
+                          onChanged: (value) {
+                            setState(() {
+                              searchText = value;
+                            });
+                          },
+                        ),
+                      ),
+                      Expanded(
+                        child: searchText.isEmpty
+                            ? const SizedBox.shrink()
+                            : Stack(
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.symmetric(
+                                        horizontal: 40.0.w),
+                                    child: ListView.builder(
+                                      itemCount: items.length,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        if (items[index].toLowerCase().contains(
+                                            searchText.toLowerCase())) {
+                                          return Card(
+                                            elevation: 3,
+                                            color: Colors.white,
+                                            shape: RoundedRectangleBorder(
+                                              side: BorderSide(
+                                                  color: const Color(0xff5DCA75)
+                                                      .withOpacity(0.65),
+                                                  width: 1),
+                                              borderRadius:
+                                                  const BorderRadius.all(
+                                                Radius.elliptical(20, 20),
+                                              ),
+                                            ),
+                                            child: SizedBox(
+                                              child: ListTile(
+                                                contentPadding: EdgeInsets.zero,
+                                                title: Text(
+                                                  items[index],
+                                                  style: TextStyles.h1.copyWith(
+                                                      fontSize: 13.sp),
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                                onTap: () => cardClickEvent(
+                                                    context, index),
+                                              ),
+                                            ),
+                                          );
+                                        } else {
+                                          return const SizedBox.shrink();
+                                        }
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -194,13 +221,13 @@ class _SearchWidgetState extends State<SearchWidget> {
           builder: (BuildContext context) {
             return StatefulBuilder(
                 builder: (BuildContext context, StateSetter bottomState) {
-              return Container(
+              return SizedBox(
                 height: 300.h, // 원하는 높이로 설정
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     SizedBox(height: 10.h),
-                    Container(
+                    SizedBox(
                         width: 360.w,
                         child: SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
@@ -263,14 +290,14 @@ class _SearchWidgetState extends State<SearchWidget> {
                                       borderRadius: BorderRadius.circular(30),
                                       color: Colors.white,
                                       border: Border.all(
-                                        color:
-                                            Color(0xff5DCA75).withOpacity(0.65),
+                                        color: const Color(0xff5DCA75)
+                                            .withOpacity(0.65),
                                         width: 3.0.sp,
                                       ),
                                     ),
                                     child: Row(
                                       children: [
-                                        Container(
+                                        SizedBox(
                                           width: 260.w,
                                           child: RealTimeCourse(
                                               context: context,
@@ -279,7 +306,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                                                   true), //RecommendedCourses일때
                                         ),
                                         Container(
-                                          color: Color(0xff5DCA75)
+                                          color: const Color(0xff5DCA75)
                                               .withOpacity(0.65),
                                           width: 3.sp,
                                           height: 100.h,
@@ -299,7 +326,8 @@ class _SearchWidgetState extends State<SearchWidget> {
                                                             15),
                                                     color: Colors.white,
                                                     border: Border.all(
-                                                      color: Color(0xff5DCA75)
+                                                      color: const Color(
+                                                              0xff5DCA75)
                                                           .withOpacity(0.65),
                                                       width: 2.0,
                                                     ),
@@ -310,14 +338,12 @@ class _SearchWidgetState extends State<SearchWidget> {
                                                           array[index]
                                                               .length
                                                               .toString(),
-                                                          style: TextStyles.h3
-                                                              .copyWith(
-                                                                  color: Color(
-                                                                          0xff5DCA75)
-                                                                      .withOpacity(
-                                                                          0.65),
-                                                                  fontSize:
-                                                                      16.sp)),
+                                                          style: TextStyles.h3.copyWith(
+                                                              color: const Color(
+                                                                      0xff5DCA75)
+                                                                  .withOpacity(
+                                                                      0.65),
+                                                              fontSize: 16.sp)),
                                                       SizedBox(height: 3.h),
                                                       Text("places",
                                                           style: TextStyles.h1
@@ -342,7 +368,8 @@ class _SearchWidgetState extends State<SearchWidget> {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               15),
-                                                      color: Color(0xff5DCA75)
+                                                      color: const Color(
+                                                              0xff5DCA75)
                                                           .withOpacity(0.65),
                                                     ),
                                                     child: Row(children: [
@@ -410,13 +437,14 @@ class _SearchWidgetState extends State<SearchWidget> {
           _containerHeight = 600.0.h;
         });
       },
-      child: Text(text,
-          style: TextStyles.h1.copyWith(color: Colors.white, fontSize: 20.sp)),
       style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all<Color>(Color(0xff5DCA75)),
+          backgroundColor:
+              MaterialStateProperty.all<Color>(const Color(0xff5DCA75)),
           alignment: Alignment.center,
           padding: MaterialStateProperty.all<EdgeInsets>(
               EdgeInsets.symmetric(horizontal: 40.w, vertical: 5.h))),
+      child: Text(text,
+          style: TextStyles.h1.copyWith(color: Colors.white, fontSize: 20.sp)),
     );
   }
 
@@ -466,15 +494,15 @@ Widget CourseDetailWidget(
                         color: Colors.white,
                         border: Border(
                           right: BorderSide(
-                            color: Color(0xff5DCA75).withOpacity(0.65),
+                            color: const Color(0xff5DCA75).withOpacity(0.65),
                             width: 2.0,
                           ),
                           top: BorderSide(
-                            color: Color(0xff5DCA75).withOpacity(0.65),
+                            color: const Color(0xff5DCA75).withOpacity(0.65),
                             width: 2.0,
                           ),
                           bottom: BorderSide(
-                            color: Color(0xff5DCA75).withOpacity(0.65),
+                            color: const Color(0xff5DCA75).withOpacity(0.65),
                             width: 2.0,
                           ),
                         ),
@@ -516,11 +544,11 @@ class SaveWidget extends StatefulWidget {
   final Place place;
   final bool isSaved;
 
-  SaveWidget({
-    Key? key,
+  const SaveWidget({
+    super.key,
     required this.place,
     required this.isSaved,
-  }) : super(key: key);
+  });
 
   @override
   _SaveWidgetState createState() => _SaveWidgetState();
@@ -561,9 +589,11 @@ class _SaveWidgetState extends State<SaveWidget> {
         padding: EdgeInsets.symmetric(vertical: 0.sp, horizontal: 0.sp),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: _isSaved ? Color(0xff5DCA86).withOpacity(0.83) : Colors.white,
+          color: _isSaved
+              ? const Color(0xff5DCA86).withOpacity(0.83)
+              : Colors.white,
           border: Border.all(
-            color: Color(0xff5DCA75).withOpacity(0.65),
+            color: const Color(0xff5DCA75).withOpacity(0.65),
             width: 2.0,
           ),
         ),
@@ -622,15 +652,15 @@ Widget PlacesbyContentWidget(
                   color: Colors.white,
                   border: Border(
                     right: BorderSide(
-                      color: Color(0xff5DCA75).withOpacity(0.65),
+                      color: const Color(0xff5DCA75).withOpacity(0.65),
                       width: 2.0,
                     ),
                     top: BorderSide(
-                      color: Color(0xff5DCA75).withOpacity(0.65),
+                      color: const Color(0xff5DCA75).withOpacity(0.65),
                       width: 2.0,
                     ),
                     bottom: BorderSide(
-                      color: Color(0xff5DCA75).withOpacity(0.65),
+                      color: const Color(0xff5DCA75).withOpacity(0.65),
                       width: 2.0,
                     ),
                   ),
