@@ -116,6 +116,8 @@ class _Profile extends State<Profile> {
     );
   }
 
+  double _containerHeight = 600.h;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

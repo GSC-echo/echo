@@ -35,7 +35,7 @@ class _MainPageState extends State<MainPage> {
   ];
 
   final List<Widget> _screens = [
-    MapSample(),
+    MapPage(),
     const Home(),
     const Profile(),
   ];

@@ -5,6 +5,10 @@ import 'package:echo_app/widgets/home_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:echo_app/pages/place_detail.dart';
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 List<Place> saved = [];
 
@@ -30,7 +34,7 @@ class _SearchWidgetState extends State<SearchWidget> {
   ];
   String searchText = '';
 
-  double _containerHeight = 600.0.h;
+  double _containerHeight = 680.0.h;
   final FocusNode _focusNode = FocusNode();
   final TextEditingController _textController = TextEditingController();
 
@@ -51,7 +55,7 @@ class _SearchWidgetState extends State<SearchWidget> {
     setState(() {
       // 포커스가 해제되면 Container의 높이를 변경
       if (!_focusNode.hasFocus) {
-        _containerHeight = 600.h; // 변경할 높이 설정
+        _containerHeight = 680.h; // 변경할 높이 설정
       }
     });
   }
@@ -69,86 +73,118 @@ class _SearchWidgetState extends State<SearchWidget> {
               duration: Duration(milliseconds: 450),
               height: _containerHeight,
               margin: EdgeInsets.only(
-                  left: 10.w, right: 10.w, top: 35.w, bottom: 10.w),
+                  left: 10.w, right: 10.w, top: 35.w, bottom: 5.w),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(35.sp),
                 color: Colors.white,
-                border: Border.all(
-                  color: Color(0xff5DCA75).withOpacity(0.65),
-                  width: 2.0,
-                ),
+                // border: Border.all(
+                //   color: Color(0xff5DCA75).withOpacity(0.65),
+                //   width: 3.0,
+                // ),
               ),
-              child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding:
-                        EdgeInsets.only(left: 20.w, right: 20.w, top: 20.h),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.search),
-                        hintText: 'Where are you going to travel?',
-                        hintStyle: TextStyles.h1.copyWith(
-                            fontSize: 16, color: Colors.black.withOpacity(0.4)),
-                        contentPadding: EdgeInsets.symmetric(horizontal: 50.0),
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color(0xff5DCA86),
-                            width: 3.0,
-                          ),
-                          borderRadius: BorderRadius.circular(30.0),
-                        ),
+              child: Stack(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(35.sp),
+                      border: Border.all(
+                        color: Color(0xff5DCA75).withOpacity(0.65),
+                        width: 3.0,
                       ),
-                      focusNode: _focusNode,
-                      onTap: () {
-                        setState(() {
-                          _containerHeight = 400.0;
-                        });
-                      },
-                      onChanged: (value) {
-                        setState(() {
-                          searchText = value;
-                        });
-                      },
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(35.sp),
+                      child: GoogleMapWidget(),
                     ),
                   ),
-                  Expanded(
-                    child: searchText.isEmpty
-                        ? SizedBox.shrink()
-                        : Container(
-                            margin: EdgeInsets.symmetric(horizontal: 20.0),
-                            child: ListView.builder(
-                              itemCount: items.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                if (items[index]
-                                    .toLowerCase()
-                                    .contains(searchText.toLowerCase())) {
-                                  return Card(
-                                    elevation: 3,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                        Radius.elliptical(20, 20),
-                                      ),
-                                    ),
-                                    child: ListTile(
-                                      title: Text(
-                                        items[index],
-                                        style: TextStyles.h1
-                                            .copyWith(fontSize: 16.sp),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                      onTap: () =>
-                                          cardClickEvent(context, index),
-                                    ),
-                                  );
-                                } else {
-                                  return SizedBox.shrink();
-                                }
-                              },
+                  Column(
+                    children: <Widget>[
+                      Padding(
+                        padding:
+                            EdgeInsets.only(left: 20.w, right: 20.w, top: 20.h),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            prefixIcon: const Icon(Icons.search),
+                            hintText: 'Where are you going to travel?',
+                            hintStyle: TextStyles.h1.copyWith(
+                                fontSize: 16, color: Colors.black.withOpacity(0.4)),
+                            contentPadding: EdgeInsets.symmetric(horizontal: 50.0),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0xff5DCA86),
+                                width: 3.0,
+                              ),
+                              borderRadius: BorderRadius.circular(30.0),
                             ),
                           ),
+                          focusNode: _focusNode,
+                          onTap: () {
+                            setState(() {
+                              _containerHeight = 400.0;
+                            });
+                          },
+                          onChanged: (value) {
+                            setState(() {
+                              searchText = value;
+                            });
+                          },
+                        ),
+                      ),
+                      Expanded( // 이 부분에 Stack으로 구글맵 넣기 -> 구글맵 위에 이 Expanded(장소 리스트)가 나오도록
+                        child: searchText.isEmpty
+                            ? SizedBox.shrink()
+                            : Stack(
+                              children: [
+                                Container(
+                                margin: EdgeInsets.symmetric(horizontal: 40.0.w),
+                                child: ListView.builder(
+                                  itemCount: items.length,
+                                  itemBuilder: (BuildContext context, int index) {
+                                    if (items[index]
+                                        .toLowerCase()
+                                        .contains(searchText.toLowerCase())) {
+                                      return Card(
+                                        elevation: 3,
+                                        color: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                          side: BorderSide(
+                                              color: Color(0xff5DCA75)
+                                                  .withOpacity(0.65),
+                                              width: 1),
+                                          borderRadius: BorderRadius.all(
+                                            Radius.elliptical(20, 20),
+                                          ),
+                                        ),
+                                        child: SizedBox(
+                                          child: ListTile(
+                                            contentPadding: EdgeInsets.zero,
+                                            title: Text(
+                                              items[index],
+                                              style: TextStyles.h1
+                                                  .copyWith(fontSize: 13.sp),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                            onTap: () =>
+                                                cardClickEvent(context, index),
+                                          ),
+                                        ),
+                                      );
+                                    } else {
+                                      return SizedBox.shrink();
+                                    }
+                                  },
+                                ),
+                                ),
+                              ], //Stack children
+                            ),
+                      ),
+                    ],
                   ),
                 ],
               ),
+
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -165,7 +201,7 @@ class _SearchWidgetState extends State<SearchWidget> {
     return ElevatedButton(
       onPressed: () async {
         setState(() {
-          _containerHeight = 420.0;
+          _containerHeight = 480.0;
         });
         FocusScope.of(context).unfocus();
 
@@ -389,7 +425,7 @@ class _SearchWidgetState extends State<SearchWidget> {
         });
 
         setState(() {
-          _containerHeight = 600.0.h;
+          _containerHeight = 680.0.h;
         });
       },
       child: Text(text,
@@ -645,4 +681,39 @@ Widget PlacesbyContentWidget(
                       SaveWidget(place: place, isSaved: saved.contains(place))
                     ])))
           ])));
+}
+
+// 위도 : 35.907757
+// 경도 : 127.766922
+
+class GoogleMapWidget extends StatefulWidget {
+  const GoogleMapWidget({super.key});
+
+  @override
+  State<GoogleMapWidget> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<GoogleMapWidget> {
+  static final LatLng initialLatlng = LatLng( //위도와 경도 값 지정
+    36.8,
+    127.9,
+  );
+
+  static final CameraPosition initialPosition = CameraPosition(
+    //지도를 바라보는 카메라 위치
+    target: initialLatlng, //카메라 위치(위도, 경도)
+    zoom: 7.5, //확대 정도
+  );
+    @override
+    Widget build(BuildContext context) {
+      return Scaffold(
+        body: GoogleMap(
+          //구글 맵 사용
+          mapType: MapType.normal, //지도 유형 설정
+          initialCameraPosition: initialPosition, //지도 초기 위치 설정
+          zoomControlsEnabled: false,
+          zoomGesturesEnabled: true,
+        ),
+      );
+    }
 }
