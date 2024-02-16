@@ -4,25 +4,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b7d3c96-5aec-4367-9826-a4b09fe66feb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/echo.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/echo_app/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/echo_app/android/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/echo_app/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/echo_app/android/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/echo_app/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/echo_app/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/echo_app/ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/echo_app/ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/echo_app/ios/Runner.xcworkspace/contents.xcworkspacedata" beforeDir="false" afterPath="$PROJECT_DIR$/echo_app/ios/Runner.xcworkspace/contents.xcworkspacedata" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/echo_app/ios/Runner/Base.lproj/Main.storyboard" beforeDir="false" afterPath="$PROJECT_DIR$/echo_app/ios/Runner/Base.lproj/Main.storyboard" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/echo_app/ios/Runner/GoogleService-Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/echo_app/ios/Runner/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/echo_app/ios/Runner/Info.plist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/echo_app/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/echo_app/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/echo_app/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/echo_app/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/echo_app/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/echo_app/pubspec.yaml" afterDir="false" />
-    </list>
+    <list default="true" id="8b7d3c96-5aec-4367-9826-a4b09fe66feb" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,6 +30,7 @@
     "RunOnceActivity.cidr.known.project.marker": "true",
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "googlemaps",
     "last_opened_file_path": "/Users/cxaos/Documents/GSC-ECHO/echo",
     "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
     "show.migrate.to.gradle.popup": "false"

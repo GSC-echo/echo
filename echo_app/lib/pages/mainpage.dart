@@ -20,23 +20,22 @@ class _MainPageState extends State<MainPage> {
   int _currentIndex = 1;
 
   final List<BottomNavigationBarItem> _bottomNavBarItems = [
-    const BottomNavigationBarItem(
+    BottomNavigationBarItem(
       icon: Icon(Icons.search),
       label: 'Search',
     ),
-    const BottomNavigationBarItem(
+    BottomNavigationBarItem(
       icon: Icon(Icons.home),
       label: 'Home',
     ),
-    const BottomNavigationBarItem(
+    BottomNavigationBarItem(
       icon: Icon(Icons.person_rounded),
       label: 'My Page',
     ),
   ];
 
   final List<Widget> _screens = [
-    const MapPage(),
-    //MapSample(), // 기존 코드 : const MapPage()
+    MapPage(),
     const Home(),
     const Profile(),
   ];
@@ -44,19 +43,22 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-        designSize: const Size(390, 844),
-        child: Scaffold(
-          body: _screens[_currentIndex],
-          bottomNavigationBar: BottomNavigationBar(
-            currentIndex: _currentIndex,
-            items: _bottomNavBarItems,
-            backgroundColor: const Color(0xFF5DCA75).withOpacity(0.65),
-            onTap: (index) {
-              setState(() {
-                _currentIndex = index;
-              });
-            },
-          ),
-        ));
+      designSize: const Size(390, 844),
+      child: Scaffold(
+        body: _screens[_currentIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _currentIndex,
+          items: _bottomNavBarItems,
+          backgroundColor: Color(0xFF0F1A20),
+          selectedItemColor: Color(0xFF0F6AE2D), // 선택된 아이템의 색상
+          unselectedItemColor: Colors.white, // 선택되지 않은 아이템의 색상
+          onTap: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
+        ),
+      ),
+    );
   }
 }

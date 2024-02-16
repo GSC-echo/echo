@@ -72,8 +72,10 @@ class _PlaceDetailState extends State<PlaceDetail> {
                     Padding(
                         padding: EdgeInsets.symmetric(horizontal: 90.w),
                         child: SaveWidget(
-                            place: widget.place,
-                            isSaved: saved.contains(widget.place))),
+                          place: widget.place,
+                          isSaved: saved.contains(widget.place),
+                          isCustom: false,
+                        )),
                     SizedBox(height: 15.h),
                     Container(
                       alignment: Alignment.center,

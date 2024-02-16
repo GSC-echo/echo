@@ -11,19 +11,19 @@ class TextStyles {
     fontFamily: 'NotoSansKR',
     fontSize: 22.sp,
     fontWeight: FontWeight.bold,
-    color: Colors.black,
+    color: Color(0xFF0F1A20)
   );
   static TextStyle h2 = TextStyle(
     fontFamily: 'NotoSansKR',
     fontSize: 25.sp,
     fontWeight: FontWeight.bold,
-    color: Colors.black,
+    color: Color(0xFF0F1A20)
   );
   static TextStyle h3 = TextStyle(
     fontFamily: 'NotoSansKR',
     fontSize: 25.sp,
     fontWeight: FontWeight.bold,
-    color: Colors.black.withOpacity(0.8),
+    color: Color(0xFF0F1A20).withOpacity(0.8),
   );
   static TextStyle white1 = TextStyle(
     fontFamily: 'NotoSansKR',
@@ -43,4 +43,6 @@ class TextStyles {
     fontWeight: FontWeight.bold,
     color: BackgroundColor.mainGreen,
   );
+  static Color echoYellow = Color(0xFF0F6AE2D);
+  static Color echoNavy = Color(0xFF0F1A20);
 }
