@@ -20,6 +20,41 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
+class Review {
+  String user;
+  String text;
+  String date;
+
+  Review(this.user, this.text, this.date);
+}
+
+List<Review> review_list = [
+  Review(
+      "jiwoo",
+      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      "2 days ago"),
+  Review(
+      "hyein",
+      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
+      "a week ago"),
+  Review(
+      "chaeyoung",
+      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
+      "September 2023"),
+  Review(
+      "seungwoo",
+      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      "May 2023"),
+  Review(
+      "jiwoo",
+      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
+      "April 2022"),
+  Review(
+      "seungwoo",
+      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      "May 2023"),
+];
+
 class Place {
   String name;
   double star;
@@ -427,7 +462,6 @@ class _HomeState extends State<Home> {
                   ],
                 ),
               ),
-              //SizedBox(height: 15.h),
               Container(
                 color: BackgroundColor.mainGreen,
                 width: double.infinity,
@@ -458,10 +492,6 @@ class _HomeState extends State<Home> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(25),
                               color: BackgroundColor.background1,
-                              // border: Border.all(
-                              //    color: TextStyles.echoNavy.withOpacity(0.7),
-                              //    width: 5.0,
-                              // ),
                             ),
                             child: ListView.builder(
                               shrinkWrap: true,

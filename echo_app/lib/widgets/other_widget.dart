@@ -717,3 +717,101 @@ class _HomeScreenState extends State<GoogleMapWidget> {
     );
   }
 }
+
+Widget ReviewDetailWidget({required List<Review> array}) {
+  return ListView.builder(
+      shrinkWrap: true,
+      itemCount: array.length,
+      itemBuilder: (context, index) {
+        return Container(
+            margin: EdgeInsets.all(8.sp),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20.sp),
+                color: Color(0xff5DCA75).withOpacity(0.33)),
+            child: Row(children: [
+              Column(
+                children: [
+                  Container(
+                    margin: EdgeInsets.symmetric(
+                      horizontal: 12.w,
+                    ),
+                    width: 35.w,
+                    height: 35.h,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        border: Border.all(color: Colors.white, width: 1.0.sp)),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(100),
+                      child: Image.asset(
+                        "lib/config/images/sleeping_cat.jpg",
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 5.h),
+                  Text(array[index].user,
+                      style: TextStyles.h1.copyWith(fontSize: 8.sp)),
+                  SizedBox(height: 5.h),
+                  Text(array[index].date,
+                      style: TextStyles.green.copyWith(fontSize: 5.sp))
+                ],
+              ),
+              Container(
+                  padding:
+                      EdgeInsets.only(top: 12.h, bottom: 12.h, right: 10.w),
+                  width: 200.w,
+                  child: Text(
+                    array[index].text,
+                    style: TextStyles.h1.copyWith(fontSize: 8.sp),
+                  )),
+            ]));
+      });
+}
+
+Widget ReviewShortWidget({required List<Review> array}) {
+  return ListView.builder(
+      shrinkWrap: true,
+      itemCount: array.length,
+      itemBuilder: (context, index) {
+        return Container(
+            margin: EdgeInsets.all(8.sp),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20.sp),
+                color: Color(0xff5DCA75).withOpacity(0.33)),
+            child: Row(children: [
+              Column(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(left: 12.w, right: 12.w, top: 5.h),
+                    width: 35.w,
+                    height: 35.h,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
+                        border: Border.all(color: Colors.white, width: 1.0.sp)),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(100),
+                      child: Image.asset(
+                        "lib/config/images/sleeping_cat.jpg",
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 5.h),
+                  Text(array[index].user,
+                      style: TextStyles.h1.copyWith(fontSize: 8.sp)),
+                  SizedBox(height: 6.h),
+                ],
+              ),
+              Container(
+                  padding:
+                      EdgeInsets.only(top: 12.h, bottom: 12.h, right: 10.w),
+                  width: 200.w,
+                  child: Text(
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    array[index].text,
+                    style: TextStyles.h1.copyWith(fontSize: 8.sp),
+                  )),
+            ]));
+      });
+}

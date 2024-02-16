@@ -1,5 +1,6 @@
 import 'package:echo_app/config/colors.dart';
 import 'package:echo_app/pages/home.dart';
+import 'package:echo_app/pages/review.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:echo_app/widgets/other_widget.dart';
@@ -101,6 +102,13 @@ class CourseDetail extends StatelessWidget {
                       Row(
                         children: [
                           GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: ((context) =>
+                                            ReviewPage(review_list))));
+                              },
                               child: Text("more",
                                   style: TextStyles.h1.copyWith(
                                       color: Color(0x000000).withOpacity(0.35),
@@ -121,8 +129,7 @@ class CourseDetail extends StatelessWidget {
                           width: 2.0,
                         ),
                       ),
-                      child: CourseDetailWidget(
-                          buildcontext: context, array: array))
+                      child: ReviewShortWidget(array: review_list))
                 ],
               )), //review
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
