@@ -68,7 +68,7 @@ class CourseDetail extends StatelessWidget {
                         ),
                       ),
                       child: CourseDetailWidget(
-                          buildcontext: context, array: array))
+                          buildcontext: context, array: array, isCustom: false))
                 ],
               )),
           Container(
@@ -151,9 +151,9 @@ class CourseDetail extends StatelessWidget {
                 ),
                 onPressed: null,
                 child: Row(children: [
-                  Icon(Icons.menu_book, size: 10.sp),
+                  Icon(Icons.menu_book, size: 15.sp),
                   SizedBox(
-                    width: 5.w,
+                    width: 10.w,
                   ),
                   Text("Save\nthis course",
                       style: TextStyles.h1.copyWith(fontSize: 12.sp),
@@ -177,9 +177,9 @@ class CourseDetail extends StatelessWidget {
                 ),
                 onPressed: null,
                 child: Row(children: [
-                  Icon(Icons.menu_book, size: 10.sp),
+                  Icon(Icons.menu_book, size: 15.sp),
                   SizedBox(
-                    width: 5.w,
+                    width: 10.w,
                   ),
                   Text(
                     "Confirm with\nthis course",
