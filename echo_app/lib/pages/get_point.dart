@@ -137,7 +137,9 @@ class _GetPointState extends State<GetPoint> {
                                       contentPadding: EdgeInsets.zero,
                                       content: Container(
                                         width: 360.w,
-                                        height: 457.h,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.6,
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(100.sp),
@@ -168,7 +170,7 @@ class _GetPointState extends State<GetPoint> {
                                                       padding: EdgeInsets.only(
                                                           left: 18.w,
                                                           top: 27.h,
-                                                          right: 30.w),
+                                                          right: 40.w),
                                                       child: Row(
                                                           mainAxisAlignment:
                                                               MainAxisAlignment
@@ -193,24 +195,29 @@ class _GetPointState extends State<GetPoint> {
                                                                 ),
                                                               ),
                                                             ),
-                                                            Text(
-                                                              "Each point acquisition can only \nbe earned once per trip, not \neach run.",
-                                                              style: TextStyles
-                                                                  .h1
-                                                                  .copyWith(
-                                                                      fontSize:
-                                                                          15.sp),
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .center,
-                                                            )
+                                                            Padding(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        left: 5
+                                                                            .w),
+                                                                child: Text(
+                                                                  "Each point acquisition \ncan only be earned \nonce per travel",
+                                                                  style: TextStyles
+                                                                      .h1
+                                                                      .copyWith(
+                                                                          fontSize:
+                                                                              15.sp),
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                )),
                                                           ]),
                                                     ),
                                                     Container(
                                                       padding: EdgeInsets.only(
                                                           left: 18.w,
                                                           top: 27.h,
-                                                          right: 30.w),
+                                                          right: 20.w),
                                                       child: Row(
                                                           mainAxisAlignment:
                                                               MainAxisAlignment
@@ -235,24 +242,77 @@ class _GetPointState extends State<GetPoint> {
                                                                 ),
                                                               ),
                                                             ),
-                                                            Text(
-                                                              "Points can only be earned up \nto 10 points throughout the \ntravel period.",
-                                                              style: TextStyles
-                                                                  .h1
-                                                                  .copyWith(
-                                                                      fontSize:
-                                                                          15.sp),
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .center,
-                                                            )
+                                                            Padding(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        left: 5
+                                                                            .w),
+                                                                child: Text(
+                                                                  "Points can only be earned \nup to 10 points throughout \nthe travel period.",
+                                                                  style: TextStyles
+                                                                      .h1
+                                                                      .copyWith(
+                                                                          fontSize:
+                                                                              15.sp),
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                ))
+                                                          ]),
+                                                    ),
+                                                    Container(
+                                                      padding: EdgeInsets.only(
+                                                        left: 18.w,
+                                                        top: 27.h,
+                                                        right: 20.w,
+                                                      ),
+                                                      child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Container(
+                                                              width: 15,
+                                                              height: 15,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                shape: BoxShape
+                                                                    .circle,
+                                                                color: Colors
+                                                                    .white,
+                                                                border:
+                                                                    Border.all(
+                                                                  color: Color(
+                                                                          0xff5DCA75)
+                                                                      .withOpacity(
+                                                                          0.65),
+                                                                  width: 2.0,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            Padding(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        left: 5
+                                                                            .w),
+                                                                child: Text(
+                                                                  "All items must go through \nthe authentication process \nin order to obtain points.",
+                                                                  style: TextStyles
+                                                                      .h1
+                                                                      .copyWith(
+                                                                          fontSize:
+                                                                              15.sp),
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                ))
                                                           ]),
                                                     ),
                                                     Container(
                                                       padding: EdgeInsets.only(
                                                           left: 18.w,
                                                           top: 27.h,
-                                                          right: 30.w,
+                                                          right: 20.w,
                                                           bottom: 29.h),
                                                       child: Row(
                                                           mainAxisAlignment:
@@ -278,17 +338,22 @@ class _GetPointState extends State<GetPoint> {
                                                                 ),
                                                               ),
                                                             ),
-                                                            Text(
-                                                              "All items must go through the \nauthentication process to \nobtain points.",
-                                                              style: TextStyles
-                                                                  .h1
-                                                                  .copyWith(
-                                                                      fontSize:
-                                                                          15.sp),
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .center,
-                                                            )
+                                                            Padding(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        left: 5
+                                                                            .w),
+                                                                child: Text(
+                                                                  "Points collected during the \ntravel period will be added \nafter the it ends.",
+                                                                  style: TextStyles
+                                                                      .h1
+                                                                      .copyWith(
+                                                                          fontSize:
+                                                                              15.sp),
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                ))
                                                           ]),
                                                     ),
                                                   ],
