@@ -82,8 +82,13 @@ flutter:
     - lib/config/images/echo.png
     - lib/config/images/sprout.png
     - lib/config/images/sleeping_cat.jpg
-    - lib/config/images/NaejangsanNationalPark.png
-    - lib/config/images/WalkerhillHotelsResorts.png
+    # Course, Site
+    - lib/config/images/course/NaejangsanNationalPark.png
+    - lib/config/images/course/WalkerhillHotelsResorts.png
+    - lib/config/images/course/AmisanObservatory.png
+    - lib/config/images/course/DunjuPeakHanbando.png
+    - lib/config/images/course/EcoVillage.png
+    - lib/config/images/course/NaganeupseongWalledTown.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

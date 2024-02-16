@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:echo_app/config/colors.dart';
 
 class RecordPage extends StatelessWidget {
   const RecordPage({super.key});
@@ -18,6 +21,9 @@ class RecordPage extends StatelessWidget {
             fontWeight: FontWeight.w700,
           ),
         ),
+      ),
+      body: SafeArea(
+        child: Column(children: [Container()]),
       ),
     );
   }
