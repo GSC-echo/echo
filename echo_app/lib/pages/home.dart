@@ -180,7 +180,8 @@ class _HomeState extends State<Home> {
                             SizedBox(height: 8.h),
                             Container(
                                 child: Icon(Icons.forest,
-                                    size: 75, color: BackgroundColor.background1)),
+                                    size: 75,
+                                    color: BackgroundColor.background1)),
                             SizedBox(height: 8.h),
                             InkWell(
                               onTap: () {
@@ -428,8 +429,8 @@ class _HomeState extends State<Home> {
               ),
               //SizedBox(height: 15.h),
               Container(
-                color:BackgroundColor.mainGreen,
-                width:double.infinity,
+                color: BackgroundColor.mainGreen,
+                width: double.infinity,
                 child: Column(
                   children: [
                     SizedBox(height: 15.h),
@@ -449,76 +450,79 @@ class _HomeState extends State<Home> {
                               style: TextStyles.h3.copyWith(fontSize: 22)),
                         ],
                       ),
-                      
                     ),
                     Padding(
-                    padding: EdgeInsets.only(
-                        left: 10.w, top: 15.h, right: 15.w, bottom: 22.h),
-                    child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                          color: BackgroundColor.background1,
-                          // border: Border.all(
-                          //    color: TextStyles.echoNavy.withOpacity(0.7),
-                          //    width: 5.0,
-                          // ),
-                        ),
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: courses_array.length,
-                          itemBuilder: (context, index) {
-                            return Column(
-                              children: [
-                                Container(
-                                  height: 115.h,
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        height: 20.h,
-                                        width: 20.w,
-                                        margin: EdgeInsets.only(
-                                            left: 29, top: 41.h, bottom: 41.h),
-                                        decoration: BoxDecoration(
-                                          color: TextStyles.echoNavy,
-                                          borderRadius: BorderRadius.circular(5),
-                                        ),
-                                        child: Center(
-                                          child: Text(
-                                            "${index + 1}",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyles.h1.copyWith(
-                                              fontSize: 13.sp,
-                                              color: Colors.white,
+                        padding: EdgeInsets.only(
+                            left: 10.w, top: 15.h, right: 15.w, bottom: 22.h),
+                        child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(25),
+                              color: BackgroundColor.background1,
+                              // border: Border.all(
+                              //    color: TextStyles.echoNavy.withOpacity(0.7),
+                              //    width: 5.0,
+                              // ),
+                            ),
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              itemCount: courses_array.length,
+                              itemBuilder: (context, index) {
+                                return Column(
+                                  children: [
+                                    Container(
+                                      height: 115.h,
+                                      child: Row(
+                                        children: [
+                                          Container(
+                                            height: 20.h,
+                                            width: 20.w,
+                                            margin: EdgeInsets.only(
+                                                left: 29,
+                                                top: 41.h,
+                                                bottom: 41.h),
+                                            decoration: BoxDecoration(
+                                              color: TextStyles.echoNavy,
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                            ),
+                                            child: Center(
+                                              child: Text(
+                                                "${index + 1}",
+                                                textAlign: TextAlign.center,
+                                                style: TextStyles.h1.copyWith(
+                                                  fontSize: 13.sp,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
                                             ),
                                           ),
-                                        ),
+                                          SizedBox(width: 20.w),
+                                          RealTimeCourse(
+                                              context: context,
+                                              array: courses_array[index],
+                                              isinMap: false),
+                                        ],
                                       ),
-                                      SizedBox(width: 20.w),
-                                      RealTimeCourse(
-                                          context: context,
-                                          array: courses_array[index]),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 23.0),
-                                  child: index == 2
-                                      ? null
-                                      : Divider(
-                                          color: TextStyles.echoNavy
-                                              .withOpacity(0.65),
-                                          thickness: 2.0,
-                                        ),
-                                ),
-                              ],
-                            );
-                          },
-                        )))
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 23.0),
+                                      child: index == 2
+                                          ? null
+                                          : Divider(
+                                              color: TextStyles.echoNavy
+                                                  .withOpacity(0.65),
+                                              thickness: 2.0,
+                                            ),
+                                    ),
+                                  ],
+                                );
+                              },
+                            )))
                   ],
                 ),
               ),
-              
             ],
           ),
         ),

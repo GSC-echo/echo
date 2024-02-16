@@ -102,8 +102,7 @@ Widget RealTimePlace({required BuildContext context, required Place place}) {
                   bottomLeft: Radius.circular(25),
                   bottomRight: Radius.circular(25),
                 ),
-                color: TextStyles.echoNavy 
-                ),
+                color: TextStyles.echoNavy),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -123,104 +122,197 @@ Widget RealTimePlace({required BuildContext context, required Place place}) {
 }
 
 Widget RealTimeCourse(
-    {required BuildContext context, required List<Place> array}) {
-  return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: ((context) => CourseDetail(array)),
-          ),
-        );
-      },
-      child: Column(children: [
-        SizedBox(height: 25.h),
-        Container(
-          height: 70.h,
-          width: 289.w,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: <Widget>[
-              Container(
-                //width: 500.w,
-
-                child: Row(
-                  children: List.generate(array.length, (index) {
-                    Place place = array[index];
-                    return Row(children: [
-                      Column(children: [
-                        SizedBox(height: 57.h),
-                        index == 0
-                            ? Container()
-                            : Container(
-                                width: 26.6.w,
-                                height: 2.h,
-                                decoration: BoxDecoration(
-                                  color:
-                                      TextStyles.echoNavy.withOpacity(0.8),
+    {required BuildContext context,
+    required List<Place> array,
+    required bool isinMap}) {
+  return isinMap
+      ? Column(children: [
+          SizedBox(height: 25.h),
+          Container(
+            height: 70.h,
+            width: 289.w,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: <Widget>[
+                Container(
+                  child: Row(
+                    children: List.generate(array.length, (index) {
+                      Place place = array[index];
+                      return Row(children: [
+                        Column(children: [
+                          SizedBox(height: 57.h),
+                          index == 0
+                              ? Container()
+                              : Container(
+                                  width: 26.6.w,
+                                  height: 2.h,
+                                  decoration: BoxDecoration(
+                                    color: TextStyles.echoNavy.withOpacity(0.8),
+                                  ),
                                 ),
-                              ),
-                      ]),
-                      Column(
-                        children: [
-                          Container(
-                            width: 70.w,
-                            height: 40.h,
-                            // margin: index == array.length - 1
-                            //     ? EdgeInsets.only(right: 0.w)
-                            //     : EdgeInsets.only(right: 3.w),
-                            child: Center(
-                              child: Text(
-                                place.name,
-                                textAlign: TextAlign.center,
-                                style: TextStyles.h1.copyWith(fontSize: 10.sp),
-                              ),
+                        ]),
+                        Column(
+                          children: [
+                            Container(
+                              width: 70.w,
+                              height: 40.h,
+                              child: isinMap
+                                  ? GestureDetector(
+                                      onTap: () {
+                                        print("mark " + place.name + " on Map");
+                                      },
+                                      child: Text(
+                                        place.name,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyles.h1
+                                            .copyWith(fontSize: 10.sp),
+                                      ),
+                                    )
+                                  : Text(
+                                      place.name,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyles.h1
+                                          .copyWith(fontSize: 10.sp),
+                                    ),
                             ),
-                          ),
-                          SizedBox(height: 15.h),
-                          Row(
-                            children: [
-                              index == 0
-                                  ? Container(width: 30.w)
-                                  : Container(
-                                      width: 35.w,
-                                      height: 2.h,
-                                      decoration: BoxDecoration(
-                                        color: TextStyles.echoNavy.withOpacity(0.8)
-                                            .withOpacity(0.65),
+                            SizedBox(height: 15.h),
+                            Row(
+                              children: [
+                                index == 0
+                                    ? Container(width: 30.w)
+                                    : Container(
+                                        width: 35.w,
+                                        height: 2.h,
+                                        decoration: BoxDecoration(
+                                          color: TextStyles.echoNavy
+                                              .withOpacity(0.8)
+                                              .withOpacity(0.65),
+                                        ),
                                       ),
+                                Container(
+                                  width: 6.w,
+                                  height: 6.h,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: TextStyles.echoNavy.withOpacity(0.8),
+                                  ),
+                                ),
+                                index == array.length - 1
+                                    ? Container(width: 40.w)
+                                    : Container(
+                                        width: 35.w,
+                                        height: 2.h,
+                                        decoration: BoxDecoration(
+                                            color: TextStyles.echoNavy
+                                                .withOpacity(0.8)),
+                                      ),
+                              ],
+                            ),
+                          ],
+                        )
+                      ]);
+                    }),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 5.h),
+        ])
+      : GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: ((context) => CourseDetail(array)),
+              ),
+            );
+          },
+          child: Column(children: [
+            SizedBox(height: 25.h),
+            Container(
+              height: 70.h,
+              width: 289.w,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  Container(
+                    child: Row(
+                      children: List.generate(array.length, (index) {
+                        Place place = array[index];
+                        return Row(children: [
+                          Column(children: [
+                            SizedBox(height: 57.h),
+                            index == 0
+                                ? Container()
+                                : Container(
+                                    width: 26.6.w,
+                                    height: 2.h,
+                                    decoration: BoxDecoration(
+                                      color:
+                                          TextStyles.echoNavy.withOpacity(0.8),
                                     ),
+                                  ),
+                          ]),
+                          Column(
+                            children: [
                               Container(
-                                width: 6.w,
-                                height: 6.h,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color:
-                                      TextStyles.echoNavy.withOpacity(0.8),
+                                width: 70.w,
+                                height: 40.h,
+                                child: Center(
+                                  child: Text(
+                                    place.name,
+                                    textAlign: TextAlign.center,
+                                    style:
+                                        TextStyles.h1.copyWith(fontSize: 10.sp),
+                                  ),
                                 ),
                               ),
-                              index == array.length - 1
-                                  ? Container(width: 40.w)
-                                  : Container(
-                                      width: 35.w,
-                                      height: 2.h,
-                                      decoration: BoxDecoration(
-                                        color: TextStyles.echoNavy.withOpacity(0.8)
-                                      ),
+                              SizedBox(height: 15.h),
+                              Row(
+                                children: [
+                                  index == 0
+                                      ? Container(width: 30.w)
+                                      : Container(
+                                          width: 35.w,
+                                          height: 2.h,
+                                          decoration: BoxDecoration(
+                                            color: TextStyles.echoNavy
+                                                .withOpacity(0.8)
+                                                .withOpacity(0.65),
+                                          ),
+                                        ),
+                                  Container(
+                                    width: 6.w,
+                                    height: 6.h,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color:
+                                          TextStyles.echoNavy.withOpacity(0.8),
                                     ),
+                                  ),
+                                  index == array.length - 1
+                                      ? Container(width: 40.w)
+                                      : Container(
+                                          width: 35.w,
+                                          height: 2.h,
+                                          decoration: BoxDecoration(
+                                              color: TextStyles.echoNavy
+                                                  .withOpacity(0.8)),
+                                        ),
+                                ],
+                              ),
                             ],
-                          ),
-                        ],
-                      )
-                    ]);
-                  }),
-                ),
+                          )
+                        ]);
+                      }),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
-        ),
-        SizedBox(height: 5.h),
-      ]));
+            ),
+            SizedBox(height: 5.h),
+          ]));
 }
 
 Widget AboutStageWidget(
