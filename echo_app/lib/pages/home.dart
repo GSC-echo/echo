@@ -65,15 +65,15 @@ class Place {
 
 List<Place> course1 = [
   Place("Naejangsan National Park", 4.8,
-      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+      Image.asset('lib/config/images/course/NaejangsanNationalPark.png')),
   Place("Walkerhill Hotels & Resorts", 4.1,
-      Image.asset('lib/config/images/WalkerhillHotelsResorts.png')),
+      Image.asset('lib/config/images/course/WalkerhillHotelsResorts.png')),
   Place("Naejangsan National Park", 4.8,
-      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+      Image.asset('lib/config/images/course/NaejangsanNationalPark.png')),
   Place("Walkerhill Hotels & Resorts", 4.1,
-      Image.asset('lib/config/images/WalkerhillHotelsResorts.png')),
+      Image.asset('lib/config/images/course/WalkerhillHotelsResorts.png')),
   Place("Naejangsan National Park", 4.8,
-      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+      Image.asset('lib/config/images/course/NaejangsanNationalPark.png')),
 ];
 
 List<List<Place>> courses_array = [];
@@ -84,44 +84,44 @@ void initializeCourses() {
 
 List<Place> all_list = [
   Place("Naejangsan National Park", 4.8,
-      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+      Image.asset('lib/config/images/course/NaejangsanNationalPark.png')),
   Place("Walkerhill Hotels & Resorts", 4.1,
-      Image.asset('lib/config/images/WalkerhillHotelsResorts.png')),
+      Image.asset('lib/config/images/course/WalkerhillHotelsResorts.png')),
   Place("Naejangsan National Park", 4.8,
-      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+      Image.asset('lib/config/images/course/NaejangsanNationalPark.png')),
   Place("Walkerhill Hotels & Resorts", 4.1,
-      Image.asset('lib/config/images/WalkerhillHotelsResorts.png')),
+      Image.asset('lib/config/images/course/WalkerhillHotelsResorts.png')),
   Place("Naejangsan National Park", 4.8,
-      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+      Image.asset('lib/config/images/course/NaejangsanNationalPark.png')),
 ];
 
 List<Place> accomodations_list = [
   Place("Naejangsan National Park", 4.8,
-      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+      Image.asset('lib/config/images/course/NaejangsanNationalPark.png')),
   Place("Naejangsan National Park", 4.8,
-      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+      Image.asset('lib/config/images/course/NaejangsanNationalPark.png')),
   Place("Naejangsan National Park", 4.8,
-      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+      Image.asset('lib/config/images/course/NaejangsanNationalPark.png')),
 ];
 
 List<Place> restaurants_list = [
   Place("Walkerhill Hotels & Resorts", 4.1,
-      Image.asset('lib/config/images/WalkerhillHotelsResorts.png')),
+      Image.asset('lib/config/images/course/WalkerhillHotelsResorts.png')),
   Place("Walkerhill Hotels & Resorts", 4.1,
-      Image.asset('lib/config/images/WalkerhillHotelsResorts.png')),
+      Image.asset('lib/config/images/course/WalkerhillHotelsResorts.png')),
 ];
 
 List<Place> tourist_attractions_list = [
   Place("Naejangsan National Park", 4.8,
-      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+      Image.asset('lib/config/images/course/NaejangsanNationalPark.png')),
   Place("Walkerhill Hotels & Resorts", 4.1,
-      Image.asset('lib/config/images/WalkerhillHotelsResorts.png')),
+      Image.asset('lib/config/images/course/WalkerhillHotelsResorts.png')),
   Place("Naejangsan National Park", 4.8,
-      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+      Image.asset('lib/config/images/course/NaejangsanNationalPark.png')),
   Place("Walkerhill Hotels & Resorts", 4.1,
-      Image.asset('lib/config/images/WalkerhillHotelsResorts.png')),
+      Image.asset('lib/config/images/course/WalkerhillHotelsResorts.png')),
   Place("Naejangsan National Park", 4.8,
-      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+      Image.asset('lib/config/images/course/NaejangsanNationalPark.png')),
 ];
 
 class _HomeState extends State<Home> {
