@@ -46,56 +46,46 @@ class _GetPointState extends State<GetPoint> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: BackgroundColor.mainGreen,
         appBar: AppBar(
-          backgroundColor: BackgroundColor.background1,
-          title: Text("Get a Point", style: TextStyles.h1),
-          centerTitle: true,
+          backgroundColor: BackgroundColor.mainGreen,
         ),
         body: travel == true
             ? SingleChildScrollView(
                 child: Column(children: [
-                  SizedBox(height: 15.h),
                   Text(
-                    "The course currently traveling",
+                    "Currently, you are going on...",
                     textAlign: TextAlign.center,
-                    style: TextStyles.h1.copyWith(fontSize: 19.sp),
+                    style: TextStyles.white1.copyWith(fontSize: 19.sp),
                   ),
                   SizedBox(height: 15.h),
                   Container(
-                      margin: EdgeInsets.symmetric(horizontal: 17.w),
+                      margin: EdgeInsets.symmetric(horizontal: 15.w),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
                         color: Colors.white,
-                        border: Border.all(
-                          color: Color(0xff5DCA75).withOpacity(0.65),
-                          width: 2.0,
-                        ),
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                              margin: EdgeInsets.symmetric(horizontal: 10.w),
+                              margin: EdgeInsets.symmetric(horizontal: 12.w),
                               padding: EdgeInsets.all(10.w),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
-                                color: Colors.white,
-                                border: Border.all(
-                                  color: Color(0xff5DCA75).withOpacity(0.65),
-                                  width: 2.0,
-                                ),
+                                color: TextStyles.echoNavy.withOpacity(0.9),
                               ),
                               child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text("2/2",
-                                        style: TextStyles.h1
+                                        style: TextStyles.white1
                                             .copyWith(fontSize: 13.sp)),
                                     Text("~",
-                                        style: TextStyles.h1
+                                        style: TextStyles.white1
                                             .copyWith(fontSize: 13.sp)),
                                     Text("2/5",
-                                        style: TextStyles.h1
+                                        style: TextStyles.white1
                                             .copyWith(fontSize: 13.sp))
                                   ])),
                           Column(
@@ -120,9 +110,9 @@ class _GetPointState extends State<GetPoint> {
                         ),
                         Expanded(
                           child: Text(
-                            "Getting points",
+                            "Missons",
                             textAlign: TextAlign.center,
-                            style: TextStyles.h1.copyWith(fontSize: 21.sp),
+                            style: TextStyles.white1.copyWith(fontSize: 21.sp),
                           ),
                         ),
                         IconButton(
@@ -131,82 +121,61 @@ class _GetPointState extends State<GetPoint> {
                                 context: context,
                                 builder: (BuildContext context) {
                                   return AlertDialog(
+                                      backgroundColor:
+                                          TextStyles.echoNavy.withOpacity(0.8),
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
-                                              BorderRadius.circular(100.sp)),
+                                              BorderRadius.circular(10.sp)),
                                       contentPadding: EdgeInsets.zero,
                                       content: Container(
                                         width: 360.w,
                                         height:
                                             MediaQuery.of(context).size.height *
-                                                0.6,
+                                                0.45,
                                         decoration: BoxDecoration(
                                           borderRadius:
-                                              BorderRadius.circular(100.sp),
-                                          color: Color(0xFF5DCA75)
-                                              .withOpacity(0.83),
+                                              BorderRadius.circular(20.sp),
                                         ),
                                         child: Center(
                                           child: Column(children: [
-                                            SizedBox(height: 53.h),
-                                            Text(
-                                                "Description of point acquisition",
+                                            SizedBox(height: 30.h),
+                                            Text("About Missons & Points",
                                                 textAlign: TextAlign.center,
-                                                style: TextStyles.h1
+                                                style: TextStyles.white1
                                                     .copyWith(fontSize: 20.sp)),
                                             Container(
                                                 margin: EdgeInsets.symmetric(
-                                                    horizontal: 36,
-                                                    vertical: 40),
+                                                    horizontal: 17,
+                                                    vertical: 20),
                                                 decoration: BoxDecoration(
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           15.sp),
-                                                  color: Colors.white,
                                                 ),
                                                 child: Column(
                                                   children: [
                                                     Container(
                                                       padding: EdgeInsets.only(
-                                                          left: 18.w,
-                                                          top: 27.h,
+                                                          left: 20.w,
+                                                          top: 20.h,
                                                           right: 40.w),
                                                       child: Row(
                                                           mainAxisAlignment:
                                                               MainAxisAlignment
-                                                                  .spaceBetween,
+                                                                  .center,
                                                           children: [
-                                                            Container(
-                                                              width: 15,
-                                                              height: 15,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                shape: BoxShape
-                                                                    .circle,
-                                                                color: Colors
-                                                                    .white,
-                                                                border:
-                                                                    Border.all(
-                                                                  color: Color(
-                                                                          0xff5DCA75)
-                                                                      .withOpacity(
-                                                                          0.65),
-                                                                  width: 2.0,
-                                                                ),
-                                                              ),
-                                                            ),
                                                             Padding(
                                                                 padding: EdgeInsets
                                                                     .only(
                                                                         left: 5
                                                                             .w),
                                                                 child: Text(
-                                                                  "Each point acquisition \ncan only be earned \nonce per travel",
+                                                                  "Each point acquisition can only be\nearned once per travel.",
                                                                   style: TextStyles
-                                                                      .h1
+                                                                      .white1
                                                                       .copyWith(
                                                                           fontSize:
-                                                                              15.sp),
+                                                                              12.sp),
                                                                   textAlign:
                                                                       TextAlign
                                                                           .center,
@@ -215,45 +184,26 @@ class _GetPointState extends State<GetPoint> {
                                                     ),
                                                     Container(
                                                       padding: EdgeInsets.only(
-                                                          left: 18.w,
+                                                          left: 20.w,
                                                           top: 27.h,
                                                           right: 20.w),
                                                       child: Row(
                                                           mainAxisAlignment:
                                                               MainAxisAlignment
-                                                                  .spaceBetween,
+                                                                  .center,
                                                           children: [
-                                                            Container(
-                                                              width: 15,
-                                                              height: 15,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                shape: BoxShape
-                                                                    .circle,
-                                                                color: Colors
-                                                                    .white,
-                                                                border:
-                                                                    Border.all(
-                                                                  color: Color(
-                                                                          0xff5DCA75)
-                                                                      .withOpacity(
-                                                                          0.65),
-                                                                  width: 2.0,
-                                                                ),
-                                                              ),
-                                                            ),
                                                             Padding(
                                                                 padding: EdgeInsets
                                                                     .only(
                                                                         left: 5
                                                                             .w),
                                                                 child: Text(
-                                                                  "Points can only be earned \nup to 10 points throughout \nthe travel period.",
+                                                                  "Points can only be earned up to \n10 points throughout the travel period.",
                                                                   style: TextStyles
-                                                                      .h1
+                                                                      .white1
                                                                       .copyWith(
                                                                           fontSize:
-                                                                              15.sp),
+                                                                              12.sp),
                                                                   textAlign:
                                                                       TextAlign
                                                                           .center,
@@ -262,46 +212,27 @@ class _GetPointState extends State<GetPoint> {
                                                     ),
                                                     Container(
                                                       padding: EdgeInsets.only(
-                                                        left: 18.w,
+                                                        left: 20.w,
                                                         top: 27.h,
                                                         right: 20.w,
                                                       ),
                                                       child: Row(
                                                           mainAxisAlignment:
                                                               MainAxisAlignment
-                                                                  .spaceBetween,
+                                                                  .center,
                                                           children: [
-                                                            Container(
-                                                              width: 15,
-                                                              height: 15,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                shape: BoxShape
-                                                                    .circle,
-                                                                color: Colors
-                                                                    .white,
-                                                                border:
-                                                                    Border.all(
-                                                                  color: Color(
-                                                                          0xff5DCA75)
-                                                                      .withOpacity(
-                                                                          0.65),
-                                                                  width: 2.0,
-                                                                ),
-                                                              ),
-                                                            ),
                                                             Padding(
                                                                 padding: EdgeInsets
                                                                     .only(
                                                                         left: 5
                                                                             .w),
                                                                 child: Text(
-                                                                  "All items must go through \nthe authentication process \nin order to obtain points.",
+                                                                  "All items must go through the\nauthentication process\nin order to obtain points.",
                                                                   style: TextStyles
-                                                                      .h1
+                                                                      .white1
                                                                       .copyWith(
                                                                           fontSize:
-                                                                              15.sp),
+                                                                              12.sp),
                                                                   textAlign:
                                                                       TextAlign
                                                                           .center,
@@ -310,46 +241,27 @@ class _GetPointState extends State<GetPoint> {
                                                     ),
                                                     Container(
                                                       padding: EdgeInsets.only(
-                                                          left: 18.w,
+                                                          left: 20.w,
                                                           top: 27.h,
                                                           right: 20.w,
                                                           bottom: 29.h),
                                                       child: Row(
                                                           mainAxisAlignment:
                                                               MainAxisAlignment
-                                                                  .spaceBetween,
+                                                                  .center,
                                                           children: [
-                                                            Container(
-                                                              width: 15,
-                                                              height: 15,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                shape: BoxShape
-                                                                    .circle,
-                                                                color: Colors
-                                                                    .white,
-                                                                border:
-                                                                    Border.all(
-                                                                  color: Color(
-                                                                          0xff5DCA75)
-                                                                      .withOpacity(
-                                                                          0.65),
-                                                                  width: 2.0,
-                                                                ),
-                                                              ),
-                                                            ),
                                                             Padding(
                                                                 padding: EdgeInsets
                                                                     .only(
                                                                         left: 5
                                                                             .w),
                                                                 child: Text(
-                                                                  "Points collected during the \ntravel period will be added \nafter the it ends.",
+                                                                  "Points collected during the travel\nperiod will be added after the it ends.",
                                                                   style: TextStyles
-                                                                      .h1
+                                                                      .white1
                                                                       .copyWith(
                                                                           fontSize:
-                                                                              15.sp),
+                                                                              12.sp),
                                                                   textAlign:
                                                                       TextAlign
                                                                           .center,
@@ -364,7 +276,7 @@ class _GetPointState extends State<GetPoint> {
                                 },
                               );
                             },
-                            icon: Icon(Icons.add_circle_outline)),
+                            icon: Icon(Icons.info_outlined),color: BackgroundColor.background1,),
                       ],
                     ),
                   ),
@@ -376,10 +288,6 @@ class _GetPointState extends State<GetPoint> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
                           color: Colors.white,
-                          border: Border.all(
-                            color: Color(0xff5DCA75).withOpacity(0.65),
-                            width: 2.0,
-                          ),
                         ),
                         child: GettingPoints(array: mission_array),
                       ))),

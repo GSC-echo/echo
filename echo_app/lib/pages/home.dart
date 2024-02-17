@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:echo_app/config/colors.dart';
 import 'package:echo_app/pages/about_stage.dart';
@@ -132,6 +134,18 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     getUserPoints();
+    // getSitesList().then((_) {
+    //   @override
+    //   void initState() {
+    //     super.initState();
+    //     getUserPoints();
+    //     getSitesList().then((_) {
+    //       fs.sitesList.forEach((site) {
+    //         print(site);
+    //       });
+    //     });
+    //   }
+    // });
   }
 
   Future<void> getUserPoints() async {
@@ -145,6 +159,26 @@ class _HomeState extends State<Home> {
     } catch (e) {
       print('Error fetching user points: $e');
     }
+  }
+
+  Future<void> getSitesList() async {
+    if (fs.sitesList.isNotEmpty) return; // 이미 값이 채워져 있으면 함수를 종료
+
+    QuerySnapshot querySnapshot =
+        await FirebaseFirestore.instance.collection('Site').get();
+    List<DocumentSnapshot> sites = querySnapshot.docs;
+    List<List<dynamic>> tempSitesList = [];
+    for (var site in sites) {
+      List<dynamic> data = [];
+      Map<String, dynamic> siteData = site.data() as Map<String, dynamic>;
+      siteData.forEach((key, value) {
+        data.add(value);
+      });
+      tempSitesList.add(data);
+    }
+    setState(() {
+      fs.sitesList = tempSitesList;
+    });
   }
 
   Map<String, dynamic> getUserStage(int p) {
@@ -185,6 +219,7 @@ class _HomeState extends State<Home> {
 
   Widget build(BuildContext context) {
     initializeCourses();
+
     return Scaffold(
         // appBar: AppBar(
         //   backgroundColor: Colors.white,

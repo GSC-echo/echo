@@ -36,13 +36,13 @@ class _PlaceDetailState extends State<PlaceDetail> {
               Container(
                 margin: EdgeInsets.only(top: 30.h),
                 height: 195.h,
-                width: 282.w,
+                width: 320.w,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16.0),
                   color: Colors.blueGrey,
                 ),
                 child: FittedBox(
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
                   child: widget.place.image,
                 ),
               ),
@@ -70,11 +70,11 @@ class _PlaceDetailState extends State<PlaceDetail> {
               SizedBox(height: 20.h),
               Container(
                 width: double.infinity,
-                  margin: EdgeInsets.only(left: 30.w, right: 30.w, top: 10.h),
+                  margin: EdgeInsets.only(left: 30.w, right: 30.w, top: 5.h),
                   height: MediaQuery.of(context).size.height * 0.45,
                   child: Column(children: [
                     Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 90.w),
+                        padding: EdgeInsets.symmetric(horizontal: 120.w),
                         child: SaveWidget(
                           place: widget.place,
                           isSaved: saved.contains(widget.place),

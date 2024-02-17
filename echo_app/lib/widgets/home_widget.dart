@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:echo_app/pages/place_detail.dart';
+import 'package:echo_app/firestore.dart' as fs;
 
 import '../config/colors.dart';
 
@@ -12,7 +13,7 @@ class RealTimePlacesContent extends StatefulWidget {
   final String content;
   final bool isSelected;
   final VoidCallback onTap;
-
+  
   RealTimePlacesContent({
     required this.content,
     required this.isSelected,
@@ -24,6 +25,7 @@ class RealTimePlacesContent extends StatefulWidget {
 
 class _RealTimePlacesContentState extends State<RealTimePlacesContent> {
   @override
+
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
@@ -102,7 +104,7 @@ Widget RealTimePlace({required BuildContext context, required Place place}) {
                   bottomLeft: Radius.circular(25),
                   bottomRight: Radius.circular(25),
                 ),
-                color: TextStyles.echoNavy),
+                color: TextStyles.echoNavy.withOpacity(0.7)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -399,8 +401,8 @@ class _GettingPointsState extends State<GettingPoints> {
           child: Container(
             decoration: BoxDecoration(
               color: isChecked
-                  ? Color(0x000000).withOpacity(0.2)
-                  : Color(0xff5DCA75).withOpacity(0.65),
+                  ? TextStyles.echoNavy.withOpacity(0.2)
+                  : BackgroundColor.mainGreen.withOpacity(0.85),
               borderRadius: BorderRadius.circular(15.sp),
               boxShadow: [
                 BoxShadow(
