@@ -88,7 +88,7 @@ Widget RealTimePlace({required BuildContext context, required Place place}) {
             borderRadius: BorderRadius.circular(25),
             child: FittedBox(
               fit: BoxFit.fill,
-              child: Image.asset(place.image),
+              child: Image.asset(place.image??' '),
             ),
           ),
         ),
@@ -109,7 +109,7 @@ Widget RealTimePlace({required BuildContext context, required Place place}) {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  place.name,
+                  place.name??' ',
                   textAlign: TextAlign.center,
                   style: TextStyles.white1.copyWith(fontSize: 10.sp),
                 ),
@@ -161,17 +161,18 @@ Widget RealTimeCourse(
                               child: isinMap
                                   ? GestureDetector(
                                       onTap: () {
-                                        print("mark " + place.name + " on Map");
+                                        print("mark ${place.name ?? ' '} on Map");
+
                                       },
                                       child: Text(
-                                        place.name,
+                                        place.name??' ',
                                         textAlign: TextAlign.center,
                                         style: TextStyles.h1
                                             .copyWith(fontSize: 10.sp),
                                       ),
                                     )
                                   : Text(
-                                      place.name,
+                                      place.name?? ' ',
                                       textAlign: TextAlign.center,
                                       style: TextStyles.h1
                                           .copyWith(fontSize: 10.sp),
@@ -263,7 +264,7 @@ Widget RealTimeCourse(
                                 height: 40.h,
                                 child: Center(
                                   child: Text(
-                                    place.name,
+                                    place.name??' ',
                                     textAlign: TextAlign.center,
                                     style:
                                         TextStyles.h1.copyWith(fontSize: 10.sp),
