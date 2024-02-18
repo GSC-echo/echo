@@ -31,16 +31,6 @@ class _GetPointState extends State<GetPoint> {
     Mission("Consuming Recycling or Upcycling products", 2)
   ];
   List<Place> course1 = [
-    Place("Naejangsan National Park", 4.8,
-        'lib/config/images/NaejangsanNationalPark.png'),
-    Place("Walkerhill Hotels & Resorts", 4.1,
-        'lib/config/images/WalkerhillHotelsResorts.png'),
-    Place("Naejangsan National Park", 4.8,
-        'lib/config/images/NaejangsanNationalPark.png'),
-    Place("Walkerhill Hotels & Resorts", 4.1,
-        'lib/config/images/WalkerhillHotelsResorts.png'),
-    Place("Naejangsan National Park", 4.8,
-        'lib/config/images/NaejangsanNationalPark.png'),
   ];
 
   @override

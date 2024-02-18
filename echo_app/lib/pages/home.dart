@@ -81,14 +81,14 @@ class Place {
 }
 
 List<Place> course1 = [
-  Place("Naejangsan National Park", 4.8,
-      'lib/config/images/course/NaejangsanNationalPark.png'),
-  Place("Amisan Observatory", 4.8,
-      'lib/config/images/course/AmisanObservatory.png'),
-  Place("Walkerhill Hotels & Resorts", 4.1,
-      'lib/config/images/course/WalkerhillHotelsResorts.png'),
-  Place("DunjuPeak Hanbando", 4.1,
-      'lib/config/images/course/DunjuPeakHanbando.png'),
+  // Place("Naejangsan National Park", 4.8,
+  //     'lib/config/images/course/NaejangsanNationalPark.png'),
+  // Place("Amisan Observatory", 4.8,
+  //     'lib/config/images/course/AmisanObservatory.png'),
+  // Place("Walkerhill Hotels & Resorts", 4.1,
+  //     'lib/config/images/course/WalkerhillHotelsResorts.png'),
+  // Place("DunjuPeak Hanbando", 4.1,
+  //     'lib/config/images/course/DunjuPeakHanbando.png'),
 ];
 
 List<List<Place>> courses_array = [];
@@ -129,7 +129,6 @@ void initializePlaces(){
       }
     });
 
-    // 정렬하기 전에 각 리스트에 값이 있는지 확인
     if (all_list.isNotEmpty) {
       all_list.sort((a, b) => (b.star ?? 0).compareTo(a.star ?? 0));
     }

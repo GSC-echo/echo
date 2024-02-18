@@ -508,7 +508,7 @@ Widget CourseDetailWidget(
                       borderRadius: BorderRadius.circular(16.0),
                       child: FittedBox(
                         fit: BoxFit.fill,
-                        child: Image.asset(array[index].image),
+                        child: Image.asset(array[index].image??' '),
                       ),
                     ),
                   ),
@@ -831,7 +831,7 @@ Widget PlacesbyContentWidget({
               borderRadius: BorderRadius.circular(16.0),
               child: FittedBox(
                 fit: BoxFit.fill,
-                child: Image.asset(place.image),
+                child: Image.asset(place.image??' '),
               ),
             ),
           ),
