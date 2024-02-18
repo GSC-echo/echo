@@ -6,13 +6,14 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:echo_app/pages/splash.dart';
 
 int userPoint = 0;
+List<List<dynamic>> sitesList = List.empty();
+
 class FireStorePage extends StatefulWidget {
   const FireStorePage({Key? key}) : super(key: key);
 
   @override
   State<FireStorePage> createState() => _FireStorePageState();
 
-  
   static Future<void> deleteCurrentUser(BuildContext context) async {
     CollectionReference usersdb = FirebaseFirestore.instance.collection('User');
     try {
@@ -35,6 +36,7 @@ class FireStorePage extends StatefulWidget {
       print('Failed to delete user or log out: $e');
     }
   }
+
 }
 
 class _FireStorePageState extends State<FireStorePage> {

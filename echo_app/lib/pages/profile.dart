@@ -136,7 +136,7 @@ class _Profile extends State<Profile> {
       ),
       body: Container(
         decoration: BoxDecoration(
-          color: Color(0xFF0F6AE2D),
+          color: TextStyles.echoYellow,
         ),
         child: SafeArea(
           child: Padding(
