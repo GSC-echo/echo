@@ -57,19 +57,27 @@ List<Review> review_list = [
       "May 2023"),
 ];
 
-
-
 class Place {
   String? name;
   double? star;
   String? image;
+  String? category;
 
-  Place({this.name, this.star, this.image});
+  Place({this.name, this.star, this.image,this.category});
 
   Place.fromJson(Map<String, Object?> json)
       : name = json['name'] as String?,
-        star = json['star'] as double?,
-        image = json['image'] as String?;
+        star = double.tryParse(json['grade']?.toString() ?? ''),
+        image = json['image_link'] as String?,
+        category = json['category'] as String?;
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = {};
+    data['name'] = name;
+    data['grade'] = star;
+    data['image_link'] = image;
+    data['category'] = category;
+    return data;
+  }
 }
 
 List<Place> course1 = [
@@ -100,99 +108,59 @@ List<Place> course1 = [
   ),
 ];
 
-
 List<List<Place>> courses_array = [];
 
 void initializeCourses() {
   courses_array = [course1, course1, course1];
 }
 
-List<Place> all_list = [
-  Place(
-    name: "Naejangsan National Park",
-    star: 4.8,
-    image: 'lib/config/images/course/NaejangsanNationalPark.png',
-  ),
-  Place(
-    name: "Walkerhill Hotels & Resorts",
-    star: 4.1,
-    image: 'lib/config/images/course/WalkerhillHotelsResorts.png',
-  ),
-  Place(
-    name: "Naejangsan National Park",
-    star: 4.8,
-    image: 'lib/config/images/course/NaejangsanNationalPark.png',
-  ),
-  Place(
-    name: "Walkerhill Hotels & Resorts",
-    star: 4.1,
-    image: 'lib/config/images/course/WalkerhillHotelsResorts.png',
-  ),
-  Place(
-    name: "Naejangsan National Park",
-    star: 4.8,
-    image: 'lib/config/images/course/NaejangsanNationalPark.png',
-  ),
-];
+List<Place> all_list = [];
+List<Place> accomodations_list = [];
+List<Place> restaurants_list = [];
+List<Place> tourist_attractions_list = [];
 
-List<Place> accomodations_list = [
-  Place(
-    name: "Naejangsan National Park",
-    star: 4.8,
-    image: 'lib/config/images/course/NaejangsanNationalPark.png',
-  ),
-  Place(
-    name: "Naejangsan National Park",
-    star: 4.8,
-    image: 'lib/config/images/course/NaejangsanNationalPark.png',
-  ),
-  Place(
-    name: "Naejangsan National Park",
-    star: 4.8,
-    image: 'lib/config/images/course/NaejangsanNationalPark.png',
-  ),
-];
 
-List<Place> restaurants_list = [
-  Place(
-    name: "Walkerhill Hotels & Resorts",
-    star: 4.1,
-    image: 'lib/config/images/course/WalkerhillHotelsResorts.png',
-  ),
-  Place(
-    name: "Walkerhill Hotels & Resorts",
-    star: 4.1,
-    image: 'lib/config/images/course/WalkerhillHotelsResorts.png',
-  ),
-];
+void initializePlaces(){
+  final placeList = FirebaseFirestore.instance
+    .collection("Site")
+    .withConverter(
+        fromFirestore: (snapshot, _) => Place.fromJson(snapshot.data()!),
+        toFirestore: (place, _) => place.toJson());
+  
+  placeList.snapshots().listen((snapshot) {
+    all_list = snapshot.docs.map((doc) => doc.data()).toList();
+    all_list.forEach((place) {
+      print('Place: ${place.name}, Star: ${place.star}, Category: ${place.category}');
+      switch (place.category) {
+        case 'accomodation':
+          accomodations_list.add(place);
+          break;
+        case 'restaurant':
+          restaurants_list.add(place);
+          break;
+        case 'tourist_attraction':
+          tourist_attractions_list.add(place);
+          break;
+        default:
+          break;
+      }
+    });
 
-List<Place> tourist_attractions_list = [
-  Place(
-    name: "Naejangsan National Park",
-    star: 4.8,
-    image: 'lib/config/images/course/NaejangsanNationalPark.png',
-  ),
-  Place(
-    name: "Walkerhill Hotels & Resorts",
-    star: 4.1,
-    image: 'lib/config/images/course/WalkerhillHotelsResorts.png',
-  ),
-  Place(
-    name: "Naejangsan National Park",
-    star: 4.8,
-    image: 'lib/config/images/course/NaejangsanNationalPark.png',
-  ),
-  Place(
-    name: "Walkerhill Hotels & Resorts",
-    star: 4.1,
-    image: 'lib/config/images/course/WalkerhillHotelsResorts.png',
-  ),
-  Place(
-    name: "Naejangsan National Park",
-    star: 4.8,
-    image: 'lib/config/images/course/NaejangsanNationalPark.png',
-  ),
-];
+    // 정렬하기 전에 각 리스트에 값이 있는지 확인
+    if (all_list.isNotEmpty) {
+      all_list.sort((a, b) => (b.star ?? 0).compareTo(a.star ?? 0));
+    }
+    if (accomodations_list.isNotEmpty) {
+      accomodations_list.sort((a, b) => (b.star ?? 0).compareTo(a.star ?? 0));
+    }
+    if (restaurants_list.isNotEmpty) {
+      restaurants_list.sort((a, b) => (b.star ?? 0).compareTo(a.star ?? 0));
+    }
+    if (tourist_attractions_list.isNotEmpty) {
+      tourist_attractions_list.sort((a, b) => (b.star ?? 0).compareTo(a.star ?? 0));
+    }
+  });
+}
 
 
 class _HomeState extends State<Home> {
@@ -202,6 +170,8 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
+    initializePlaces();
+    initializeCourses();
     getUserPoints();
   }
 
@@ -217,7 +187,6 @@ class _HomeState extends State<Home> {
       print('Error fetching user points: $e');
     }
   }
-
 
   Map<String, dynamic> getUserStage(int p) {
     if (p < 50) {
@@ -256,8 +225,6 @@ class _HomeState extends State<Home> {
   }
 
   Widget build(BuildContext context) {
-    initializeCourses();
-
     return Scaffold(
         // appBar: AppBar(
         //   backgroundColor: Colors.white,
@@ -525,7 +492,7 @@ class _HomeState extends State<Home> {
                                       ? restaurants_list
                                       : tourist_attractions_list))
                             Padding(
-                              padding: EdgeInsets.only(right: 10.w), // 간격 조절
+                              padding: EdgeInsets.only(right: 10.w),
                               child:
                                   RealTimePlace(context: context, place: place),
                             ),
