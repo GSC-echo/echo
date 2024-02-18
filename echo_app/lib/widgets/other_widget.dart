@@ -495,22 +495,30 @@ Widget CourseDetailWidget(
                           PlaceDetail(place: array[index]))));
             },
             child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 13.w, vertical: 10.h),
+                margin: EdgeInsets.symmetric(
+                    horizontal: isCustom ? 9.w : 30.w, vertical: 10.h),
                 child: Row(children: [
                   Container(
-                      height: 110.h,
-                      width: 135.w,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16.0),
-                          color: Colors.blueGrey),
-                      child: Image.asset(array[index].image??' ')),
+                    height: 110.h,
+                    width: 135.w,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16.0),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16.0),
+                      child: FittedBox(
+                        fit: BoxFit.fill,
+                        child: Image.asset(array[index].image),
+                      ),
+                    ),
+                  ),
                   Container(
                       height: 85.h,
-                      width: 125.w,
+                      width: 134.7.w,
                       decoration: BoxDecoration(
                         borderRadius: const BorderRadius.only(
-                          topRight: Radius.circular(30.0),
-                          bottomRight: Radius.circular(30.0),
+                          topRight: Radius.circular(16.0),
+                          bottomRight: Radius.circular(16.0),
                         ),
                         color: Colors.white,
                         border: Border(
@@ -818,11 +826,13 @@ Widget PlacesbyContentWidget({
             width: 194.w,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16.0),
-              color: Colors.blueGrey,
             ),
-            child: FittedBox(
-              fit: BoxFit.cover,
-              child: Image.asset(place.image??' '),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(16.0),
+              child: FittedBox(
+                fit: BoxFit.fill,
+                child: Image.asset(place.image),
+              ),
             ),
           ),
           Container(
@@ -830,8 +840,8 @@ Widget PlacesbyContentWidget({
             width: 155.w,
             decoration: BoxDecoration(
               borderRadius: const BorderRadius.only(
-                topRight: Radius.circular(30.0),
-                bottomRight: Radius.circular(30.0),
+                topRight: Radius.circular(16.0),
+                bottomRight: Radius.circular(16.0),
               ),
               color: Colors.white,
               border: Border(

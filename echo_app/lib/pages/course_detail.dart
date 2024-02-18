@@ -13,16 +13,19 @@ class CourseDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(
-          backgroundColor: BackgroundColor.mainGreen,
-          centerTitle: true,
-          title: Text("Course Detail", textAlign: TextAlign.center,
+      appBar: AppBar(
+        backgroundColor: BackgroundColor.mainGreen,
+        centerTitle: true,
+        title: Text(
+          "Course Detail",
+          textAlign: TextAlign.center,
           style: TextStyle(
             fontFamily: 'NotoSansKR',
             fontSize: 20,
-            fontWeight: FontWeight.w700,),
+            fontWeight: FontWeight.w700,
           ),
         ),
+      ),
       body: Container(
         decoration: BoxDecoration(
           color: Color(0xFF5DCA75),
@@ -35,8 +38,7 @@ class CourseDetail extends StatelessWidget {
               child: Column(
                 children: [
                   Container(
-                      margin:
-                          EdgeInsets.symmetric(horizontal: 80.sp),
+                      margin: EdgeInsets.symmetric(horizontal: 80.sp),
                       alignment: Alignment.center,
                       padding: EdgeInsets.all(5.sp),
                       decoration: BoxDecoration(
@@ -58,10 +60,13 @@ class CourseDetail extends StatelessWidget {
                               style: TextStyles.h1.copyWith(fontSize: 15.sp),
                             )
                           ])),
-                          SizedBox(height: 10.h,),
+                  SizedBox(
+                    height: 10.h,
+                  ),
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 30.w, vertical: 13.h),
-                    height: 300.h,
+                      margin: EdgeInsets.symmetric(
+                          horizontal: 30.w, vertical: 13.h),
+                      height: 300.h,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20.sp),
                         color: Colors.white,
@@ -90,7 +95,10 @@ class CourseDetail extends StatelessWidget {
                           SizedBox(
                             width: 20.w,
                           ),
-                          Icon(Icons.reviews,size: 17,),
+                          Icon(
+                            Icons.reviews,
+                            size: 17,
+                          ),
                           SizedBox(
                             width: 5.w,
                           ),
@@ -115,19 +123,20 @@ class CourseDetail extends StatelessWidget {
                           SizedBox(width: 20.w)
                         ],
                       ),
-                      
                     ],
                   ),
                   Container(
                       height: MediaQuery.of(context).size.height * 0.22,
                       margin: EdgeInsets.all(10.sp),
-                    
                       child: ReviewShortWidget(array: review_list))
                 ],
               )), //review
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             ElevatedButton(
                 style: ButtonStyle(
+                  padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                    EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
+                  ),
                   backgroundColor:
                       MaterialStateProperty.all<Color>(Color(0xff5DCA86)),
                   side: MaterialStateProperty.all<BorderSide>(
@@ -138,13 +147,17 @@ class CourseDetail extends StatelessWidget {
                   ),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0), 
+                      borderRadius: BorderRadius.circular(15.0),
                     ),
                   ),
                 ),
                 onPressed: null,
                 child: Row(children: [
-                  Icon(Icons.menu_book, size: 15.sp),
+                  Icon(
+                    Icons.bookmark_border_rounded,
+                    size: 25.sp,
+                    color: Colors.black,
+                  ),
                   SizedBox(
                     width: 10.w,
                   ),
@@ -154,6 +167,9 @@ class CourseDetail extends StatelessWidget {
                 ])),
             ElevatedButton(
                 style: ButtonStyle(
+                  padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+                    EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
+                  ),
                   backgroundColor:
                       MaterialStateProperty.all<Color>(Color(0xffD5F0C1)),
                   side: MaterialStateProperty.all<BorderSide>(
@@ -170,7 +186,11 @@ class CourseDetail extends StatelessWidget {
                 ),
                 onPressed: null,
                 child: Row(children: [
-                  Icon(Icons.menu_book, size: 15.sp),
+                  Icon(
+                    Icons.check,
+                    size: 25.sp,
+                    color: Colors.black,
+                  ),
                   SizedBox(
                     width: 10.w,
                   ),

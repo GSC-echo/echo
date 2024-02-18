@@ -73,31 +73,14 @@ class Place {
 }
 
 List<Place> course1 = [
-  Place(
-    name: "Naejangsan National Park",
-    star: 4.8,
-    image: 'lib/config/images/course/NaejangsanNationalPark.png',
-  ),
-  Place(
-    name: "Walkerhill Hotels & Resorts",
-    star: 4.1,
-    image: 'lib/config/images/course/WalkerhillHotelsResorts.png',
-  ),
-  Place(
-    name: "Naejangsan National Park",
-    star: 4.8,
-    image: 'lib/config/images/course/NaejangsanNationalPark.png',
-  ),
-  Place(
-    name: "Walkerhill Hotels & Resorts",
-    star: 4.1,
-    image: 'lib/config/images/course/WalkerhillHotelsResorts.png',
-  ),
-  Place(
-    name: "Naejangsan National Park",
-    star: 4.8,
-    image: 'lib/config/images/course/NaejangsanNationalPark.png',
-  ),
+  Place("Naejangsan National Park", 4.8,
+      'lib/config/images/course/NaejangsanNationalPark.png'),
+  Place("Amisan Observatory", 4.8,
+      'lib/config/images/course/AmisanObservatory.png'),
+  Place("Walkerhill Hotels & Resorts", 4.1,
+      'lib/config/images/course/WalkerhillHotelsResorts.png'),
+  Place("DunjuPeak Hanbando", 4.1,
+      'lib/config/images/course/DunjuPeakHanbando.png'),
 ];
 
 
@@ -108,49 +91,23 @@ void initializeCourses() {
 }
 
 List<Place> all_list = [
-  Place(
-    name: "Naejangsan National Park",
-    star: 4.8,
-    image: 'lib/config/images/course/NaejangsanNationalPark.png',
-  ),
-  Place(
-    name: "Walkerhill Hotels & Resorts",
-    star: 4.1,
-    image: 'lib/config/images/course/WalkerhillHotelsResorts.png',
-  ),
-  Place(
-    name: "Naejangsan National Park",
-    star: 4.8,
-    image: 'lib/config/images/course/NaejangsanNationalPark.png',
-  ),
-  Place(
-    name: "Walkerhill Hotels & Resorts",
-    star: 4.1,
-    image: 'lib/config/images/course/WalkerhillHotelsResorts.png',
-  ),
-  Place(
-    name: "Naejangsan National Park",
-    star: 4.8,
-    image: 'lib/config/images/course/NaejangsanNationalPark.png',
-  ),
+  Place("Naejangsan National Park", 4.8,
+      'lib/config/images/course/NaejangsanNationalPark.png'),
+  Place("Walkerhill Hotels & Resorts", 4.1,
+      'lib/config/images/course/WalkerhillHotelsResorts.png'),
+  Place("DunjuPeak Hanbando", 4.1,
+      'lib/config/images/course/DunjuPeakHanbando.png'),
+  Place("EcoVillage", 4.8, 'lib/config/images/course/EcoVillage.png'),
+  Place("Amisan Observatory", 4.8,
+      'lib/config/images/course/AmisanObservatory.png'),
+  Place("Naganeupseong Walled Town", 4.8,
+      'lib/config/images/course/NaganeupseongWalledTown.png'),
 ];
 
 List<Place> accomodations_list = [
-  Place(
-    name: "Naejangsan National Park",
-    star: 4.8,
-    image: 'lib/config/images/course/NaejangsanNationalPark.png',
-  ),
-  Place(
-    name: "Naejangsan National Park",
-    star: 4.8,
-    image: 'lib/config/images/course/NaejangsanNationalPark.png',
-  ),
-  Place(
-    name: "Naejangsan National Park",
-    star: 4.8,
-    image: 'lib/config/images/course/NaejangsanNationalPark.png',
-  ),
+  Place("EcoVillage", 4.8, 'lib/config/images/course/EcoVillage.png'),
+  Place("Walkerhill Hotels & Resorts", 4.1,
+      'lib/config/images/course/WalkerhillHotelsResorts.png'),
 ];
 
 List<Place> restaurants_list = [
@@ -167,31 +124,14 @@ List<Place> restaurants_list = [
 ];
 
 List<Place> tourist_attractions_list = [
-  Place(
-    name: "Naejangsan National Park",
-    star: 4.8,
-    image: 'lib/config/images/course/NaejangsanNationalPark.png',
-  ),
-  Place(
-    name: "Walkerhill Hotels & Resorts",
-    star: 4.1,
-    image: 'lib/config/images/course/WalkerhillHotelsResorts.png',
-  ),
-  Place(
-    name: "Naejangsan National Park",
-    star: 4.8,
-    image: 'lib/config/images/course/NaejangsanNationalPark.png',
-  ),
-  Place(
-    name: "Walkerhill Hotels & Resorts",
-    star: 4.1,
-    image: 'lib/config/images/course/WalkerhillHotelsResorts.png',
-  ),
-  Place(
-    name: "Naejangsan National Park",
-    star: 4.8,
-    image: 'lib/config/images/course/NaejangsanNationalPark.png',
-  ),
+  Place("Naejangsan National Park", 4.8,
+      'lib/config/images/course/NaejangsanNationalPark.png'),
+  Place("DunjuPeak Hanbando", 4.1,
+      'lib/config/images/course/DunjuPeakHanbando.png'),
+  Place("Amisan Observatory", 4.8,
+      'lib/config/images/course/AmisanObservatory.png'),
+  Place("Naganeupseong Walled Town", 4.8,
+      'lib/config/images/course/NaganeupseongWalledTown.png'),
 ];
 
 
@@ -217,7 +157,6 @@ class _HomeState extends State<Home> {
       print('Error fetching user points: $e');
     }
   }
-
 
   Map<String, dynamic> getUserStage(int p) {
     if (p < 50) {
@@ -560,7 +499,7 @@ class _HomeState extends State<Home> {
                     ),
                     Padding(
                         padding: EdgeInsets.only(
-                            left: 10.w, top: 15.h, right: 15.w, bottom: 22.h),
+                            left: 10.w, top: 15.h, right: 10.w, bottom: 22.h),
                         child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(25),
