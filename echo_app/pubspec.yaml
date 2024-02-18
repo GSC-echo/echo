@@ -83,12 +83,29 @@ flutter:
     - lib/config/images/sprout.png
     - lib/config/images/sleeping_cat.jpg
     # Course, Site
-    - lib/config/images/course/NaejangsanNationalPark.png
-    - lib/config/images/course/WalkerhillHotelsResorts.png
     - lib/config/images/course/AmisanObservatory.png
+    - lib/config/images/course/AmisSeedTale.png
+    - lib/config/images/course/DonggangEcologicalPark.png
     - lib/config/images/course/DunjuPeakHanbando.png
     - lib/config/images/course/EcoVillage.png
+    - lib/config/images/course/ibisAmbassadorBusanCityCentre.png
+    - lib/config/images/course/JanggyeTourism.png
+    - lib/config/images/course/JejuOrganicSsamRice.png
+    - lib/config/images/course/KPWetlandECF.png
+    - lib/config/images/course/NaejangsanNationalPark.png
     - lib/config/images/course/NaganeupseongWalledTown.png
+    - lib/config/images/course/NakdongEstuaryEcoCenter.png
+    - lib/config/images/course/NamNyeonDeulsTable.png
+    - lib/config/images/course/NoPlasticCafe.png
+    - lib/config/images/course/NostalgiaLakeRoad.png
+    - lib/config/images/course/SaladyBusanSM.png
+    - lib/config/images/course/SangdongMak.png
+    - lib/config/images/course/SongGoGa.png
+    - lib/config/images/course/SuncheonBayWetland.png
+    - lib/config/images/course/SuncheonEcoYouthHostel.png
+    - lib/config/images/course/WalkerhillHotelsResorts.png
+    - lib/config/images/course/YoonsFiveScentPork.png
+    - lib/config/images/course/YouAndMeCamp.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
