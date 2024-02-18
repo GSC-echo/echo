@@ -87,7 +87,7 @@ Widget RealTimePlace({required BuildContext context, required Place place}) {
             borderRadius: BorderRadius.circular(25),
             child: FittedBox(
               fit: BoxFit.fill,
-              child: Image.asset(place.image??' '),
+              child: Image.asset(place.image??''),
             ),
           ),
         ),
@@ -263,7 +263,7 @@ Widget RealTimeCourse(
                                 height: 40.h,
                                 child: Center(
                                   child: Text(
-                                    place.name??' ',
+                                    place.name??'',
                                     textAlign: TextAlign.center,
                                     style:
                                         TextStyles.h1.copyWith(fontSize: 10.sp),

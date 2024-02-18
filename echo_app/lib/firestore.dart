@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:echo_app/pages/splash.dart';
+import 'package:echo_app/pages/home.dart';
 
 int userPoint = 0;
 List<List<dynamic>> sitesList = List.empty();
@@ -51,14 +52,11 @@ class _FireStorePageState extends State<FireStorePage> {
         builder:
             (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
           if (snapshot.hasData) {
-            // final placeList = FirebaseFirestore.instance
-            // .collection("Site")
-            // .withConverter(fromFirestore: snapshot, toFirestore: toFirestore)
 
           }
           return Container();
         },
       ),
     );
-  }
+  } 
 }
