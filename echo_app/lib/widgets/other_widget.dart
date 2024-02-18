@@ -539,7 +539,7 @@ Widget CourseDetailWidget(
                       child: Padding(
                           padding: EdgeInsets.only(top: 20.h, right: 10.w),
                           child: Column(children: [
-                            Text(array[index].name,
+                            Text(array[index].name??' ',
                                 textAlign: TextAlign.center,
                                 style: TextStyles.h1.copyWith(fontSize: 9.sp)),
                             SizedBox(height: 5.h),
@@ -864,7 +864,7 @@ Widget PlacesbyContentWidget({
               child: Column(
                 children: [
                   Text(
-                    place.name,
+                    place.name??' ',
                     textAlign: TextAlign.center,
                     style: TextStyles.h1.copyWith(fontSize: 9.sp),
                   ),

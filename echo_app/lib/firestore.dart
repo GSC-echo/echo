@@ -51,9 +51,10 @@ class _FireStorePageState extends State<FireStorePage> {
         builder:
             (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
           if (snapshot.hasData) {
-            final userData = snapshot.data!;
-            //final userPoint = userData['points'] ?? 0;
-            //String userStage = getUserStage(userPoint);
+            // final placeList = FirebaseFirestore.instance
+            // .collection("Site")
+            // .withConverter(fromFirestore: snapshot, toFirestore: toFirestore)
+
           }
           return Container();
         },

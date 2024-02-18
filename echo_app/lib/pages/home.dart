@@ -57,12 +57,19 @@ List<Review> review_list = [
       "May 2023"),
 ];
 
-class Place {
-  String name;
-  double star;
-  String image;
 
-  Place(this.name, this.star, this.image);
+
+class Place {
+  String? name;
+  double? star;
+  String? image;
+
+  Place({this.name, this.star, this.image});
+
+  Place.fromJson(Map<String, Object?> json)
+      : name = json['name'] as String?,
+        star = json['star'] as double?,
+        image = json['image'] as String?;
 }
 
 List<Place> course1 = [
@@ -75,6 +82,7 @@ List<Place> course1 = [
   Place("DunjuPeak Hanbando", 4.1,
       'lib/config/images/course/DunjuPeakHanbando.png'),
 ];
+
 
 List<List<Place>> courses_array = [];
 
@@ -103,10 +111,16 @@ List<Place> accomodations_list = [
 ];
 
 List<Place> restaurants_list = [
-  Place("Walkerhill Hotels & Resorts", 4.1,
-      'lib/config/images/course/WalkerhillHotelsResorts.png'),
-  Place("Walkerhill Hotels & Resorts", 4.1,
-      'lib/config/images/course/WalkerhillHotelsResorts.png'),
+  Place(
+    name: "Walkerhill Hotels & Resorts",
+    star: 4.1,
+    image: 'lib/config/images/course/WalkerhillHotelsResorts.png',
+  ),
+  Place(
+    name: "Walkerhill Hotels & Resorts",
+    star: 4.1,
+    image: 'lib/config/images/course/WalkerhillHotelsResorts.png',
+  ),
 ];
 
 List<Place> tourist_attractions_list = [
@@ -119,6 +133,7 @@ List<Place> tourist_attractions_list = [
   Place("Naganeupseong Walled Town", 4.8,
       'lib/config/images/course/NaganeupseongWalledTown.png'),
 ];
+
 
 class _HomeState extends State<Home> {
   CollectionReference usersdb = FirebaseFirestore.instance.collection('User');

@@ -20,18 +20,19 @@ class _PlaceDetailState extends State<PlaceDetail> {
         appBar: AppBar(
           backgroundColor: BackgroundColor.mainGreen,
           centerTitle: true,
-          title: Text(widget.place.name, textAlign: TextAlign.center,
-          style: TextStyle(
-            fontFamily: 'NotoSansKR',
-            fontSize: 18,
-            fontWeight: FontWeight.w700,),
+          title: Text(
+            widget.place.name ?? '',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontFamily: 'NotoSansKR',
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+            ),
           ),
         ),
         body: Container(
             margin: EdgeInsets.only(top: 5.h),
-            decoration: BoxDecoration(
-              color: BackgroundColor.background1
-            ),
+            decoration: BoxDecoration(color: BackgroundColor.background1),
             child: Column(children: [
               Container(
                 margin: EdgeInsets.only(top: 30.h),
@@ -43,11 +44,11 @@ class _PlaceDetailState extends State<PlaceDetail> {
                 ),
                 child: FittedBox(
                   fit: BoxFit.fill,
-                  child: Image.asset(widget.place.image),
+                  child: Image.asset(widget.place.image??' '),
                 ),
               ),
-                            SizedBox(height: 20.h),
-              Text(widget.place.name,
+              SizedBox(height: 20.h),
+              Text(widget.place.name??' ',
                   textAlign: TextAlign.center,
                   style: TextStyles.h1.copyWith(fontSize: 22.sp)),
               SizedBox(height: 6.h),
@@ -69,7 +70,7 @@ class _PlaceDetailState extends State<PlaceDetail> {
               ),
               SizedBox(height: 20.h),
               Container(
-                width: double.infinity,
+                  width: double.infinity,
                   margin: EdgeInsets.only(left: 30.w, right: 30.w, top: 5.h),
                   height: MediaQuery.of(context).size.height * 0.45,
                   child: Column(children: [
