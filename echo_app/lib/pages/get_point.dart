@@ -30,18 +30,33 @@ class _GetPointState extends State<GetPoint> {
     Mission("Consuming Eco-friendly Products", 2),
     Mission("Consuming Recycling or Upcycling products", 2)
   ];
-  List<Place> course1 = [
-    Place("Naejangsan National Park", 4.8,
-        'lib/config/images/NaejangsanNationalPark.png'),
-    Place("Walkerhill Hotels & Resorts", 4.1,
-        'lib/config/images/WalkerhillHotelsResorts.png'),
-    Place("Naejangsan National Park", 4.8,
-       'lib/config/images/NaejangsanNationalPark.png'),
-    Place("Walkerhill Hotels & Resorts", 4.1,
-        'lib/config/images/WalkerhillHotelsResorts.png'),
-    Place("Naejangsan National Park", 4.8,
-        'lib/config/images/NaejangsanNationalPark.png'),
-  ];
+List<Place> course1 = [
+  Place(
+    name: "Naejangsan National Park",
+    star: 4.8,
+    image: 'lib/config/images/course/NaejangsanNationalPark.png',
+  ),
+  Place(
+    name: "Walkerhill Hotels & Resorts",
+    star: 4.1,
+    image: 'lib/config/images/course/WalkerhillHotelsResorts.png',
+  ),
+  Place(
+    name: "Naejangsan National Park",
+    star: 4.8,
+    image: 'lib/config/images/course/NaejangsanNationalPark.png',
+  ),
+  Place(
+    name: "Walkerhill Hotels & Resorts",
+    star: 4.1,
+    image: 'lib/config/images/course/WalkerhillHotelsResorts.png',
+  ),
+  Place(
+    name: "Naejangsan National Park",
+    star: 4.8,
+    image: 'lib/config/images/course/NaejangsanNationalPark.png',
+  ),
+];
 
   @override
   Widget build(BuildContext context) {
