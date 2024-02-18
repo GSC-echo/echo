@@ -43,7 +43,7 @@ class _PlaceDetailState extends State<PlaceDetail> {
                 ),
                 child: FittedBox(
                   fit: BoxFit.fill,
-                  child: widget.place.image,
+                  child: Image.asset(widget.place.image),
                 ),
               ),
                             SizedBox(height: 20.h),

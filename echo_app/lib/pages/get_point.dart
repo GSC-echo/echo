@@ -32,15 +32,15 @@ class _GetPointState extends State<GetPoint> {
   ];
   List<Place> course1 = [
     Place("Naejangsan National Park", 4.8,
-        Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+        'lib/config/images/NaejangsanNationalPark.png'),
     Place("Walkerhill Hotels & Resorts", 4.1,
-        Image.asset('lib/config/images/WalkerhillHotelsResorts.png')),
+        'lib/config/images/WalkerhillHotelsResorts.png'),
     Place("Naejangsan National Park", 4.8,
-        Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+       'lib/config/images/NaejangsanNationalPark.png'),
     Place("Walkerhill Hotels & Resorts", 4.1,
-        Image.asset('lib/config/images/WalkerhillHotelsResorts.png')),
+        'lib/config/images/WalkerhillHotelsResorts.png'),
     Place("Naejangsan National Park", 4.8,
-        Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+        'lib/config/images/NaejangsanNationalPark.png'),
   ];
 
   @override

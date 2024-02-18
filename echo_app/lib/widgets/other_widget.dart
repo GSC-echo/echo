@@ -503,7 +503,7 @@ Widget CourseDetailWidget(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16.0),
                           color: Colors.blueGrey),
-                      child: array[index].image),
+                      child: Image.asset(array[index].image)),
                   Container(
                       height: 85.h,
                       width: 125.w,
@@ -822,7 +822,7 @@ Widget PlacesbyContentWidget({
             ),
             child: FittedBox(
               fit: BoxFit.cover,
-              child: place.image,
+              child: Image.asset(place.image),
             ),
           ),
           Container(

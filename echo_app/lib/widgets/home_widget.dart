@@ -88,7 +88,7 @@ Widget RealTimePlace({required BuildContext context, required Place place}) {
             borderRadius: BorderRadius.circular(25),
             child: FittedBox(
               fit: BoxFit.fill,
-              child: place.image,
+              child: Image.asset(place.image),
             ),
           ),
         ),
