@@ -134,18 +134,6 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     getUserPoints();
-    // getSitesList().then((_) {
-    //   @override
-    //   void initState() {
-    //     super.initState();
-    //     getUserPoints();
-    //     getSitesList().then((_) {
-    //       fs.sitesList.forEach((site) {
-    //         print(site);
-    //       });
-    //     });
-    //   }
-    // });
   }
 
   Future<void> getUserPoints() async {
@@ -161,25 +149,6 @@ class _HomeState extends State<Home> {
     }
   }
 
-  Future<void> getSitesList() async {
-    if (fs.sitesList.isNotEmpty) return; // 이미 값이 채워져 있으면 함수를 종료
-
-    QuerySnapshot querySnapshot =
-        await FirebaseFirestore.instance.collection('Site').get();
-    List<DocumentSnapshot> sites = querySnapshot.docs;
-    List<List<dynamic>> tempSitesList = [];
-    for (var site in sites) {
-      List<dynamic> data = [];
-      Map<String, dynamic> siteData = site.data() as Map<String, dynamic>;
-      siteData.forEach((key, value) {
-        data.add(value);
-      });
-      tempSitesList.add(data);
-    }
-    setState(() {
-      fs.sitesList = tempSitesList;
-    });
-  }
 
   Map<String, dynamic> getUserStage(int p) {
     if (p < 50) {

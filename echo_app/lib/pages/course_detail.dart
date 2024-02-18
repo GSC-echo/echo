@@ -13,29 +13,31 @@ class CourseDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+       appBar: AppBar(
+          backgroundColor: BackgroundColor.mainGreen,
+          centerTitle: true,
+          title: Text("Course Detail", textAlign: TextAlign.center,
+          style: TextStyle(
+            fontFamily: 'NotoSansKR',
+            fontSize: 20,
+            fontWeight: FontWeight.w700,),
+          ),
+        ),
       body: Container(
-        margin: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(100.sp),
-          color: Color(0xFF5DCA75).withOpacity(0.83),
+          color: Color(0xFF5DCA75),
         ),
         child: Column(children: [
           Container(
-              margin: EdgeInsets.only(left: 30.w, right: 30.w, top: 30.h),
               // height: 300.h,
               // width: 200.w,
               height: MediaQuery.of(context).size.height * 0.45,
-              decoration: BoxDecoration(
-                color: BackgroundColor.background1,
-                borderRadius: BorderRadius.circular(30.0),
-              ),
               child: Column(
                 children: [
                   Container(
                       margin:
-                          EdgeInsets.only(top: 10.h, left: 15.w, right: 200.w),
-                      alignment: Alignment.bottomLeft,
+                          EdgeInsets.symmetric(horizontal: 80.sp),
+                      alignment: Alignment.center,
                       padding: EdgeInsets.all(5.sp),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
@@ -49,23 +51,20 @@ class CourseDetail extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(array.length.toString(),
-                                style: TextStyles.h3.copyWith(fontSize: 17.sp)),
+                                style: TextStyles.h3.copyWith(fontSize: 15.sp)),
                             SizedBox(width: 5.w),
                             Text(
                               "places",
-                              style: TextStyles.h1.copyWith(fontSize: 17.sp),
+                              style: TextStyles.h1.copyWith(fontSize: 15.sp),
                             )
                           ])),
+                          SizedBox(height: 10.h,),
                   Container(
-                      height: MediaQuery.of(context).size.height * 0.35,
-                      margin: EdgeInsets.all(10.sp),
+                    margin: EdgeInsets.symmetric(horizontal: 30.w, vertical: 13.h),
+                    height: 300.h,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20.sp),
                         color: Colors.white,
-                        border: Border.all(
-                          color: Color(0xff5DCA75).withOpacity(0.65),
-                          width: 2.0,
-                        ),
                       ),
                       child: CourseDetailWidget(
                           buildcontext: context, array: array, isCustom: false))
@@ -73,7 +72,7 @@ class CourseDetail extends StatelessWidget {
               )),
           Container(
               margin: EdgeInsets.symmetric(horizontal: 30.w, vertical: 13.h),
-              height: MediaQuery.of(context).size.height * 0.25,
+              height: MediaQuery.of(context).size.height * 0.3,
               decoration: BoxDecoration(
                 color: BackgroundColor.background1,
                 borderRadius: BorderRadius.circular(30.0),
@@ -91,7 +90,7 @@ class CourseDetail extends StatelessWidget {
                           SizedBox(
                             width: 20.w,
                           ),
-                          Icon(Icons.reviews),
+                          Icon(Icons.reviews,size: 17,),
                           SizedBox(
                             width: 5.w,
                           ),
@@ -115,20 +114,14 @@ class CourseDetail extends StatelessWidget {
                                       fontSize: 12.sp))),
                           SizedBox(width: 20.w)
                         ],
-                      )
+                      ),
+                      
                     ],
                   ),
                   Container(
-                      height: MediaQuery.of(context).size.height * 0.18,
+                      height: MediaQuery.of(context).size.height * 0.22,
                       margin: EdgeInsets.all(10.sp),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20.sp),
-                        color: Colors.white,
-                        border: Border.all(
-                          color: Color(0xff5DCA75).withOpacity(0.65),
-                          width: 2.0,
-                        ),
-                      ),
+                    
                       child: ReviewShortWidget(array: review_list))
                 ],
               )), //review
@@ -145,7 +138,7 @@ class CourseDetail extends StatelessWidget {
                   ),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0), // 원하는 모양으로 설정
+                      borderRadius: BorderRadius.circular(15.0), 
                     ),
                   ),
                 ),

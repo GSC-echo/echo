@@ -363,7 +363,7 @@ Widget AboutStageWidget(
         child: index == stageList.length - 1
             ? Container()
             : Divider(
-                color: Color(0xff5DCA75).withOpacity(0.65),
+                color: TextStyles.echoNavy,
                 thickness: 2.0,
               ),
       ),
