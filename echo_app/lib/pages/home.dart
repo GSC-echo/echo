@@ -81,31 +81,14 @@ class Place {
 }
 
 List<Place> course1 = [
-  Place(
-    name: "Naejangsan National Park",
-    star: 4.8,
-    image: 'lib/config/images/course/NaejangsanNationalPark.png',
-  ),
-  Place(
-    name: "Walkerhill Hotels & Resorts",
-    star: 4.1,
-    image: 'lib/config/images/course/WalkerhillHotelsResorts.png',
-  ),
-  Place(
-    name: "Naejangsan National Park",
-    star: 4.8,
-    image: 'lib/config/images/course/NaejangsanNationalPark.png',
-  ),
-  Place(
-    name: "Walkerhill Hotels & Resorts",
-    star: 4.1,
-    image: 'lib/config/images/course/WalkerhillHotelsResorts.png',
-  ),
-  Place(
-    name: "Naejangsan National Park",
-    star: 4.8,
-    image: 'lib/config/images/course/NaejangsanNationalPark.png',
-  ),
+  Place("Naejangsan National Park", 4.8,
+      'lib/config/images/course/NaejangsanNationalPark.png'),
+  Place("Amisan Observatory", 4.8,
+      'lib/config/images/course/AmisanObservatory.png'),
+  Place("Walkerhill Hotels & Resorts", 4.1,
+      'lib/config/images/course/WalkerhillHotelsResorts.png'),
+  Place("DunjuPeak Hanbando", 4.1,
+      'lib/config/images/course/DunjuPeakHanbando.png'),
 ];
 
 List<List<Place>> courses_array = [];
@@ -161,6 +144,7 @@ void initializePlaces(){
     }
   });
 }
+
 
 
 class _HomeState extends State<Home> {
@@ -527,7 +511,7 @@ class _HomeState extends State<Home> {
                     ),
                     Padding(
                         padding: EdgeInsets.only(
-                            left: 10.w, top: 15.h, right: 15.w, bottom: 22.h),
+                            left: 10.w, top: 15.h, right: 10.w, bottom: 22.h),
                         child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(25),

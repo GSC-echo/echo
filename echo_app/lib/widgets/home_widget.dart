@@ -13,7 +13,7 @@ class RealTimePlacesContent extends StatefulWidget {
   final String content;
   final bool isSelected;
   final VoidCallback onTap;
-  
+
   RealTimePlacesContent({
     required this.content,
     required this.isSelected,
@@ -25,7 +25,6 @@ class RealTimePlacesContent extends StatefulWidget {
 
 class _RealTimePlacesContentState extends State<RealTimePlacesContent> {
   @override
-
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
@@ -393,6 +392,7 @@ class _GettingPointsState extends State<GettingPoints> {
   @override
   Widget build(BuildContext context) {
     return ListView(
+      padding: EdgeInsets.symmetric(vertical: 10.h),
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
       children: List.generate(widget.array.length, (index) {
@@ -401,9 +401,12 @@ class _GettingPointsState extends State<GettingPoints> {
           padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 8.h),
           child: Container(
             decoration: BoxDecoration(
+              border: Border.all(
+                  color: BackgroundColor.mainGreen.withOpacity(0.85),
+                  width: 2.0),
               color: isChecked
                   ? TextStyles.echoNavy.withOpacity(0.2)
-                  : BackgroundColor.mainGreen.withOpacity(0.85),
+                  : Colors.white,
               borderRadius: BorderRadius.circular(15.sp),
               boxShadow: [
                 BoxShadow(
@@ -429,7 +432,7 @@ class _GettingPointsState extends State<GettingPoints> {
                             textAlign: TextAlign.center,
                             style: TextStyles.h1.copyWith(
                               fontSize: 10.sp,
-                              color: Color(0xFF176B87).withOpacity(0.77),
+                              color: Colors.black.withOpacity(0.77),
                             ),
                           ),
                           Text(
@@ -437,7 +440,7 @@ class _GettingPointsState extends State<GettingPoints> {
                             textAlign: TextAlign.center,
                             style: TextStyles.h1.copyWith(
                               fontSize: 10.sp,
-                              color: Color(0xFF176B87).withOpacity(0.77),
+                              color: Colors.black.withOpacity(0.77),
                             ),
                           ),
                         ],
