@@ -18,7 +18,7 @@ class CustomCourse extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("CUustomization", style: TextStyles.h1),
+        title: Text("Customization", style: TextStyles.h1),
         centerTitle: true,
       ),
       body: Column(children: [

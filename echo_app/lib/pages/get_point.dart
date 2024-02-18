@@ -36,7 +36,7 @@ class _GetPointState extends State<GetPoint> {
     Place("Walkerhill Hotels & Resorts", 4.1,
         'lib/config/images/WalkerhillHotelsResorts.png'),
     Place("Naejangsan National Park", 4.8,
-       'lib/config/images/NaejangsanNationalPark.png'),
+        'lib/config/images/NaejangsanNationalPark.png'),
     Place("Walkerhill Hotels & Resorts", 4.1,
         'lib/config/images/WalkerhillHotelsResorts.png'),
     Place("Naejangsan National Park", 4.8,
@@ -116,167 +116,168 @@ class _GetPointState extends State<GetPoint> {
                           ),
                         ),
                         IconButton(
-                            onPressed: () {
-                              showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                      backgroundColor:
-                                          TextStyles.echoNavy.withOpacity(0.8),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10.sp)),
-                                      contentPadding: EdgeInsets.zero,
-                                      content: Container(
-                                        width: 360.w,
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.45,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(20.sp),
-                                        ),
-                                        child: Center(
-                                          child: Column(children: [
-                                            SizedBox(height: 30.h),
-                                            Text("About Missons & Points",
-                                                textAlign: TextAlign.center,
-                                                style: TextStyles.white1
-                                                    .copyWith(fontSize: 20.sp)),
-                                            Container(
-                                                margin: EdgeInsets.symmetric(
-                                                    horizontal: 17,
-                                                    vertical: 20),
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          15.sp),
-                                                ),
-                                                child: Column(
-                                                  children: [
-                                                    Container(
-                                                      padding: EdgeInsets.only(
-                                                          left: 20.w,
-                                                          top: 20.h,
-                                                          right: 40.w),
-                                                      child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            Padding(
-                                                                padding: EdgeInsets
-                                                                    .only(
-                                                                        left: 5
-                                                                            .w),
-                                                                child: Text(
-                                                                  "Each point acquisition can only be\nearned once per travel.",
-                                                                  style: TextStyles
-                                                                      .white1
-                                                                      .copyWith(
-                                                                          fontSize:
-                                                                              12.sp),
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                )),
-                                                          ]),
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                    backgroundColor:
+                                        TextStyles.echoNavy.withOpacity(0.8),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10.sp)),
+                                    contentPadding: EdgeInsets.zero,
+                                    content: Container(
+                                      width: 360.w,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.45,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(20.sp),
+                                      ),
+                                      child: Center(
+                                        child: Column(children: [
+                                          SizedBox(height: 30.h),
+                                          Text("About Missons & Points",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyles.white1
+                                                  .copyWith(fontSize: 20.sp)),
+                                          Container(
+                                              margin: EdgeInsets.symmetric(
+                                                  horizontal: 17, vertical: 20),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        15.sp),
+                                              ),
+                                              child: Column(
+                                                children: [
+                                                  Container(
+                                                    padding: EdgeInsets.only(
+                                                        left: 20.w,
+                                                        top: 20.h,
+                                                        right: 40.w),
+                                                    child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Padding(
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                      left:
+                                                                          5.w),
+                                                              child: Text(
+                                                                "Each point acquisition can only be\nearned once per travel.",
+                                                                style: TextStyles
+                                                                    .white1
+                                                                    .copyWith(
+                                                                        fontSize:
+                                                                            12.sp),
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                              )),
+                                                        ]),
+                                                  ),
+                                                  Container(
+                                                    padding: EdgeInsets.only(
+                                                        left: 20.w,
+                                                        top: 27.h,
+                                                        right: 20.w),
+                                                    child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Padding(
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                      left:
+                                                                          5.w),
+                                                              child: Text(
+                                                                "Points can only be earned up to \n10 points throughout the travel period.",
+                                                                style: TextStyles
+                                                                    .white1
+                                                                    .copyWith(
+                                                                        fontSize:
+                                                                            12.sp),
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                              ))
+                                                        ]),
+                                                  ),
+                                                  Container(
+                                                    padding: EdgeInsets.only(
+                                                      left: 20.w,
+                                                      top: 27.h,
+                                                      right: 20.w,
                                                     ),
-                                                    Container(
-                                                      padding: EdgeInsets.only(
-                                                          left: 20.w,
-                                                          top: 27.h,
-                                                          right: 20.w),
-                                                      child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            Padding(
-                                                                padding: EdgeInsets
-                                                                    .only(
-                                                                        left: 5
-                                                                            .w),
-                                                                child: Text(
-                                                                  "Points can only be earned up to \n10 points throughout the travel period.",
-                                                                  style: TextStyles
-                                                                      .white1
-                                                                      .copyWith(
-                                                                          fontSize:
-                                                                              12.sp),
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                ))
-                                                          ]),
-                                                    ),
-                                                    Container(
-                                                      padding: EdgeInsets.only(
+                                                    child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Padding(
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                      left:
+                                                                          5.w),
+                                                              child: Text(
+                                                                "All items must go through the\nauthentication process\nin order to obtain points.",
+                                                                style: TextStyles
+                                                                    .white1
+                                                                    .copyWith(
+                                                                        fontSize:
+                                                                            12.sp),
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                              ))
+                                                        ]),
+                                                  ),
+                                                  Container(
+                                                    padding: EdgeInsets.only(
                                                         left: 20.w,
                                                         top: 27.h,
                                                         right: 20.w,
-                                                      ),
-                                                      child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            Padding(
-                                                                padding: EdgeInsets
-                                                                    .only(
-                                                                        left: 5
-                                                                            .w),
-                                                                child: Text(
-                                                                  "All items must go through the\nauthentication process\nin order to obtain points.",
-                                                                  style: TextStyles
-                                                                      .white1
-                                                                      .copyWith(
-                                                                          fontSize:
-                                                                              12.sp),
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                ))
-                                                          ]),
-                                                    ),
-                                                    Container(
-                                                      padding: EdgeInsets.only(
-                                                          left: 20.w,
-                                                          top: 27.h,
-                                                          right: 20.w,
-                                                          bottom: 29.h),
-                                                      child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            Padding(
-                                                                padding: EdgeInsets
-                                                                    .only(
-                                                                        left: 5
-                                                                            .w),
-                                                                child: Text(
-                                                                  "Points collected during the travel\nperiod will be added after the it ends.",
-                                                                  style: TextStyles
-                                                                      .white1
-                                                                      .copyWith(
-                                                                          fontSize:
-                                                                              12.sp),
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                ))
-                                                          ]),
-                                                    ),
-                                                  ],
-                                                )),
-                                          ]),
-                                        ),
-                                      ));
-                                },
-                              );
-                            },
-                            icon: Icon(Icons.info_outlined),color: BackgroundColor.background1,),
+                                                        bottom: 29.h),
+                                                    child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Padding(
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                      left:
+                                                                          5.w),
+                                                              child: Text(
+                                                                "Points collected during the travel\nperiod will be added after the it ends.",
+                                                                style: TextStyles
+                                                                    .white1
+                                                                    .copyWith(
+                                                                        fontSize:
+                                                                            12.sp),
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                              ))
+                                                        ]),
+                                                  ),
+                                                ],
+                                              )),
+                                        ]),
+                                      ),
+                                    ));
+                              },
+                            );
+                          },
+                          icon: Icon(Icons.info_outlined),
+                          color: BackgroundColor.background1,
+                        ),
                       ],
                     ),
                   ),
