@@ -22,7 +22,7 @@ class _SettingsState extends State<Settings> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: BackgroundColor.mainGreen,
+        backgroundColor: TextStyles.echoNavy.withOpacity(0.95),
         centerTitle: true,
         title: const Text(
           'Settings',
@@ -31,13 +31,15 @@ class _SettingsState extends State<Settings> {
             fontFamily: 'NotoSansKR',
             fontSize: 22,
             fontWeight: FontWeight.w700,
+            color: BackgroundColor.background1,
           ),
         ),
+        iconTheme: IconThemeData(color: BackgroundColor.background1),
       ),
       body: SafeArea(
         child: Container(
           decoration: BoxDecoration(
-            color: BackgroundColor.mainGreen,
+            color: TextStyles.echoNavy.withOpacity(0.95),
           ),
           child: Column(
             children: [
@@ -53,59 +55,316 @@ class _SettingsState extends State<Settings> {
                     child: Column(
                       children: [
                         Container(
-                          width: 300,
-                          height: 75,
-                          child: InkWell(
-                            onTap: () {
-                              print("signout");
-                              FireStorePage.deleteCurrentUser(context);
-                            },
-                            child: Card(
-                              color: Colors.white,
-                              margin: const EdgeInsets.fromLTRB(30, 30, 30, 0),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(35),
-                              ),
-                              elevation: 3,
-                              child: Center(
-                                child: Text(
-                                  "Sign out",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Color(0xFF0F1A20),
-                                    fontFamily: 'NotoSansKR',
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 22,
+                          margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                          child: SizedBox(
+                            width: 200,
+                            height: 45,
+                            child: InkWell(
+                              onTap: () {
+                                FireStorePage.deleteCurrentUser(context);
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: Colors.white,
+                                  border:
+                                      Border.all(color: Colors.white, width: 3),
+                                  boxShadow: [],
+                                ),
+                                child: Card(
+                                  elevation: 2,
+                                  margin: EdgeInsets.all(0),
+                                  color: Color.fromARGB(255, 29, 51, 61)
+                                      .withOpacity(0.95),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.outbox,
+                                        size: 25,
+                                        color: Colors.white,
+                                      ),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      const Text(
+                                        'Sign out',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: 'NotoSansKR',
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold),
+                                      )
+                                    ],
                                   ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-
                         Container(
-                          width: 300,
-                          height: 75,
-                          child: InkWell(
-                            onTap: () {
-                              signInWithGoogle(context);
-                            },
-                            child: Card(
-                              color: Colors.white,
-                              margin: const EdgeInsets.fromLTRB(30, 30, 30, 0),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(35),
+                          margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                          child: SizedBox(
+                            width: 200,
+                            height: 45,
+                            child: InkWell(
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                        backgroundColor: TextStyles.echoNavy,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10.sp)),
+                                        contentPadding: EdgeInsets.zero,
+                                        content: Container(
+                                          width: 360.w,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.45,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20.sp),
+                                          ),
+                                          child: Center(
+                                            child: Column(children: [
+                                              SizedBox(height: 30.h),
+                                              Text("Team Echo",
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyles.white1
+                                                      .copyWith(
+                                                          fontSize: 30.sp)),
+                                              Container(
+                                                  margin: EdgeInsets.symmetric(
+                                                      horizontal: 17,
+                                                      vertical: 20),
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15.sp),
+                                                  ),
+                                                  child: Column(
+                                                    children: [
+                                                      Container(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                left: 20.w,
+                                                                top: 20.h,
+                                                                right: 40.w),
+                                                        child: Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Padding(
+                                                                  padding: EdgeInsets
+                                                                      .only(
+                                                                          left:
+                                                                              5.w),
+                                                                  child: Text(
+                                                                    "scy0723123@gmail.com",
+                                                                    style: TextStyles
+                                                                        .white1
+                                                                        .copyWith(
+                                                                            fontSize:
+                                                                                15.sp),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                  )),
+                                                            ]),
+                                                      ),
+                                                      Container(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                left: 20.w,
+                                                                top: 27.h,
+                                                                right: 20.w),
+                                                        child: Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Padding(
+                                                                  padding: EdgeInsets
+                                                                      .only(
+                                                                          left:
+                                                                              5.w),
+                                                                  child: Text(
+                                                                    "jiwoomin991@gmail.com",
+                                                                    style: TextStyles
+                                                                        .white1
+                                                                        .copyWith(
+                                                                            fontSize:
+                                                                                15.sp),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                  ))
+                                                            ]),
+                                                      ),
+                                                      Container(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                          left: 20.w,
+                                                          top: 27.h,
+                                                          right: 20.w,
+                                                        ),
+                                                        child: Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Padding(
+                                                                  padding: EdgeInsets
+                                                                      .only(
+                                                                          left:
+                                                                              5.w),
+                                                                  child: Text(
+                                                                    "hyein8474@gmail.com",
+                                                                    style: TextStyles
+                                                                        .white1
+                                                                        .copyWith(
+                                                                            fontSize:
+                                                                                15.sp),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                  ))
+                                                            ]),
+                                                      ),
+                                                      Container(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                left: 20.w,
+                                                                top: 27.h,
+                                                                right: 20.w,
+                                                                bottom: 29.h),
+                                                        child: Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Padding(
+                                                                  padding: EdgeInsets
+                                                                      .only(
+                                                                          left:
+                                                                              5.w),
+                                                                  child: Text(
+                                                                    "seungwoo624@gmail.com",
+                                                                    style: TextStyles
+                                                                        .white1
+                                                                        .copyWith(
+                                                                            fontSize:
+                                                                                15.sp),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .center,
+                                                                  ))
+                                                            ]),
+                                                      ),
+                                                    ],
+                                                  )),
+                                            ]),
+                                          ),
+                                        ));
+                                  },
+                                );
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: Colors.white,
+                                  border:
+                                      Border.all(color: Colors.white, width: 3),
+                                  boxShadow: [],
+                                ),
+                                child: Card(
+                                  elevation: 2,
+                                  margin: EdgeInsets.all(0),
+                                  color: Color.fromARGB(255, 29, 51, 61)
+                                      .withOpacity(0.95),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.help,
+                                        size: 25,
+                                        color: Colors.white,
+                                      ),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      const Text(
+                                        'Help & Support',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: 'NotoSansKR',
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold),
+                                      )
+                                    ],
+                                  ),
+                                ),
                               ),
-                              elevation: 3,
-                              child: Center(
-                                child: Text(
-                                  "Help & Support",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Color(0xFF0F1A20),
-                                    fontFamily: 'NotoSansKR',
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 22,
+                            ),
+                          ),
+                        ),
+                                      SizedBox(height: 70.h,),
+                        Container(
+                          margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                          child: SizedBox(
+                            width: 150,
+                            height: 45,
+                            child: InkWell(
+                              onTap: () async {
+                                GoogleSignIn().signOut();
+                                FirebaseAuth.instance.signOut();
+                                Navigator.of(context as BuildContext)
+                                    .pushReplacement(MaterialPageRoute(
+                                  builder: (context) => const Login(),
+                                ));
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: Colors.white,
+                                  border:
+                                      Border.all(color: Colors.white, width: 3),
+                                  boxShadow: [],
+                                ),
+                                child: Card(
+                                  elevation: 2,
+                                  margin: EdgeInsets.all(0),
+                                  color: Colors.redAccent.withOpacity(0.8),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.logout,
+                                        size: 25,
+                                        color: Colors.white,
+                                      ),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      const Text(
+                                        'Log out',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: 'NotoSansKR',
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold),
+                                      )
+                                    ],
                                   ),
                                 ),
                               ),
@@ -120,45 +379,6 @@ class _SettingsState extends State<Settings> {
               SizedBox(
                 height: 20.h,
               ),
-              Container(
-                  width: 200,
-                  height: 75,
-                  child: InkWell(
-                      onTap: () async {
-                        GoogleSignIn().signOut();
-                        FirebaseAuth.instance.signOut();
-                        Navigator.of(context as BuildContext)
-                            .pushReplacement(MaterialPageRoute(
-                          builder: (context) => const Login(),
-                        ));
-                      },
-                      child: Card(
-                        color: Color(0xFF0F6AE2D),
-                        margin: const EdgeInsets.fromLTRB(30, 30, 30, 0),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(35),
-                          //side: BorderSide(color: const Color.fromARGB(255, 237, 104, 94), width:3)
-                        ),
-                        elevation: 3,
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.logout,
-                                size: 20,
-                                color: Colors.black,
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              const Text("Log out",
-                                  style: TextStyle(
-                                      color: Color(0xFF0F1A20),
-                                      fontFamily: 'Not oSansKR',
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18))
-                            ]),
-                      ))),
             ],
           ),
         ),
