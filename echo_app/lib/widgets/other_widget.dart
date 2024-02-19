@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:echo_app/config/colors.dart';
 import 'package:echo_app/pages/course_detail.dart';
 import 'package:echo_app/pages/custom_course.dart';
@@ -131,7 +133,6 @@ class _SearchWidgetState extends State<SearchWidget> {
                         ),
                       ),
                       Expanded(
-                        // 이 부분에 Stack으로 구글맵 넣기 -> 구글맵 위에 이 Expanded(장소 리스트)가 나오도록
                         child: searchText.isEmpty
                             ? SizedBox.shrink()
                             : Stack(
@@ -939,6 +940,9 @@ class GoogleMapWidget extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<GoogleMapWidget> {
+  // 애플리케이션에서 지도를 이동하기 위한 컨트롤러
+  late GoogleMapController _controller;
+
   static final LatLng initialLatlng = LatLng(
     //위도와 경도 값 지정
     36.8,
@@ -950,6 +954,18 @@ class _HomeScreenState extends State<GoogleMapWidget> {
     target: initialLatlng, //카메라 위치(위도, 경도)
     zoom: 7.5, //확대 정도
   );
+
+  // 지도에 표시할 장소 마커 목록
+  final List<Marker> markers = [];
+
+  addMarker(cordinate) {
+    int id = Random().nextInt(100);
+
+    setState(() {
+      markers.add(Marker(position: cordinate, markerId: MarkerId(id.toString())));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -959,6 +975,17 @@ class _HomeScreenState extends State<GoogleMapWidget> {
         initialCameraPosition: initialPosition, //지도 초기 위치 설정
         zoomControlsEnabled: false,
         zoomGesturesEnabled: true,
+        onMapCreated: (controller) {
+          setState(() {
+            _controller = controller;
+          });
+        },
+        markers: markers.toSet(),
+        //클릭한 위치가 중앙에 표시되도록
+        onTap: (cordinate) {
+          _controller.animateCamera(CameraUpdate.newLatLng(cordinate));
+          addMarker(cordinate);
+        },
       ),
     );
   }
