@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:echo_app/config/colors.dart';
 import 'package:echo_app/pages/about_stage.dart';
@@ -56,24 +58,37 @@ List<Review> review_list = [
 ];
 
 class Place {
-  String name;
-  double star;
-  var image;
+  String? name;
+  double? star;
+  String? image;
+  String? category;
 
-  Place(this.name, this.star, this.image);
+  Place({this.name, this.star, this.image,this.category});
+
+  Place.fromJson(Map<String, Object?> json)
+      : name = json['name'] as String?,
+        star = double.tryParse(json['grade']?.toString() ?? ''),
+        image = json['image_link'] as String?,
+        category = json['category'] as String?;
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = {};
+    data['name'] = name;
+    data['grade'] = star;
+    data['image_link'] = image;
+    data['category'] = category;
+    return data;
+  }
 }
 
 List<Place> course1 = [
-  Place("Naejangsan National Park", 4.8,
-      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
-  Place("Walkerhill Hotels & Resorts", 4.1,
-      Image.asset('lib/config/images/WalkerhillHotelsResorts.png')),
-  Place("Naejangsan National Park", 4.8,
-      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
-  Place("Walkerhill Hotels & Resorts", 4.1,
-      Image.asset('lib/config/images/WalkerhillHotelsResorts.png')),
-  Place("Naejangsan National Park", 4.8,
-      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
+  // Place("Naejangsan National Park", 4.8,
+  //     'lib/config/images/course/NaejangsanNationalPark.png'),
+  // Place("Amisan Observatory", 4.8,
+  //     'lib/config/images/course/AmisanObservatory.png'),
+  // Place("Walkerhill Hotels & Resorts", 4.1,
+  //     'lib/config/images/course/WalkerhillHotelsResorts.png'),
+  // Place("DunjuPeak Hanbando", 4.1,
+  //     'lib/config/images/course/DunjuPeakHanbando.png'),
 ];
 
 List<List<Place>> courses_array = [];
@@ -82,47 +97,54 @@ void initializeCourses() {
   courses_array = [course1, course1, course1];
 }
 
-List<Place> all_list = [
-  Place("Naejangsan National Park", 4.8,
-      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
-  Place("Walkerhill Hotels & Resorts", 4.1,
-      Image.asset('lib/config/images/WalkerhillHotelsResorts.png')),
-  Place("Naejangsan National Park", 4.8,
-      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
-  Place("Walkerhill Hotels & Resorts", 4.1,
-      Image.asset('lib/config/images/WalkerhillHotelsResorts.png')),
-  Place("Naejangsan National Park", 4.8,
-      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
-];
+List<Place> all_list = [];
+List<Place> accomodations_list = [];
+List<Place> restaurants_list = [];
+List<Place> tourist_attractions_list = [];
 
-List<Place> accomodations_list = [
-  Place("Naejangsan National Park", 4.8,
-      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
-  Place("Naejangsan National Park", 4.8,
-      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
-  Place("Naejangsan National Park", 4.8,
-      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
-];
 
-List<Place> restaurants_list = [
-  Place("Walkerhill Hotels & Resorts", 4.1,
-      Image.asset('lib/config/images/WalkerhillHotelsResorts.png')),
-  Place("Walkerhill Hotels & Resorts", 4.1,
-      Image.asset('lib/config/images/WalkerhillHotelsResorts.png')),
-];
+void initializePlaces(){
+  final placeList = FirebaseFirestore.instance
+    .collection("Site")
+    .withConverter(
+        fromFirestore: (snapshot, _) => Place.fromJson(snapshot.data()!),
+        toFirestore: (place, _) => place.toJson());
+  
+  placeList.snapshots().listen((snapshot) {
+    all_list = snapshot.docs.map((doc) => doc.data()).toList();
+    all_list.forEach((place) {
+      print('Place: ${place.name}, Star: ${place.star}, Category: ${place.category}');
+      switch (place.category) {
+        case 'accomodation':
+          accomodations_list.add(place);
+          break;
+        case 'restaurant':
+          restaurants_list.add(place);
+          break;
+        case 'tourist_attraction':
+          tourist_attractions_list.add(place);
+          break;
+        default:
+          break;
+      }
+    });
 
-List<Place> tourist_attractions_list = [
-  Place("Naejangsan National Park", 4.8,
-      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
-  Place("Walkerhill Hotels & Resorts", 4.1,
-      Image.asset('lib/config/images/WalkerhillHotelsResorts.png')),
-  Place("Naejangsan National Park", 4.8,
-      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
-  Place("Walkerhill Hotels & Resorts", 4.1,
-      Image.asset('lib/config/images/WalkerhillHotelsResorts.png')),
-  Place("Naejangsan National Park", 4.8,
-      Image.asset('lib/config/images/NaejangsanNationalPark.png')),
-];
+    if (all_list.isNotEmpty) {
+      all_list.sort((a, b) => (b.star ?? 0).compareTo(a.star ?? 0));
+    }
+    if (accomodations_list.isNotEmpty) {
+      accomodations_list.sort((a, b) => (b.star ?? 0).compareTo(a.star ?? 0));
+    }
+    if (restaurants_list.isNotEmpty) {
+      restaurants_list.sort((a, b) => (b.star ?? 0).compareTo(a.star ?? 0));
+    }
+    if (tourist_attractions_list.isNotEmpty) {
+      tourist_attractions_list.sort((a, b) => (b.star ?? 0).compareTo(a.star ?? 0));
+    }
+  });
+}
+
+
 
 class _HomeState extends State<Home> {
   CollectionReference usersdb = FirebaseFirestore.instance.collection('User');
@@ -131,6 +153,8 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
+    initializePlaces();
+    initializeCourses();
     getUserPoints();
   }
 
@@ -184,7 +208,6 @@ class _HomeState extends State<Home> {
   }
 
   Widget build(BuildContext context) {
-    initializeCourses();
     return Scaffold(
         // appBar: AppBar(
         //   backgroundColor: Colors.white,
@@ -452,7 +475,7 @@ class _HomeState extends State<Home> {
                                       ? restaurants_list
                                       : tourist_attractions_list))
                             Padding(
-                              padding: EdgeInsets.only(right: 10.w), // 간격 조절
+                              padding: EdgeInsets.only(right: 10.w),
                               child:
                                   RealTimePlace(context: context, place: place),
                             ),
@@ -487,7 +510,7 @@ class _HomeState extends State<Home> {
                     ),
                     Padding(
                         padding: EdgeInsets.only(
-                            left: 10.w, top: 15.h, right: 15.w, bottom: 22.h),
+                            left: 10.w, top: 15.h, right: 10.w, bottom: 22.h),
                         child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(25),

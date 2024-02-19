@@ -10,12 +10,19 @@ class AboutStage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: BackgroundColor.mainGreen,
-          title: Text("Tiers", style: TextStyles.h1),
+          backgroundColor: TextStyles.echoNavy,
+          title: Text("Tiers", style: TextStyles.white1),
           centerTitle: true,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            color: Colors.white, 
+          ),
         ),
         body: Container(
-            decoration: BoxDecoration(color: BackgroundColor.mainGreen),
+            decoration: BoxDecoration(color: TextStyles.echoNavy),
             padding: EdgeInsets.zero,
             child: Padding(
                 padding: EdgeInsets.only(
@@ -23,11 +30,7 @@ class AboutStage extends StatelessWidget {
                 child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
-                      color: Colors.white,
-                      border: Border.all(
-                        color: Color(0xff5DCA75).withOpacity(0.65),
-                        width: 2.0,
-                      ),
+                      color: BackgroundColor.background1,
                     ),
                     child: AboutStageWidget(imageUrlList: [
                       'lib/config/images/sprout.png',

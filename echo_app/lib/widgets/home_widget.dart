@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:echo_app/pages/place_detail.dart';
+import 'package:echo_app/firestore.dart' as fs;
 
 import '../config/colors.dart';
 
@@ -86,7 +87,7 @@ Widget RealTimePlace({required BuildContext context, required Place place}) {
             borderRadius: BorderRadius.circular(25),
             child: FittedBox(
               fit: BoxFit.fill,
-              child: place.image,
+              child: Image.asset(place.image??''),
             ),
           ),
         ),
@@ -102,12 +103,12 @@ Widget RealTimePlace({required BuildContext context, required Place place}) {
                   bottomLeft: Radius.circular(25),
                   bottomRight: Radius.circular(25),
                 ),
-                color: TextStyles.echoNavy),
+                color: TextStyles.echoNavy.withOpacity(0.7)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  place.name,
+                  place.name??' ',
                   textAlign: TextAlign.center,
                   style: TextStyles.white1.copyWith(fontSize: 10.sp),
                 ),
@@ -159,17 +160,18 @@ Widget RealTimeCourse(
                               child: isinMap
                                   ? GestureDetector(
                                       onTap: () {
-                                        print("mark " + place.name + " on Map");
+                                        print("mark ${place.name ?? ' '} on Map");
+
                                       },
                                       child: Text(
-                                        place.name,
+                                        place.name??' ',
                                         textAlign: TextAlign.center,
                                         style: TextStyles.h1
                                             .copyWith(fontSize: 10.sp),
                                       ),
                                     )
                                   : Text(
-                                      place.name,
+                                      place.name?? ' ',
                                       textAlign: TextAlign.center,
                                       style: TextStyles.h1
                                           .copyWith(fontSize: 10.sp),
@@ -261,7 +263,7 @@ Widget RealTimeCourse(
                                 height: 40.h,
                                 child: Center(
                                   child: Text(
-                                    place.name,
+                                    place.name??'',
                                     textAlign: TextAlign.center,
                                     style:
                                         TextStyles.h1.copyWith(fontSize: 10.sp),
@@ -361,7 +363,7 @@ Widget AboutStageWidget(
         child: index == stageList.length - 1
             ? Container()
             : Divider(
-                color: Color(0xff5DCA75).withOpacity(0.65),
+                color: TextStyles.echoNavy,
                 thickness: 2.0,
               ),
       ),
@@ -390,6 +392,7 @@ class _GettingPointsState extends State<GettingPoints> {
   @override
   Widget build(BuildContext context) {
     return ListView(
+      padding: EdgeInsets.symmetric(vertical: 10.h),
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
       children: List.generate(widget.array.length, (index) {
@@ -398,9 +401,12 @@ class _GettingPointsState extends State<GettingPoints> {
           padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 8.h),
           child: Container(
             decoration: BoxDecoration(
+              border: Border.all(
+                  color: BackgroundColor.mainGreen.withOpacity(0.85),
+                  width: 2.0),
               color: isChecked
-                  ? Color(0x000000).withOpacity(0.2)
-                  : Color(0xff5DCA75).withOpacity(0.65),
+                  ? TextStyles.echoNavy.withOpacity(0.2)
+                  : Colors.white,
               borderRadius: BorderRadius.circular(15.sp),
               boxShadow: [
                 BoxShadow(
@@ -426,7 +432,7 @@ class _GettingPointsState extends State<GettingPoints> {
                             textAlign: TextAlign.center,
                             style: TextStyles.h1.copyWith(
                               fontSize: 10.sp,
-                              color: Color(0xFF176B87).withOpacity(0.77),
+                              color: Colors.black.withOpacity(0.77),
                             ),
                           ),
                           Text(
@@ -434,7 +440,7 @@ class _GettingPointsState extends State<GettingPoints> {
                             textAlign: TextAlign.center,
                             style: TextStyles.h1.copyWith(
                               fontSize: 10.sp,
-                              color: Color(0xFF176B87).withOpacity(0.77),
+                              color: Colors.black.withOpacity(0.77),
                             ),
                           ),
                         ],
