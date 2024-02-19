@@ -58,12 +58,13 @@ List<Review> review_list = [
 ];
 
 class Place {
+  String? id;
   String? name;
   double? star;
   String? image;
   String? category;
 
-  Place({this.name, this.star, this.image,this.category});
+  Place({this.id,this.name, this.star, this.image,this.category});
 
   Place.fromJson(Map<String, Object?> json)
       : name = json['name'] as String?,
@@ -90,30 +91,29 @@ List<Place> course1 = [
   // Place("DunjuPeak Hanbando", 4.1,
   //     'lib/config/images/course/DunjuPeakHanbando.png'),
 ];
-
-List<List<Place>> courses_array = [];
-
-Future<void> initializeCourses()async {
-  courses_array = [course1, course1, course1];
-}
-
 List<Place> all_list = [];
 List<Place> accomodations_list = [];
 List<Place> restaurants_list = [];
 List<Place> tourist_attractions_list = [];
 
+Future<void> initializePlaces() async {
+  final placeList = FirebaseFirestore.instance.collection("Site");
 
-Future<void> initializePlaces()async{
-  final placeList = FirebaseFirestore.instance
-    .collection("Site")
-    .withConverter(
-        fromFirestore: (snapshot, _) => Place.fromJson(snapshot.data()!),
-        toFirestore: (place, _) => place.toJson());
-  
   placeList.snapshots().listen((snapshot) {
-    all_list = snapshot.docs.map((doc) => doc.data()).toList();
+    all_list = snapshot.docs.map((doc) {
+      Map<String, dynamic> data = doc.data()!;
+      return Place(
+        id: doc.id,
+        name: data['name'] as String?,
+        star: double.tryParse(data['grade']?.toString() ?? ''),
+        image: data['image_link'] as String?,
+        category: data['category'] as String?,
+      );
+    }).toList();
+
     all_list.forEach((place) {
-      print('Place: ${place.name}, Star: ${place.star}, Category: ${place.category}');
+      String placeId = place.id!;
+      print('Place ID: $placeId, Name: ${place.name}, Star: ${place.star}, Category: ${place.category}');
       switch (place.category) {
         case 'accomodation':
           accomodations_list.add(place);
@@ -144,6 +144,54 @@ Future<void> initializePlaces()async{
   });
 }
 
+class Course {
+  bool? customed;
+  //List<Review>? review; //바꿔야됨
+  List<Place>? places;
+
+  Course({this.customed, this.places});
+
+  Course.fromJson(Map<String, Object?> json)
+      ://review = json['review'] as List<Review>?, 
+      customed = json['customed'] as bool?;
+        
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = {};
+    data['customed'] = customed;
+    //data['review'] = review;
+    return data;
+  }
+}
+
+List<List<Place>> courses_array =[];
+List<Course> course_list = [];
+Future<void> initializeCourses() async {
+  final courseList = FirebaseFirestore.instance.collection("Course");
+
+  courseList.snapshots().listen((snapshot) {
+    course_list = snapshot.docs.map((doc) {
+      Map<String, dynamic> data = doc.data()!;
+      List<String> sidList = List<String>.from(data['sid_list'] ?? []);
+      List<Place> places = [];
+
+      sidList.forEach((sid) {
+        Place? place = all_list.firstWhere((place) => place.id == sid);
+        if (place != null) {
+          places.add(place);
+        }
+      });
+
+      return Course(
+        customed: data['customed'] as bool?,
+        places: places,
+      );
+    }).toList();
+    course_list.forEach((course) {
+      courses_array.add(course.places ?? []);
+      print('Customed: ${course.customed}, Places: ${course.places?.map((place) => place.name).join(',')}');
+    });
+  });
+}
 
 
 class _HomeState extends State<Home> {
