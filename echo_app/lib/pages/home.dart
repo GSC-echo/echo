@@ -93,7 +93,7 @@ List<Place> course1 = [
 
 List<List<Place>> courses_array = [];
 
-void initializeCourses() {
+Future<void> initializeCourses()async {
   courses_array = [course1, course1, course1];
 }
 
@@ -103,7 +103,7 @@ List<Place> restaurants_list = [];
 List<Place> tourist_attractions_list = [];
 
 
-void initializePlaces(){
+Future<void> initializePlaces()async{
   final placeList = FirebaseFirestore.instance
     .collection("Site")
     .withConverter(
@@ -149,13 +149,29 @@ void initializePlaces(){
 class _HomeState extends State<Home> {
   CollectionReference usersdb = FirebaseFirestore.instance.collection('User');
   String selectedContent = "All";
+  bool isLoading = true;
 
   @override
-  void initState() {
+void initState() {
     super.initState();
-    initializePlaces();
-    initializeCourses();
-    getUserPoints();
+    initializeData();
+  }
+
+  Future<void> initializeData() async {
+    try {
+      await initializePlaces();
+      await initializeCourses();
+      await getUserPoints();
+      setState(() {
+        isLoading = false;
+      });
+    } catch (e) {
+      print('Error initializing data: $e');
+      setState(() {
+        isLoading = false;
+      });
+
+    }
   }
 
   Future<void> getUserPoints() async {
