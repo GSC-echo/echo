@@ -92,9 +92,9 @@ class _PlaceDetailState extends State<PlaceDetail> {
                       ),
                     ),
                     SizedBox(height: 15.h),
-                    Text("Address",
+                    Text(widget.place.address??' ',
                         textAlign: TextAlign.center,
-                        style: TextStyles.h1.copyWith(fontSize: 7.sp))
+                        style: TextStyles.h1.copyWith(fontSize: 10.sp))
                   ])),
             ])));
   }
