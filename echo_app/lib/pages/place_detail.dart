@@ -90,6 +90,10 @@ class _PlaceDetailState extends State<PlaceDetail> {
                         color: TextStyles.echoYellow,
                         borderRadius: BorderRadius.circular(30.0),
                       ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(35.sp),
+                        child: GoogleMapWidget(),
+                      ),
                     ),
                     SizedBox(height: 15.h),
                     Text("Address",
