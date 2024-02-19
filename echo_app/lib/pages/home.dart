@@ -64,7 +64,7 @@ class Place {
   String? image;
   String? category;
 
-  Place({this.id,this.name, this.star, this.image,this.category});
+  Place({this.id, this.name, this.star, this.image, this.category});
 
   Place.fromJson(Map<String, Object?> json)
       : name = json['name'] as String?,
@@ -113,7 +113,8 @@ Future<void> initializePlaces() async {
 
     all_list.forEach((place) {
       String placeId = place.id!;
-      print('Place ID: $placeId, Name: ${place.name}, Star: ${place.star}, Category: ${place.category}');
+      print(
+          'Place ID: $placeId, Name: ${place.name}, Star: ${place.star}, Category: ${place.category}');
       switch (place.category) {
         case 'accomodation':
           accomodations_list.add(place);
@@ -139,7 +140,8 @@ Future<void> initializePlaces() async {
       restaurants_list.sort((a, b) => (b.star ?? 0).compareTo(a.star ?? 0));
     }
     if (tourist_attractions_list.isNotEmpty) {
-      tourist_attractions_list.sort((a, b) => (b.star ?? 0).compareTo(a.star ?? 0));
+      tourist_attractions_list
+          .sort((a, b) => (b.star ?? 0).compareTo(a.star ?? 0));
     }
   });
 }
@@ -152,9 +154,9 @@ class Course {
   Course({this.customed, this.places});
 
   Course.fromJson(Map<String, Object?> json)
-      ://review = json['review'] as List<Review>?, 
-      customed = json['customed'] as bool?;
-        
+      : //review = json['review'] as List<Review>?,
+        customed = json['customed'] as bool?;
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {};
     data['customed'] = customed;
@@ -163,7 +165,7 @@ class Course {
   }
 }
 
-List<List<Place>> courses_array =[];
+List<List<Place>> courses_array = [];
 List<Course> course_list = [];
 Future<void> initializeCourses() async {
   final courseList = FirebaseFirestore.instance.collection("Course");
@@ -186,13 +188,15 @@ Future<void> initializeCourses() async {
         places: places,
       );
     }).toList();
-    course_list.forEach((course) {
-      courses_array.add(course.places ?? []);
-      print('Customed: ${course.customed}, Places: ${course.places?.map((place) => place.name).join(',')}');
-    });
+    if (courses_array.isEmpty) {
+      course_list.forEach((course) {
+        courses_array.add(course.places ?? []);
+        print(
+            'Customed: ${course.customed}, Places: ${course.places?.map((place) => place.name).join(',')}');
+      });
+    }
   });
 }
-
 
 class _HomeState extends State<Home> {
   CollectionReference usersdb = FirebaseFirestore.instance.collection('User');
@@ -200,7 +204,7 @@ class _HomeState extends State<Home> {
   bool isLoading = true;
 
   @override
-void initState() {
+  void initState() {
     super.initState();
     initializeData();
   }
@@ -218,7 +222,6 @@ void initState() {
       setState(() {
         isLoading = false;
       });
-
     }
   }
 
