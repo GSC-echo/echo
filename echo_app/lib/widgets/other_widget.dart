@@ -513,7 +513,7 @@ Widget CourseDetailWidget(
                     ),
                   ),
                   Container(
-                      height: 85.h,
+                      height: 100.h,
                       width: 134.7.w,
                       decoration: BoxDecoration(
                         borderRadius: const BorderRadius.only(
@@ -537,7 +537,7 @@ Widget CourseDetailWidget(
                         ),
                       ),
                       child: Padding(
-                          padding: EdgeInsets.only(top: 20.h, right: 10.w),
+                          padding: EdgeInsets.only(top: 14.h, right: 10.w),
                           child: Column(children: [
                             Text(array[index].name??' ',
                                 textAlign: TextAlign.center,

@@ -81,7 +81,7 @@ class _PlaceDetailState extends State<PlaceDetail> {
                         padding: EdgeInsets.symmetric(horizontal: 120.w),
                         child: Container(
                             width: 200,
-                            height: 50, // 원하는 가로 크기로 조절
+                            height: 40, // 원하는 가로 크기로 조절
                             child: SaveWidget(
                               place: widget.place,
                               isSaved: saved.contains(widget.place),
@@ -138,7 +138,7 @@ class _MapDetailState extends State<MapDetail> {
         widget.place.geoPoint?.latitude ?? 36.8,
         widget.place.geoPoint?.longitude ?? 127.9,
       ),
-      zoom: 15,
+      zoom: 16,
     );
   }
 
@@ -152,6 +152,15 @@ class _MapDetailState extends State<MapDetail> {
           initialCameraPosition: _currentPosition,
           onMapCreated: (GoogleMapController controller) {
             _controller.complete();
+          },
+          markers: {
+            Marker(
+              markerId: const MarkerId('m1'),
+              position: LatLng(
+                widget.place.geoPoint!.latitude,
+                widget.place.geoPoint!.longitude,
+              ),
+            ),
           },
         ),
       ),
