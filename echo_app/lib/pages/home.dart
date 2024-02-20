@@ -23,39 +23,51 @@ class Home extends StatefulWidget {
 }
 
 class Review {
-  String user;
-  String text;
-  String date;
+  String? id;
+  DateTime? date;
+  String? text;
+  String? uid;
 
-  Review(this.user, this.text, this.date);
+  Review({
+    this.date,
+    this.text,
+    this.uid,
+    this.id,
+  });
+  Review.fromJson(Map<String, Object?> json)
+      : date = json['date'] as DateTime?,
+        text = json['text'] as String?,
+        uid = json['uid'] as String?;
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = {};
+    data['date'] = date;
+    data['text'] = text;
+    data['uid'] = uid;
+    return data;
+  }
+}
+List<Review> review_list = [
+];
+Future<void> initializeReviews() async {
+  final reviewList = FirebaseFirestore.instance.collection("Review");
+
+  reviewList.snapshots().listen((snapshot) {
+    review_list = snapshot.docs.map((doc) {
+      Map<String, dynamic> data = doc.data()!;
+      return Review(
+        date: data['date'].toDate() as DateTime?,
+        text: data['text'] as String?,
+        uid: data['uid'] as String?,
+        id: doc.id,
+      );
+    }).toList();
+
+    review_list.forEach((review) {
+      //print('Date: ${review.date}');
+    });
+  });
 }
 
-List<Review> review_list = [
-  Review(
-      "jiwoo",
-      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-      "2 days ago"),
-  Review(
-      "hyein",
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
-      "a week ago"),
-  Review(
-      "chaeyoung",
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
-      "September 2023"),
-  Review(
-      "seungwoo",
-      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-      "May 2023"),
-  Review(
-      "jiwoo",
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.",
-      "April 2022"),
-  Review(
-      "seungwoo",
-      "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-      "May 2023"),
-];
 
 class Place {
   String? id;
@@ -108,16 +120,7 @@ class Place {
   }
 }
 
-List<Place> course1 = [
-  // Place("Naejangsan National Park", 4.8,
-  //     'lib/config/images/course/NaejangsanNationalPark.png'),
-  // Place("Amisan Observatory", 4.8,
-  //     'lib/config/images/course/AmisanObservatory.png'),
-  // Place("Walkerhill Hotels & Resorts", 4.1,
-  //     'lib/config/images/course/WalkerhillHotelsResorts.png'),
-  // Place("DunjuPeak Hanbando", 4.1,
-  //     'lib/config/images/course/DunjuPeakHanbando.png'),
-];
+List<Place> course1 = [];
 List<Place> all_list = [];
 List<Place> accomodations_list = [];
 List<Place> restaurants_list = [];
@@ -125,7 +128,6 @@ List<Place> tourist_attractions_list = [];
 
 Future<void> initializePlaces() async {
   final placeList = FirebaseFirestore.instance.collection("Site");
-
   placeList.snapshots().listen((snapshot) {
     all_list = snapshot.docs.map((doc) {
       Map<String, dynamic> data = doc.data()!;
@@ -139,7 +141,6 @@ Future<void> initializePlaces() async {
         address: data['address'] as String?,
       );
     }).toList();
-
     all_list.forEach((place) {
       String placeId = place.id!;
       print(
@@ -175,21 +176,20 @@ Future<void> initializePlaces() async {
   });
 }
 
+
 class Course {
   bool? customed;
-  //List<Review>? review; //바꿔야됨
   List<Place>? places;
+  List<Review>? reviews;
 
-  Course({this.customed, this.places});
+  Course({this.customed, this.places,this.reviews});
 
   Course.fromJson(Map<String, Object?> json)
-      : //review = json['review'] as List<Review>?,
-        customed = json['customed'] as bool?;
+      : customed = json['customed'] as bool?;
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {};
     data['customed'] = customed;
-    //data['review'] = review;
     return data;
   }
 }
@@ -197,14 +197,16 @@ class Course {
 List<List<Place>> courses_array = [];
 List<Course> course_list = [];
 Future<void> initializeCourses() async {
+  await initializeReviews(); 
+  print(review_list);
   final courseList = FirebaseFirestore.instance.collection("Course");
-
   courseList.snapshots().listen((snapshot) {
-    course_list = snapshot.docs.map((doc) {
+    List<Course> tempList = snapshot.docs.map((doc) {
       Map<String, dynamic> data = doc.data()!;
       List<String> sidList = List<String>.from(data['sid_list'] ?? []);
       List<Place> places = [];
-
+      // List<String> ridList = List<String>.from(data["review_list"] ?? []);
+      // List<Review> reviews = [];
       sidList.forEach((sid) {
         Place? place = all_list.firstWhere((place) => place.id == sid);
         if (place != null) {
@@ -212,16 +214,30 @@ Future<void> initializeCourses() async {
         }
       });
 
+      // ridList.forEach((rid) {
+      //   Review? review = review_list.firstWhere((review) => review?.id == rid,);
+      //   if (review != null) {
+      //     reviews.add(review);
+      //     print('RID: $rid, text: ${review.text}, date: ${review.date}');
+      //   }
+      // });
+
       return Course(
         customed: data['customed'] as bool?,
         places: places,
+        //reviews: reviews,
       );
     }).toList();
-    course_list.forEach((course) {
-      courses_array.add(course.places ?? []);
-      print(
-          'Customed: ${course.customed}, Places: ${course.places?.map((place) => place.name).join(',')}');
-    });
+    if (courses_array.isEmpty) {
+      tempList.forEach((course) {
+        courses_array.add(course.places ?? []);
+      });
+    } else {
+      courses_array.clear();
+      tempList.forEach((course) {
+        courses_array.add(course.places ?? []);
+      });
+    }
   });
 }
 
@@ -230,27 +246,28 @@ class _HomeState extends State<Home> {
   String selectedContent = "All";
   bool isLoading = true;
 
-  @override
-  void initState() {
-    super.initState();
-    initializeData();
-  }
+@override
+void initState() {
+  super.initState();
+  initializeData();
+}
 
-  Future<void> initializeData() async {
-    try {
-      courses_array.isEmpty ? await initializePlaces() : null;
-      courses_array.isEmpty ? initializeCourses() : null;
-      await getUserPoints();
-      setState(() {
-        isLoading = false;
-      });
-    } catch (e) {
-      print('Error initializing data: $e');
-      setState(() {
-        isLoading = false;
-      });
-    }
+Future<void> initializeData() async {
+  try {
+    await initializePlaces();
+    await initializeCourses();
+    await getUserPoints();
+    setState(() {
+      isLoading = false;
+    });
+  } catch (e) {
+    print('Error initializing data: $e');
+    setState(() {
+      isLoading = false;
+    });
   }
+}
+
 
   Future<void> getUserPoints() async {
     String userId = FirebaseAuth.instance.currentUser?.uid ?? '';

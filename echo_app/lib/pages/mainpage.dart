@@ -1,3 +1,4 @@
+import 'package:echo_app/config/colors.dart';
 import 'package:echo_app/pages/map.dart';
 import 'package:echo_app/pages/profile.dart';
 import 'package:echo_app/pages/settings.dart';
@@ -50,7 +51,7 @@ class _MainPageState extends State<MainPage> {
           currentIndex: _currentIndex,
           items: _bottomNavBarItems,
           backgroundColor: Color(0xFF0F1A20),
-          selectedItemColor: Color(0xFF0F6AE2D), // 선택된 아이템의 색상
+          selectedItemColor: BackgroundColor.mainGreen, // 선택된 아이템의 색상
           unselectedItemColor: Colors.white, // 선택되지 않은 아이템의 색상
           onTap: (index) {
             setState(() {
