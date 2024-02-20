@@ -78,7 +78,14 @@ class Place {
   GeoPoint? geoPoint;
   String? address;
 
-  Place({this.id,this.name, this.star, this.image,this.category, this.geoPoint, this.address});
+  Place(
+      {this.id,
+      this.name,
+      this.star,
+      this.image,
+      this.category,
+      this.geoPoint,
+      this.address});
 
   Place.fromJson(Map<String, Object?> json)
       : name = json['name'] as String?,
@@ -87,8 +94,10 @@ class Place {
         category = json['category'] as String?,
         geoPoint = json['location'] != null
             ? GeoPoint(
-                (json['location'] as Map<String, dynamic>)['latitude'] as double,
-                (json['location'] as Map<String, dynamic>)['longitude'] as double,
+                (json['location'] as Map<String, dynamic>)['latitude']
+                    as double,
+                (json['location'] as Map<String, dynamic>)['longitude']
+                    as double,
               )
             : null,
         address = json['address'] as String?;
@@ -134,7 +143,8 @@ Future<void> initializePlaces() async {
     }).toList();
     all_list.forEach((place) {
       String placeId = place.id!;
-      print('Place ID: $placeId, Name: ${place.name}, Star: ${place.star}, Category: ${place.category} , Geopoint: (${place.geoPoint!.latitude}, ${place.geoPoint!.longitude}) , Address: ${place.address}');
+      print(
+          'Place ID: $placeId, Name: ${place.name}, Star: ${place.star}, Category: ${place.category} , Geopoint: (${place.geoPoint!.latitude}, ${place.geoPoint!.longitude}) , Address: ${place.address}');
       switch (place.category) {
         case 'accomodation':
           accomodations_list.add(place);
@@ -218,7 +228,6 @@ Future<void> initializeCourses() async {
         //reviews: reviews,
       );
     }).toList();
-
     if (courses_array.isEmpty) {
       tempList.forEach((course) {
         courses_array.add(course.places ?? []);
@@ -232,13 +241,11 @@ Future<void> initializeCourses() async {
   });
 }
 
-
 class _HomeState extends State<Home> {
   CollectionReference usersdb = FirebaseFirestore.instance.collection('User');
   String selectedContent = "All";
   bool isLoading = true;
 
-  @override
 @override
 void initState() {
   super.initState();
@@ -665,7 +672,7 @@ Future<void> initializeData() async {
                                     Padding(
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 23.0),
-                                      child: index == 2
+                                      child: index == courses_array.length - 1
                                           ? null
                                           : Divider(
                                               color: TextStyles.echoNavy

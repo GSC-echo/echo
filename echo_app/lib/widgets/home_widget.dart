@@ -87,7 +87,7 @@ Widget RealTimePlace({required BuildContext context, required Place place}) {
             borderRadius: BorderRadius.circular(25),
             child: FittedBox(
               fit: BoxFit.fill,
-              child: Image.asset(place.image??''),
+              child: Image.asset(place.image ?? ''),
             ),
           ),
         ),
@@ -108,7 +108,7 @@ Widget RealTimePlace({required BuildContext context, required Place place}) {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  place.name??' ',
+                  place.name ?? ' ',
                   textAlign: TextAlign.center,
                   style: TextStyles.white1.copyWith(fontSize: 10.sp),
                 ),
@@ -155,28 +155,34 @@ Widget RealTimeCourse(
                         Column(
                           children: [
                             Container(
-                              width: 70.w,
-                              height: 40.h,
-                              child: isinMap
-                                  ? GestureDetector(
-                                      onTap: () {
-                                        print("mark ${place.name ?? ' '} on Map");
-
-                                      },
-                                      child: Text(
-                                        place.name??' ',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyles.h1
-                                            .copyWith(fontSize: 10.sp),
-                                      ),
-                                    )
-                                  : Text(
-                                      place.name?? ' ',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyles.h1
-                                          .copyWith(fontSize: 10.sp),
-                                    ),
-                            ),
+                                width: 70.w,
+                                height: 40.h,
+                                child: isinMap
+                                    ? GestureDetector(
+                                        onTap: () {
+                                          print(
+                                              "mark ${place.name ?? ' '} on Map");
+                                        },
+                                        child: Center(
+                                          child: Text(
+                                            place.name ?? ' ',
+                                            maxLines: 3,
+                                            overflow: TextOverflow.ellipsis,
+                                            textAlign: TextAlign.center,
+                                            style: TextStyles.h1
+                                                .copyWith(fontSize: 10.sp),
+                                          ),
+                                        ))
+                                    : Center(
+                                        child: Text(
+                                          place.name ?? ' ',
+                                          maxLines: 3,
+                                          overflow: TextOverflow.ellipsis,
+                                          textAlign: TextAlign.center,
+                                          style: TextStyles.h1
+                                              .copyWith(fontSize: 10.sp),
+                                        ),
+                                      )),
                             SizedBox(height: 15.h),
                             Row(
                               children: [
@@ -263,7 +269,9 @@ Widget RealTimeCourse(
                                 height: 40.h,
                                 child: Center(
                                   child: Text(
-                                    place.name??'',
+                                    place.name ?? ' ',
+                                    maxLines: 3,
+                                    overflow: TextOverflow.ellipsis,
                                     textAlign: TextAlign.center,
                                     style:
                                         TextStyles.h1.copyWith(fontSize: 10.sp),
@@ -325,8 +333,10 @@ Widget AboutStageWidget(
       children: List.generate(stageList.length, (index) {
     return Column(children: [
       Container(
-        padding: EdgeInsets.only(left: 25.w, top: 25.h, bottom: 25.h),
+        padding:
+            EdgeInsets.only(left: 0.w, top: 25.h, bottom: 25.h, right: 25.w),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Center(
               child: Image.asset(
@@ -335,7 +345,6 @@ Widget AboutStageWidget(
                 height: 86,
               ),
             ),
-            SizedBox(width: 30.w),
             Column(
               children: [
                 Center(
