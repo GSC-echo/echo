@@ -46,8 +46,8 @@ class Review {
     return data;
   }
 }
-List<Review> review_list = [
-];
+
+List<Review> review_list = [];
 Future<void> initializeReviews() async {
   final reviewList = FirebaseFirestore.instance.collection("Review");
 
@@ -67,7 +67,6 @@ Future<void> initializeReviews() async {
     });
   });
 }
-
 
 class Place {
   String? id;
@@ -120,7 +119,6 @@ class Place {
   }
 }
 
-List<Place> course1 = [];
 List<Place> all_list = [];
 List<Place> accomodations_list = [];
 List<Place> restaurants_list = [];
@@ -176,13 +174,12 @@ Future<void> initializePlaces() async {
   });
 }
 
-
 class Course {
   bool? customed;
   List<Place>? places;
   List<Review>? reviews;
 
-  Course({this.customed, this.places,this.reviews});
+  Course({this.customed, this.places, this.reviews});
 
   Course.fromJson(Map<String, Object?> json)
       : customed = json['customed'] as bool?;
@@ -197,7 +194,7 @@ class Course {
 List<List<Place>> courses_array = [];
 List<Course> course_list = [];
 Future<void> initializeCourses() async {
-  await initializeReviews(); 
+  await initializeReviews();
   print(review_list);
   final courseList = FirebaseFirestore.instance.collection("Course");
   courseList.snapshots().listen((snapshot) {
@@ -246,28 +243,27 @@ class _HomeState extends State<Home> {
   String selectedContent = "All";
   bool isLoading = true;
 
-@override
-void initState() {
-  super.initState();
-  initializeData();
-}
-
-Future<void> initializeData() async {
-  try {
-    await initializePlaces();
-    await initializeCourses();
-    await getUserPoints();
-    setState(() {
-      isLoading = false;
-    });
-  } catch (e) {
-    print('Error initializing data: $e');
-    setState(() {
-      isLoading = false;
-    });
+  @override
+  void initState() {
+    super.initState();
+    initializeData();
   }
-}
 
+  Future<void> initializeData() async {
+    try {
+      await initializePlaces();
+      await initializeCourses();
+      await getUserPoints();
+      setState(() {
+        isLoading = false;
+      });
+    } catch (e) {
+      print('Error initializing data: $e');
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
 
   Future<void> getUserPoints() async {
     String userId = FirebaseAuth.instance.currentUser?.uid ?? '';
@@ -320,11 +316,6 @@ Future<void> initializeData() async {
 
   Widget build(BuildContext context) {
     return Scaffold(
-        // appBar: AppBar(
-        //   backgroundColor: Colors.white,
-        //   title: Text("HOME", style: TextStyles.h1),
-        //   centerTitle: true,
-        // ),
         body: SingleChildScrollView(
       child: Container(
         decoration: BoxDecoration(
@@ -665,6 +656,7 @@ Future<void> initializeData() async {
                                           RealTimeCourse(
                                               context: context,
                                               array: courses_array[index],
+                                              review: review_list,
                                               isinMap: false),
                                         ],
                                       ),

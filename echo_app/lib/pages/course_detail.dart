@@ -6,9 +6,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:echo_app/widgets/other_widget.dart';
 
 class CourseDetail extends StatelessWidget {
-  const CourseDetail(this.array, {super.key});
+  const CourseDetail(this.place_list, this.review_list, {super.key});
 
-  final List<Place> array;
+  final List<Place> place_list;
+  final List<Review> review_list;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +53,7 @@ class CourseDetail extends StatelessWidget {
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(array.length.toString(),
+                            Text(place_list.length.toString(),
                                 style: TextStyles.h3.copyWith(fontSize: 15.sp)),
                             SizedBox(width: 5.w),
                             Text(
@@ -72,7 +73,9 @@ class CourseDetail extends StatelessWidget {
                         color: Colors.white,
                       ),
                       child: CourseDetailWidget(
-                          buildcontext: context, array: array, isCustom: false))
+                          buildcontext: context,
+                          array: place_list,
+                          isCustom: false))
                 ],
               )),
           Container(

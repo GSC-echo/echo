@@ -30,7 +30,6 @@ class _GetPointState extends State<GetPoint> {
     Mission("Consuming Eco-friendly Products", 2),
     Mission("Consuming Recycling or Upcycling products", 2)
   ];
-  List<Place> course1 = [];
 
   @override
   Widget build(BuildContext context) {
@@ -82,6 +81,7 @@ class _GetPointState extends State<GetPoint> {
                               RealTimeCourse(
                                   context: context,
                                   array: courses_array[0],
+                                  review: review_list,
                                   isinMap: false),
                               SizedBox(height: 30.h),
                             ],

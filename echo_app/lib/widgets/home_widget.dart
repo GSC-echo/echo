@@ -125,6 +125,7 @@ Widget RealTimePlace({required BuildContext context, required Place place}) {
 Widget RealTimeCourse(
     {required BuildContext context,
     required List<Place> array,
+    required List<Review> review,
     required bool isinMap}) {
   return isinMap
       ? Column(children: [
@@ -232,7 +233,7 @@ Widget RealTimeCourse(
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: ((context) => CourseDetail(array)),
+                builder: ((context) => CourseDetail(array, review)),
               ),
             );
           },
