@@ -4,11 +4,16 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b7d3c96-5aec-4367-9826-a4b09fe66feb" name="Changes" comment="" />
+    <list default="true" id="8b7d3c96-5aec-4367-9826-a4b09fe66feb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/echo_app/lib/pages/place_detail.dart" beforeDir="false" afterPath="$PROJECT_DIR$/echo_app/lib/pages/place_detail.dart" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -30,7 +35,7 @@
     "RunOnceActivity.cidr.known.project.marker": "true",
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "map",
     "last_opened_file_path": "/Users/cxaos/Documents/GSC-ECHO/echo",
     "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
     "show.migrate.to.gradle.popup": "false"

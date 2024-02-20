@@ -34,9 +34,13 @@ class CreatedCourse extends StatelessWidget {
                       left: 30.w, right: 30.h, top: 40.h, bottom: 20.h),
                   height: 200.h,
                   decoration: BoxDecoration(
-                    color: BackgroundColor.background1,
+                    color: Colors.transparent,
                     borderRadius: BorderRadius.circular(30.0),
                   ),
+                  child: ClipRRect(
+                        borderRadius: BorderRadius.circular(35.sp),
+                        child: GoogleMapWidget(),
+                      ),
                 ),
                 Container(
                     margin:
@@ -87,7 +91,7 @@ class CreatedCourse extends StatelessWidget {
                             child: CourseDetailWidget(
                                 buildcontext: context,
                                 array: array,
-                                isCustom: false))
+                                isCustom: true))
                       ],
                     )),
               ])),
