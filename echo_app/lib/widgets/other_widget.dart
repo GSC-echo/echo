@@ -995,10 +995,9 @@ Widget ReviewDetailWidget({required List<Review> array}) {
                     ),
                   ),
                   SizedBox(height: 5.h),
-                  Text(array[index].user,
-                      style: TextStyles.h1.copyWith(fontSize: 8.sp)),
+                  //Text(array[index].uid??' ',style: TextStyles.h1.copyWith(fontSize: 8.sp)),
                   SizedBox(height: 5.h),
-                  Text(array[index].date,
+                  Text(array[index].date.toString(),
                       style: TextStyles.green.copyWith(fontSize: 5.sp))
                 ],
               ),
@@ -1007,7 +1006,7 @@ Widget ReviewDetailWidget({required List<Review> array}) {
                       EdgeInsets.only(top: 12.h, bottom: 12.h, right: 10.w),
                   width: 200.w,
                   child: Text(
-                    array[index].text,
+                    array[index].text??' ',
                     style: TextStyles.h1.copyWith(fontSize: 8.sp),
                   )),
             ]));
@@ -1043,8 +1042,7 @@ Widget ReviewShortWidget({required List<Review> array}) {
                     ),
                   ),
                   SizedBox(height: 5.h),
-                  Text(array[index].user,
-                      style: TextStyles.h1.copyWith(fontSize: 8.sp)),
+                  //Text(array[index].uid??' ',style: TextStyles.h1.copyWith(fontSize: 8.sp)),
                   SizedBox(height: 6.h),
                 ],
               ),
@@ -1055,7 +1053,7 @@ Widget ReviewShortWidget({required List<Review> array}) {
                   child: Text(
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
-                    array[index].text,
+                    array[index].text??' ',
                     style: TextStyles.h1.copyWith(fontSize: 8.sp),
                   )),
             ]));

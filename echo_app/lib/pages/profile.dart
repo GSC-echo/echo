@@ -71,18 +71,16 @@ class _Profile extends State<Profile> {
     User? user = FirebaseAuth.instance.currentUser;
 
     if (user != null) {
-      // Fetch additional user data (e.g., nationality) from Firestore
       DocumentSnapshot userSnapshot = await FirebaseFirestore.instance
           .collection('users')
           .doc(user.uid)
           .get();
-      // check if userData is not null
       Map<String, dynamic>? userData =
           userSnapshot.data() as Map<String, dynamic>?;
 
       setState(() {
         _user = user;
-        _nationality = userData?['nationality'] ?? ''; // Update nationality
+
       });
     }
   }
@@ -94,13 +92,11 @@ class _Profile extends State<Profile> {
   }
 
   void _saveNationality() {
-    // For now, just update the UI
     setState(() {
       _isEditing = false;
       _nationality = _editedNationality.isNotEmpty
           ? _editedNationality
           : (_selectedCountry != null ? _selectedCountry!.name : '');
-      // _editedNationality -> update in your database
     });
   }
 
@@ -122,7 +118,7 @@ class _Profile extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: TextStyles.echoNavy.withOpacity(0.95),
         centerTitle: true,
         title: const Text(
           'Profile',
@@ -131,12 +127,14 @@ class _Profile extends State<Profile> {
             fontFamily: 'NotoSansKR',
             fontSize: 22,
             fontWeight: FontWeight.w700,
+            color: BackgroundColor.background1,
           ),
         ),
+        
       ),
       body: Container(
         decoration: BoxDecoration(
-          color: TextStyles.echoYellow,
+          color: TextStyles.echoNavy.withOpacity(0.95),
         ),
         child: SafeArea(
           child: Padding(
@@ -419,58 +417,58 @@ class _Profile extends State<Profile> {
                           ),
                         ),
                       ),
-                      Container(
-                        margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                        child: SizedBox(
-                          width: 150,
-                          height: 45,
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => RecordPage()));
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                color: Colors.white,
-                                border:
-                                    Border.all(color: Colors.white, width: 3),
-                                boxShadow: [],
-                              ),
-                              child: Card(
-                                elevation: 2,
-                                margin: EdgeInsets.all(0),
-                                color: Color.fromARGB(255, 29, 51, 61)
-                                    .withOpacity(0.95),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.list,
-                                      size: 25,
-                                      color: Colors.white,
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    const Text(
-                                      'Record',
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontFamily: 'NotoSansKR',
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                      // Container(
+                      //   margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                      //   child: SizedBox(
+                      //     width: 150,
+                      //     height: 45,
+                      //     child: InkWell(
+                      //       onTap: () {
+                      //         Navigator.push(
+                      //             context,
+                      //             MaterialPageRoute(
+                      //                 builder: (context) => RecordPage()));
+                      //       },
+                      //       child: Container(
+                      //         decoration: BoxDecoration(
+                      //           borderRadius: BorderRadius.circular(15),
+                      //           color: Colors.white,
+                      //           border:
+                      //               Border.all(color: Colors.white, width: 3),
+                      //           boxShadow: [],
+                      //         ),
+                      //         child: Card(
+                      //           elevation: 2,
+                      //           margin: EdgeInsets.all(0),
+                      //           color: Color.fromARGB(255, 29, 51, 61)
+                      //               .withOpacity(0.95),
+                      //           child: Row(
+                      //             mainAxisAlignment: MainAxisAlignment.center,
+                      //             crossAxisAlignment: CrossAxisAlignment.center,
+                      //             children: [
+                      //               Icon(
+                      //                 Icons.list,
+                      //                 size: 25,
+                      //                 color: Colors.white,
+                      //               ),
+                      //               const SizedBox(
+                      //                 width: 10,
+                      //               ),
+                      //               const Text(
+                      //                 'Record',
+                      //                 style: TextStyle(
+                      //                     color: Colors.white,
+                      //                     fontFamily: 'NotoSansKR',
+                      //                     fontSize: 16,
+                      //                     fontWeight: FontWeight.bold),
+                      //               )
+                      //             ],
+                      //           ),
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
                       Container(
                         margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
                         child: SizedBox(
