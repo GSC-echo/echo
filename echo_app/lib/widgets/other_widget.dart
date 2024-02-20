@@ -508,12 +508,12 @@ Widget CourseDetailWidget(
                       borderRadius: BorderRadius.circular(16.0),
                       child: FittedBox(
                         fit: BoxFit.fill,
-                        child: Image.asset(array[index].image??' '),
+                        child: Image.asset(array[index].image ?? ' '),
                       ),
                     ),
                   ),
                   Container(
-                      height: 100.h,
+                      height: 95.8.h,
                       width: 134.7.w,
                       decoration: BoxDecoration(
                         borderRadius: const BorderRadius.only(
@@ -537,11 +537,14 @@ Widget CourseDetailWidget(
                         ),
                       ),
                       child: Padding(
-                          padding: EdgeInsets.only(top: 14.h, right: 10.w),
+                          padding: EdgeInsets.only(top: 10.h, right: 10.w),
                           child: Column(children: [
-                            Text(array[index].name??' ',
-                                textAlign: TextAlign.center,
-                                style: TextStyles.h1.copyWith(fontSize: 9.sp)),
+                            Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                                child: Text(array[index].name ?? ' ',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyles.h1
+                                        .copyWith(fontSize: 9.sp))),
                             SizedBox(height: 5.h),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -562,8 +565,7 @@ Widget CourseDetailWidget(
                             ),
                             SizedBox(height: 5.h),
                             Padding(
-                                padding:
-                                    EdgeInsets.only(left: 25.w, right: 25.w),
+                                padding: EdgeInsets.symmetric(horizontal: 30.w),
                                 child: SaveWidget(
                                   place: array[index],
                                   isSaved: saved.contains(array[index]),
@@ -831,7 +833,7 @@ Widget PlacesbyContentWidget({
               borderRadius: BorderRadius.circular(16.0),
               child: FittedBox(
                 fit: BoxFit.fill,
-                child: Image.asset(place.image??' '),
+                child: Image.asset(place.image ?? ' '),
               ),
             ),
           ),
@@ -863,12 +865,15 @@ Widget PlacesbyContentWidget({
               padding: EdgeInsets.only(top: 20.h, right: 10.w),
               child: Column(
                 children: [
-                  Text(
-                    place.name??' ',
-                    textAlign: TextAlign.center,
-                    style: TextStyles.h1.copyWith(fontSize: 9.sp),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.w),
+                    child: Text(
+                      place.name ?? ' ',
+                      textAlign: TextAlign.center,
+                      style: TextStyles.h1.copyWith(fontSize: 9.sp),
+                    ),
                   ),
-                  SizedBox(height: 15.h),
+                  SizedBox(height: 12.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -883,7 +888,7 @@ Widget PlacesbyContentWidget({
                       )
                     ],
                   ),
-                  SizedBox(height: 15.h),
+                  SizedBox(height: 12.h),
                   isGeneral == true
                       ? Padding(
                           padding: EdgeInsets.only(left: 44.w, right: 38.w),

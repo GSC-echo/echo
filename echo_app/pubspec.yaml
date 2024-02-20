@@ -32,7 +32,6 @@ dependencies:
     sdk: flutter
   country_picker: ^2.0.24
 
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
@@ -52,8 +51,7 @@ dependencies:
 
 flutter_icons:
   android: true
-  image_path: 'lib/config/images/echo.png'
-
+  image_path: "lib/config/images/echo.png"
 
 dev_dependencies:
   flutter_test:
@@ -89,6 +87,7 @@ flutter:
     - lib/config/images/course/DunjuPeakHanbando.png
     - lib/config/images/course/EcoVillage.png
     - lib/config/images/course/ibisAmbassadorBusanCityCentre.png
+    - lib/config/images/course/JangneungBarleyRice.png
     - lib/config/images/course/JanggyeTourism.png
     - lib/config/images/course/JejuOrganicSsamRice.png
     - lib/config/images/course/KPWetlandECF.png
