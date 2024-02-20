@@ -302,6 +302,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                                             child: RealTimeCourse(
                                                 context: context,
                                                 array: array[index],
+                                                review: review_list,
                                                 isinMap:
                                                     true), //RecommendedCourses일때
                                           ),
@@ -360,8 +361,10 @@ class _SearchWidgetState extends State<SearchWidget> {
                                                         context,
                                                         MaterialPageRoute(
                                                             builder: ((context) =>
-                                                                CourseDetail(array[
-                                                                    index]))));
+                                                                CourseDetail(
+                                                                    array[
+                                                                        index],
+                                                                    review_list))));
                                                   },
                                                   child: Container(
                                                       padding:
@@ -1011,7 +1014,7 @@ Widget ReviewDetailWidget({required List<Review> array}) {
                       EdgeInsets.only(top: 12.h, bottom: 12.h, right: 10.w),
                   width: 200.w,
                   child: Text(
-                    array[index].text??' ',
+                    array[index].text ?? ' ',
                     style: TextStyles.h1.copyWith(fontSize: 8.sp),
                   )),
             ]));
@@ -1036,15 +1039,17 @@ Widget ReviewShortWidget({required List<Review> array}) {
                     width: 35.w,
                     height: 35.h,
                     decoration: BoxDecoration(
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(100),
                         border: Border.all(color: Colors.white, width: 1.0.sp)),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
-                      child: Image.asset(
-                        "lib/config/images/sleeping_cat.jpg",
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                        borderRadius: BorderRadius.circular(100),
+                        child: Icon(Icons.person_sharp)
+                        // Image.asset(
+                        //   "lib/config/images/sleeping_cat.jpg",
+                        //   fit: BoxFit.cover,
+                        //),
+                        ),
                   ),
                   SizedBox(height: 5.h),
                   //Text(array[index].uid??' ',style: TextStyles.h1.copyWith(fontSize: 8.sp)),
@@ -1058,7 +1063,7 @@ Widget ReviewShortWidget({required List<Review> array}) {
                   child: Text(
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
-                    array[index].text??' ',
+                    array[index].text ?? ' ',
                     style: TextStyles.h1.copyWith(fontSize: 8.sp),
                   )),
             ]));
