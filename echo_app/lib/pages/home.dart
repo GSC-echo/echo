@@ -63,20 +63,38 @@ class Place {
   double? star;
   String? image;
   String? category;
+  GeoPoint? geoPoint;
+  String? address;
 
-  Place({this.id,this.name, this.star, this.image,this.category});
+  Place({this.id,this.name, this.star, this.image,this.category, this.geoPoint, this.address});
 
   Place.fromJson(Map<String, Object?> json)
       : name = json['name'] as String?,
         star = double.tryParse(json['grade']?.toString() ?? ''),
         image = json['image_link'] as String?,
-        category = json['category'] as String?;
+        category = json['category'] as String?,
+        geoPoint = json['location'] != null
+            ? GeoPoint(
+                (json['location'] as Map<String, dynamic>)['latitude'] as double,
+                (json['location'] as Map<String, dynamic>)['longitude'] as double,
+              )
+            : null,
+        address = json['address'] as String?;
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = {};
     data['name'] = name;
     data['grade'] = star;
     data['image_link'] = image;
     data['category'] = category;
+    if (geoPoint != null) {
+      data['location'] = {
+        'latitude': geoPoint!.latitude,
+        'longitude': geoPoint!.longitude,
+      };
+    }
+    // data['location'] = geoPoint;
+    data['address'] = address;
     return data;
   }
 }
@@ -108,12 +126,14 @@ Future<void> initializePlaces() async {
         star: double.tryParse(data['grade']?.toString() ?? ''),
         image: data['image_link'] as String?,
         category: data['category'] as String?,
+        geoPoint: data['location'] as GeoPoint?,
+        address: data['address'] as String?,
       );
     }).toList();
 
     all_list.forEach((place) {
       String placeId = place.id!;
-      print('Place ID: $placeId, Name: ${place.name}, Star: ${place.star}, Category: ${place.category}');
+      print('Place ID: $placeId, Name: ${place.name}, Star: ${place.star}, Category: ${place.category} , Geopoint: (${place.geoPoint!.latitude}, ${place.geoPoint!.longitude}) , Address: ${place.address}');
       switch (place.category) {
         case 'accomodation':
           accomodations_list.add(place);
