@@ -1,8 +1,8 @@
-# echo
+# eco-tourism app "echo" 
 
 <p align="center">
   <br>
-  <img src="./images/common/logo-sample.jpeg">
+  <img width="1288" alt="스크린샷 2024-02-24 오후 6 26 48" src="https://github.com/GSC-echo/echo/assets/118713353/927b73a0-0c0e-4818-830c-56af4a1663ee">
   <br>
 </p>
 
