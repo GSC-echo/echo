@@ -14,19 +14,36 @@
 ## Team members
 | Hyein Jeong | Chaeyoung Shin | Jiwoo Min | Seungwoo Kim |
 | :--------: | :--------: | :------: | :-----: |
-| [<img src="https://avatars.githubusercontent.com/u/118713353?v=4?v=4" height=150 width=150> <br/> @hyeinj](https://github.com/hyeinj) | [<img src="https://avatars.githubusercontent.com/u/87316705?v=4" height=150 width=150> <br/> @scy0723](https://github.com/scy0723) | [<img src="https://avatars.githubusercontent.com/u/55368887?v=4" height=150 width=150> <br/> @jiwoomin99](https://github.com/jiwoomin99) | [<img src="https://avatars.githubusercontent.com/u/127183531?v=4" height=150 width=150> <br/> @thes24](https://github.com/thes24) |
+| [<img src="https://avatars.githubusercontent.com/u/118713353?v=4" height=150 width=150> <br/> @hyeinj](https://github.com/hyeinj) | [<img src="https://avatars.githubusercontent.com/u/87316705?v=4" height=150 width=150> <br/> @scy0723](https://github.com/scy0723) | [<img src="https://avatars.githubusercontent.com/u/55368887?v=4" height=150 width=150> <br/> @jiwoomin99](https://github.com/jiwoomin99) | [<img src="https://avatars.githubusercontent.com/u/127183531?v=4" height=150 width=150> <br/> @thes24](https://github.com/thes24) |
 
 ## Features
 
-### 기능 1
+### [Home]
+- 포인트 획득
+- 실시간으로 가장 인기있는 장소들(숙박,식당,관광 카테고리별로)과 코스들
+<p align="center">
+  <br>
+  <img width="766" alt="스크린샷 2024-02-24 오후 9 34 08" src="https://github.com/GSC-echo/echo/assets/118713353/5a668b03-728a-4de4-b371-394325306045">
+  <br>
+</p>
 
-### 기능 2
 
-### 기능 3
+### [Search]
+<p align="center">
+  <br>
+  <img width="1283" alt="스크린샷 2024-02-24 오후 9 45 11" src="https://github.com/GSC-echo/echo/assets/118713353/0d448a8f-c8ba-43f9-9d5d-7d07e700fb7a">
+  <br>
+</p>
 
-### 기능 4
 
+### [Profile]
+<p align="center">
+  <br>
+  <img width="765" alt="스크린샷 2024-02-24 오후 9 48 29" src="https://github.com/GSC-echo/echo/assets/118713353/2674b3b8-6a9f-4946-ae9c-d7bf25c4e179">
+  <br>
+</p>
 <br>
+
 
 ## Technologies
 
