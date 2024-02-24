@@ -6,32 +6,23 @@
   <br>
 </p>
 
-## 프로젝트 소개
+## About "echo"
 
-<p align="justify">
-프로젝트 개요/동기
-</p>
-
-<p align="center">
-GIF Images
-</p>
-
-<br>
 
 ## Team members
 | Hyein Jeong | Chaeyoung Shin | Jiwoo Min | Seungwoo Kim |
 | :--------: | :--------: | :------: | :-----: |
 |       |       |  |  |
 
-## 기술 스택
+## Technologies
 
-| JavaScript | TypeScript |  React   |  Node   |
-| :--------: | :--------: | :------: | :-----: |
-|   ![js]    |   ![ts]    | ![react] | ![node] |
+| Flutter | Firebase |  Google Maps Platform |
+| :--------: | :--------: | :------: |
+|       |      |  |
 
 <br>
 
-## 구현 기능
+## Features
 
 ### 기능 1
 
@@ -43,17 +34,6 @@ GIF Images
 
 <br>
 
-## 배운 점 & 아쉬운 점
-
-<p align="justify">
-
-</p>
-
-<br>
-
-## 라이센스
-
-MIT &copy; [NoHack](mailto:lbjp114@gmail.com)
 
 <!-- Stack Icon Refernces -->
 
