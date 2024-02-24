@@ -18,6 +18,8 @@
 | :--------: | :--------: | :------: | :-----: |
 | [<img src="https://avatars.githubusercontent.com/u/118713353?v=4" height=150 width=150> <br/> @hyeinj](https://github.com/hyeinj) | [<img src="https://avatars.githubusercontent.com/u/87316705?v=4" height=150 width=150> <br/> @scy0723](https://github.com/scy0723) | [<img src="https://avatars.githubusercontent.com/u/55368887?v=4" height=150 width=150> <br/> @jiwoomin99](https://github.com/jiwoomin99) | [<img src="https://avatars.githubusercontent.com/u/127183531?v=4" height=150 width=150> <br/> @thes24](https://github.com/thes24) |
 
+<br>
+
 ## Features
 
 ### [Home]
