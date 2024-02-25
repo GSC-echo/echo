@@ -8,8 +8,8 @@
 <br>
 
 ## About "echo" app
-- 단순한 여행앱이 아니라 "친환경적인" 여행, 즉 "에코 투어리즘" 관련 도움을 주는 앱
-- 등등
+- a go-to guide application for discovering eco-friendly travel experiences around the globe.
+- Our solution aims to promote sustainable tourism by providing guidance and recommendations.
 
 <br>
 
