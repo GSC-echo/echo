@@ -23,8 +23,8 @@
 ## Features
 
 ### [Home]
-- popular real-time courses and places(accomodation, restaurant, )
-- earn points
+- popular real-time courses and places(accomodation, restaurant, tourist attractions))
+- earn points by perfoming missons
 <p align="center">
   <br>
   <img width="766" alt="스크린샷 2024-02-24 오후 9 34 08" src="https://github.com/GSC-echo/echo/assets/118713353/5a668b03-728a-4de4-b371-394325306045">
@@ -37,7 +37,7 @@
 - general에 해당 지역의 추천코스, 그린스테이(숙박), 비건? 식당, 친환경 관광지
 - general에서 각 추천코스 및 장소들마다 "save" 버튼이 있는데 이렇게 저장한 것들만 saved에서 모아서 볼 수 있습니다.
 - saved한 장소들 중 "custom" 버튼을 눌러서 담은 장소들로만 나만의 코스를 커스텀 할 수 있습니다.
-- 평점 및 리뷰 얘기도?
+- 평점 및 리뷰
 <p align="center">
   <br>
   <img width="1283" alt="스크린샷 2024-02-24 오후 9 45 11" src="https://github.com/GSC-echo/echo/assets/118713353/0d448a8f-c8ba-43f9-9d5d-7d07e700fb7a">
