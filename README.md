@@ -23,8 +23,8 @@
 ## Features
 
 ### [Home]
-- 포인트 획득
-- 실시간으로 가장 인기있는 장소들(숙박,식당,관광 카테고리별로)과 코스들
+- popular real-time courses and places(accomodation, restaurant, )
+- earn points
 <p align="center">
   <br>
   <img width="766" alt="스크린샷 2024-02-24 오후 9 34 08" src="https://github.com/GSC-echo/echo/assets/118713353/5a668b03-728a-4de4-b371-394325306045">
