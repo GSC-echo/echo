@@ -23,7 +23,7 @@
 ## Features
 
 ### [Home]
-- popular real-time courses and places(accomodation, restaurant, tourist attractions))
+- popular real-time courses and places(accomodation, restaurant, tourist attractions)
 - earn points by perfoming missons
 <p align="center">
   <br>
@@ -33,11 +33,11 @@
 
 
 ### [Search]
-- 상단의 검색바를 통해 지역 입력
-- general에 해당 지역의 추천코스, 그린스테이(숙박), 비건? 식당, 친환경 관광지
-- general에서 각 추천코스 및 장소들마다 "save" 버튼이 있는데 이렇게 저장한 것들만 saved에서 모아서 볼 수 있습니다.
-- saved한 장소들 중 "custom" 버튼을 눌러서 담은 장소들로만 나만의 코스를 커스텀 할 수 있습니다.
-- 평점 및 리뷰
+- Enter the region through the search bar at the top
+- general : Recommended courses and places in the area
+- saved : There is a "save" button for each recommended courses and places, and only these saved things can be collected and viewed in "saved".
+- custom : You can customize your own course only with the places you put in by pressing the "custom" button among the saved places.
+- There are also ratings for each places and reviews of recommended courses
 <p align="center">
   <br>
   <img width="1283" alt="스크린샷 2024-02-24 오후 9 45 11" src="https://github.com/GSC-echo/echo/assets/118713353/0d448a8f-c8ba-43f9-9d5d-7d07e700fb7a">
