@@ -46,11 +46,11 @@
 
 
 ### [Profile]
-- 내 이름, 이메일, 티어 및 포인트 확인 가능
-- "edit profile" 버튼 클릭시 국적 선택도 가능
-- "settings" 버튼 클릭 시 로그아웃 또는 회원 탈퇴가 가능
-- 로그아웃 또는 회원탈퇴 시 앱의 가장 초기화면인 로그인 페이지가 나옴
-- 로그인은 구글계정으로만 가능
+- Check your current enrolled name, email, tier, and points
+- You can also select your nationality by clicking the "edit profile" button
+- Click the "settings" button to log out or sign out
+- When you log out or sign out, the login page appears, the earliest screen of the app
+- Login is only possible with Google account !
 <p align="center">
   <br>
   <img width="765" alt="스크린샷 2024-02-24 오후 9 48 29" src="https://github.com/GSC-echo/echo/assets/118713353/2674b3b8-6a9f-4946-ae9c-d7bf25c4e179">
