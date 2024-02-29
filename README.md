@@ -24,7 +24,7 @@
 
 ### [Home]
 - popular real-time courses and places(accomodation, restaurant, tourist attractions)
-- earn points by perfoming missons
+- Earn points by perfoming missons
 <p align="center">
   <br>
   <img width="766" alt="스크린샷 2024-02-24 오후 9 34 08" src="https://github.com/GSC-echo/echo/assets/118713353/5a668b03-728a-4de4-b371-394325306045">
@@ -47,8 +47,8 @@
 
 ### [Profile]
 - Check your current enrolled name, email, tier, and points
-- You can also select your nationality by clicking the "edit profile" button
-- Click the "settings" button to log out or sign out
+- You can also select your nationality by clicking the "Edit Profile" button
+- Click the "Settings" button to log out or sign out
 - When you log out or sign out, the login page appears, the earliest screen of the app
 - Login is only possible with Google account !
 <p align="center">
